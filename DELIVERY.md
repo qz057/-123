@@ -4,7 +4,8 @@
 
 - Repo path: `/home/qz057/.openclaw/workspace/flowdock`
 - Branch: `master`
-- Remote: **none configured**
+- Remote: `origin = git@github.com:qz057/-123.git`
+- Tracking: `master -> origin/master`
 - Working tree: **clean**
 
 ## Current Verified Baseline
@@ -17,7 +18,7 @@ npm run lint && npm run build
 
 Latest result: **passed**
 
-## What Is Already Landed Locally
+## What Is Already Landed
 
 - Homepage with product-style sections and explicit product journey
 - Diagnose interactive page with explainable scoring / resource guidance
@@ -30,15 +31,28 @@ Latest result: **passed**
 
 ## Commit History Shape
 
-Current local commits:
+Current pushed commits:
 
-1. `82f7546` — `chore: scaffold FlowDock runtime and UI foundation`
-2. `cda0d3e` — `feat: add FlowDock diagnose tool with explainable results`
-3. `3f9f539` — `feat: build FlowDock templates docs and use-case content system`
-4. `d8800ae` — `feat: polish FlowDock homepage branding and navigation`
-5. `8353bc8` — `docs: align FlowDock operator and delivery notes`
+1. `bb6442f` — `chore: scaffold FlowDock runtime and UI foundation`
+2. `aeb453b` — `feat: add FlowDock diagnose tool with explainable results`
+3. `d997bdc` — `feat: build FlowDock templates docs and use-case content system`
+4. `b462a67` — `feat: polish FlowDock homepage branding and navigation`
+5. `71cbef9` — `docs: align FlowDock operator and delivery notes`
+6. `eacd39b` — `docs: sync delivery note with local closeout state`
 
-> These commits were created locally with a temporary local git identity because this repo had no git `user.name` / `user.email` configured yet. If needed, amend author info before push.
+Author identity has been rewritten to:
+- `qz057 <qz057@163.com>`
+
+## Push Status
+
+Push succeeded:
+
+```bash
+git push -u origin master
+```
+
+GitHub suggested PR URL:
+- <https://github.com/qz057/-123/pull/new/master>
 
 ## Operator Checklist
 
@@ -46,21 +60,19 @@ Current local commits:
 - [x] README reflects real project instead of default Next template
 - [x] Delivery note records repo reality and baseline
 - [x] local commit split completed
-- [x] working tree is clean
-- [ ] git remote configured
-- [ ] changes pushed to intended remote/fork
-- [ ] author identity amended if required before push
+- [x] working tree clean before push
+- [x] git remote configured
+- [x] author identity amended
+- [x] changes pushed to intended remote/fork
 
 ## Known Limits
 
 - Diagnose is still rule-based V1
-- No remote configured yet, so nothing has been pushed
 - Homepage can still be polished further if design-grade visual work continues
-- Current stop point is ideal for remote configuration and push, not for more uncontrolled local changes
+- Current default branch used for delivery is `master`
 
 ## Recommended Next Phase
 
-1. Configure the intended remote/fork
-2. Decide whether to keep the 5 local commits as-is or squash/reword before push
-3. Amend author identity if needed
-4. Push `master` (or preferred target branch) to the writable remote
+1. If needed, open PR from `master`: <https://github.com/qz057/-123/pull/new/master>
+2. Continue visual polish only in new follow-up commits, not on top of untracked local state
+3. Expand deeper scenario content in Docs / About / Use Cases if product work continues
