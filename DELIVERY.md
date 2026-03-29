@@ -5,6 +5,7 @@
 - Repo path: `/home/qz057/.openclaw/workspace/flowdock`
 - Branch: `master`
 - Remote: **none configured**
+- Working tree: **clean**
 
 ## Current Verified Baseline
 
@@ -27,81 +28,39 @@ Latest result: **passed**
 - Unified header / footer / metadata / product copy
 - README and delivery notes aligned to real repo state
 
-## Suggested Commit Slices
+## Commit History Shape
 
-If this repo needs to be committed cleanly, the current change set is best split like this:
+Current local commits:
 
-### Slice 1 — project scaffold / runtime base
-Files typically included:
-- `package.json`
-- `package-lock.json`
-- `next.config.ts`
-- `tsconfig.json`
-- `eslint.config.mjs`
-- `postcss.config.mjs`
-- `components.json`
-- `app/layout.tsx`
-- `app/globals.css`
-- `components/ui/*`
-- `lib/utils.ts`
+1. `82f7546` — `chore: scaffold FlowDock runtime and UI foundation`
+2. `cda0d3e` — `feat: add FlowDock diagnose tool with explainable results`
+3. `3f9f539` — `feat: build FlowDock templates docs and use-case content system`
+4. `d8800ae` — `feat: polish FlowDock homepage branding and navigation`
+5. `8353bc8` — `docs: align FlowDock operator and delivery notes`
 
-### Slice 2 — diagnose engine and interactive tool page
-Files typically included:
-- `app/diagnose/page.tsx`
-- `lib/diagnose/analyzer.ts`
-- `lib/diagnose/rules.ts`
-- `types/diagnose.ts`
-- diagnose-related docs / data wiring if you want this slice self-contained
+> These commits were created locally with a temporary local git identity because this repo had no git `user.name` / `user.email` configured yet. If needed, amend author info before push.
 
-### Slice 3 — templates / docs / use-cases / about content system
-Files typically included:
-- `app/templates/*`
-- `app/docs/*`
-- `app/use-cases/*`
-- `app/about/page.tsx`
-- `data/docs/catalog.ts`
-- `data/templates/catalog.ts`
-- `data/use-cases/catalog.ts`
-- `types/template.ts`
-- `components/docs/*`
-
-### Slice 4 — homepage / branding / navigation polish
-Files typically included:
-- `app/page.tsx`
-- `components/sections/home/*`
-- `components/layout/site-header.tsx`
-- `components/layout/site-footer.tsx`
-- `data/home/content.ts`
-- `data/site/navigation.ts`
-
-### Slice 5 — delivery and operator docs
-Files typically included:
-- `README.md`
-- `DELIVERY.md`
-- `AGENTS.md`
-- `CLAUDE.md`
-
-## Current Operator Checklist
-
-Before treating this repo as shipped, still check these items:
+## Operator Checklist
 
 - [x] `npm run lint && npm run build`
 - [x] README reflects real project instead of default Next template
 - [x] Delivery note records repo reality and baseline
-- [ ] git commits are split into reusable logical slices
-- [ ] remote is configured
-- [ ] changes are pushed to the intended remote/fork
+- [x] local commit split completed
+- [x] working tree is clean
+- [ ] git remote configured
+- [ ] changes pushed to intended remote/fork
+- [ ] author identity amended if required before push
 
 ## Known Limits
 
 - Diagnose is still rule-based V1
 - No remote configured yet, so nothing has been pushed
-- If continuing visual polish, homepage is still the best next target
-- There is still no commit history shape for handoff; only local working tree state exists
+- Homepage can still be polished further if design-grade visual work continues
+- Current stop point is ideal for remote configuration and push, not for more uncontrolled local changes
 
 ## Recommended Next Phase
 
-1. Split commits by logical slices
-2. Configure remote and push if delivery is needed
-3. If product polish continues, fine-tune homepage visual hierarchy to a more design-grade level
-4. Expand deeper scenario content in Docs / About / Use Cases
+1. Configure the intended remote/fork
+2. Decide whether to keep the 5 local commits as-is or squash/reword before push
+3. Amend author identity if needed
+4. Push `master` (or preferred target branch) to the writable remote
