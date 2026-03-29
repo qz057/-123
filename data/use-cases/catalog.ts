@@ -1,0 +1,118 @@
+export const useCasesCatalog = [
+  {
+    slug: "local-ai-assistant",
+    title: "本地 AI 助手搭建",
+    summary: "把模型、记忆、工具和自动化能力接进你的工作环境。",
+    audience: ["想搭本地助手的个人用户", "希望工具链可控的技术用户"],
+    goals: ["搭出最小可用闭环", "明确模型、工具与记忆接入顺序"],
+    blocks: ["环境准备", "模型与工具接入顺序", "最小验证路径", "后续扩展建议"],
+    diagnoseFocus: "优先判断你当前卡在模型链路、工具接入还是工作流组织层，不要一开始把所有能力都堆上去。",
+    executionPath: [
+      "先明确一个真实高频任务，只围绕这个任务搭最小助手闭环。",
+      "先跑通模型请求，再接一层最必要的工具，不要同时接太多插件。",
+      "确认最小输入输出稳定后，再继续补记忆、自动化和更多入口。",
+    ],
+    pitfalls: [
+      "还没跑通最小链路，就同时接入多个工具和自动化入口。",
+      "先做复杂能力清单，却没有一个真实任务作为收口目标。",
+      "页面能打开就以为助手可用，没有做真实请求验证。",
+    ],
+    proofOfDone: [
+      "已经能完成一个真实任务闭环，而不只是打开界面。",
+      "最小请求、最小工具调用都能稳定复现。",
+      "知道下一步该扩哪层，而不是继续盲目堆功能。",
+    ],
+    relatedTemplates: ["本地 AI 助手起步模板", "OpenClaw 初次搭建模板", "桌面工具接入模板"],
+    relatedDocs: ["Getting Started", "本地接入起步指南", "Templates"],
+    primaryAction: { label: "先看本地助手起步模板", href: "/templates/local-ai-assistant-starter" },
+    secondaryAction: { label: "回 Diagnose 判断当前卡点", href: "/diagnose" },
+  },
+  {
+    slug: "model-switch-debug",
+    title: "模型连接与切换排障",
+    summary: "查清问题到底出在 provider、认证、会话还是显示层。",
+    audience: ["遇到模型连接异常的用户", "需要排查 session / 显示不一致的技术用户"],
+    goals: ["快速定位问题层级", "明确下一步修复顺序"],
+    blocks: ["连接链路判断", "provider/auth 检查", "session 与显示层核对", "最小实测"],
+    diagnoseFocus: "优先区分这是连接层故障、配置不生效，还是 UI / session 错配；归类不对，后面的修复顺序就会浪费时间。",
+    executionPath: [
+      "先做最小请求，确认真实运行模型，而不是只看 UI。",
+      "如果连请求都发不出去，先走 provider / auth / transport 分支。",
+      "如果 UI 已变化但返回仍是旧模型，再查 session 写入、旧会话继承和参数覆盖。",
+    ],
+    pitfalls: [
+      "把设置页显示变化误认为已经切换成功。",
+      "还没做最小验证，就在 provider、transport、session 多层同时改参数。",
+      "看到 401 / timeout / session 关键词混在一起，就随机挑一条修。",
+    ],
+    proofOfDone: [
+      "你能明确说出问题属于连接层、配置层还是 session 层。",
+      "最小请求返回结果和页面目标模型一致。",
+      "重复一次最小任务后，异常不再复现。",
+    ],
+    relatedTemplates: ["模型连接排障模板", "模型切换 / Session 异常模板", "配置不生效排查模板"],
+    relatedDocs: ["Diagnose", "Troubleshooting", "Session 模型绑定说明"],
+    primaryAction: { label: "先去 Diagnose", href: "/diagnose" },
+    secondaryAction: { label: "看模型切换异常模板", href: "/templates/model-switch-session-mismatch" },
+  },
+  {
+    slug: "workflow-automation",
+    title: "自动化流程搭建",
+    summary: "把重复工作变成可执行、可维护、可扩展的工作流。",
+    audience: ["想把重复任务流程化的个人或小团队"],
+    goals: ["从聊天升级成流程", "形成可复用工作流骨架"],
+    blocks: ["任务拆解", "输入与输出定义", "触发与验证", "后续沉淀"],
+    diagnoseFocus: "优先判断你当前缺的是流程骨架、配置稳定性，还是触发/验证机制；不是所有自动化问题都该先做 cron。",
+    executionPath: [
+      "先选一个高频重复任务，把输入和输出压缩成最小闭环。",
+      "先跑通主链路，再决定要不要加定时、通知或多分支处理。",
+      "每加一层自动化，都要保留验证口径和可回退点。",
+    ],
+    pitfalls: [
+      "一开始就想搭很复杂的大流程，没有稳定的主链路。",
+      "输出格式不固定，导致后续环节无法消费。",
+      "自动化加上了，但没有时间戳、验证点和失败回退。",
+    ],
+    proofOfDone: [
+      "已经有一个最小流程可重复执行，而不是只有聊天提示词。",
+      "输入、输出、触发条件都能被别人复现。",
+      "失败时知道怎么回退到上一层稳定链路。",
+    ],
+    relatedTemplates: ["AI 工作流起步模板", "自动化任务巡检模板", "配置不生效排查模板"],
+    relatedDocs: ["Getting Started", "Templates", "自动化工作流起步说明"],
+    primaryAction: { label: "先看 AI 工作流起步模板", href: "/templates/ai-workflow-starter" },
+    secondaryAction: { label: "查看模板文档", href: "/docs/templates" },
+  },
+  {
+    slug: "desktop-tool-integration",
+    title: "桌面助手 / 工具整合",
+    summary: "让 AI 不只是聊天，而是真正参与文件、任务和工具链。",
+    audience: ["需要把 AI 接进桌面工具链的用户"],
+    goals: ["打通入口与执行链路", "降低多工具切换成本"],
+    blocks: ["入口设计", "依赖准备", "最小闭环验证", "产品化扩展"],
+    diagnoseFocus: "先区分你卡在底层依赖、入口可见性、跨进程通信，还是打包后链路失效；桌面集成最怕入口看似完成但能力根本没接通。",
+    executionPath: [
+      "先确认底层脚本、模型或工具链路本身已经独立可用。",
+      "再把能力接到桌面入口，而不是反过来靠 UI 倒逼能力层。",
+      "最后用开发态和打包态各做一次最小闭环验证。",
+    ],
+    pitfalls: [
+      "按钮已经有了，就误以为整条能力链路都已打通。",
+      "开发环境可用，就默认打包版也会同样可用。",
+      "还没确定单一入口链路稳定，就继续加多入口触发。",
+    ],
+    proofOfDone: [
+      "开发态和打包态都能稳定触发一次真实能力调用。",
+      "出现问题时，能明确分辨是入口层、通信层还是底层依赖层。",
+      "至少保留一个可回退的稳定版本或 CLI 基线。",
+    ],
+    relatedTemplates: ["桌面工具接入模板", "本地 AI 助手起步模板"],
+    relatedDocs: ["Diagnose", "本地接入起步指南", "工具链路检查说明"],
+    primaryAction: { label: "先看桌面工具接入模板", href: "/templates/desktop-tool-integration" },
+    secondaryAction: { label: "先去 Diagnose 判断卡点", href: "/diagnose" },
+  },
+] as const;
+
+export function getUseCaseBySlug(slug: string) {
+  return useCasesCatalog.find((item) => item.slug === slug);
+}
