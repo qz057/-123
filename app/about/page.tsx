@@ -192,13 +192,14 @@ export default function AboutPage() {
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Entry routes</p>
               <CardTitle className="text-xl text-slate-950">现在最推荐的进入方式</CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-3 pb-6 md:grid-cols-3">
+            <CardContent className="grid gap-2.5 pb-5 md:grid-cols-3">
               {recommendedEntrances.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <div key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-3.5">
                   <p className="text-sm font-medium text-slate-950">{item.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.detail}</p>
-                  <Link href={item.action.href} className="mt-4 inline-flex text-sm font-medium text-sky-700 hover:text-sky-800">
-                    {item.action.label}
+                  <p className="mt-2 text-sm leading-[1.65] text-slate-600">{item.detail}</p>
+                  <Link href={item.action.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+                    <span>{item.action.label}</span>
+                    <span aria-hidden>→</span>
                   </Link>
                 </div>
               ))}
@@ -236,21 +237,23 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <aside className="space-y-4 lg:sticky lg:top-24">
+        <aside className="space-y-3.5 lg:sticky lg:top-24">
           <Card className="rounded-[28px] border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
             <CardHeader>
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Start here</p>
               <CardTitle className="text-2xl text-white">从这里开始更合适</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col gap-3 pb-6">
+            <CardContent className="flex flex-col gap-2.5 pb-5">
               <Link href="/diagnose" className="rounded-full bg-white px-5 py-3 text-center text-sm font-medium text-slate-950 transition hover:bg-slate-100">
                 进入配置诊断器
               </Link>
-              <Link href="/templates" className="rounded-full border border-white/20 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-white/10">
-                查看模板中心
+              <Link href="/templates" className="inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                <span>查看模板中心</span>
+                <span aria-hidden>→</span>
               </Link>
-              <Link href="/docs" className="rounded-full border border-white/20 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-white/10">
-                查看文档路径
+              <Link href="/docs" className="inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                <span>查看文档路径</span>
+                <span aria-hidden>→</span>
               </Link>
             </CardContent>
           </Card>
@@ -260,10 +263,10 @@ export default function AboutPage() {
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Task-first hints</p>
               <CardTitle className="text-lg text-slate-950">如果你更喜欢按任务进入</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 pb-6 text-sm leading-6 text-slate-600">
-              <p className="rounded-2xl bg-slate-50/80 px-4 py-3">搭本地助手：先看 Use Cases / 本地 AI 助手搭建</p>
-              <p className="rounded-2xl bg-slate-50/80 px-4 py-3">排查切换问题：先去 Diagnose 或模型切换场景页</p>
-              <p className="rounded-2xl bg-slate-50/80 px-4 py-3">做自动化流程：先看 AI 工作流起步模板</p>
+            <CardContent className="space-y-2.5 pb-5 text-sm leading-6 text-slate-600">
+              <p className="rounded-2xl bg-slate-50/80 px-3.5 py-2.5">搭本地助手：先看 Use Cases / 本地 AI 助手搭建</p>
+              <p className="rounded-2xl bg-slate-50/80 px-3.5 py-2.5">排查切换问题：先去 Diagnose 或模型切换场景页</p>
+              <p className="rounded-2xl bg-slate-50/80 px-3.5 py-2.5">做自动化流程：先看 AI 工作流起步模板</p>
             </CardContent>
           </Card>
         </aside>

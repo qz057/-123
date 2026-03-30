@@ -219,8 +219,8 @@ export default function DocsPage() {
         </div>
       </section>
 
-      <section className="mb-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-4 shadow-sm sm:p-5">
-        <div className="mb-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
+      <section className="mb-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-3.5 shadow-sm sm:p-4">
+        <div className="mb-3.5 grid gap-3.5 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Decision map</p>
             <h2 className="mt-1 text-lg font-semibold text-slate-950 sm:text-[1.35rem]">这组文档真正想把你带向哪条路径</h2>
@@ -228,12 +228,12 @@ export default function DocsPage() {
               先判断问题是否仍然模糊，再决定是去 Diagnose、Templates、Troubleshooting 还是 Product Notes。文档层的价值不是让你多看，而是帮你少走错入口。
             </p>
           </div>
-          <div className="rounded-2xl border border-slate-200 bg-white/90 px-3.5 py-2.5 text-xs leading-5 text-slate-500">
+          <div className="hidden rounded-2xl border border-slate-200 bg-white/90 px-3 py-2 text-xs leading-5 text-slate-500 sm:block">
             这块是图示化路径，不是目录装饰。它对应的是 FlowDock 当前最稳的实际使用节奏。
           </div>
         </div>
 
-        <div className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {decisionMap.map((item, index) => {
             const primary = item.tone === "primary";
             return (
@@ -245,30 +245,30 @@ export default function DocsPage() {
                     : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"
                 }
               >
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-3">
+                <CardHeader className="pb-3.5">
+                  <div className="flex items-center justify-between gap-2.5">
                     <p className={primary ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>
                       Step 0{index + 1}
                     </p>
                     <span
                       className={
                         primary
-                          ? "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-xs font-semibold text-slate-950"
-                          : "inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-950 text-xs font-semibold text-white"
+                          ? "inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-semibold text-slate-950"
+                          : "inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-950 text-xs font-semibold text-white"
                       }
                     >
                       {index + 1}
                     </span>
                   </div>
-                  <CardTitle className={primary ? "text-lg text-white" : "text-lg text-slate-950"}>{item.title}</CardTitle>
+                  <CardTitle className={primary ? "text-[1.02rem] text-white sm:text-lg" : "text-[1.02rem] text-slate-950 sm:text-lg"}>{item.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3.5 pb-5">
-                  <p className={primary ? "text-sm leading-[1.65] text-slate-300" : "text-sm leading-[1.65] text-slate-600"}>{item.description}</p>
+                <CardContent className="space-y-3 pb-4 pt-0">
+                  <p className={primary ? "text-sm leading-[1.6] text-slate-300" : "text-sm leading-[1.6] text-slate-600"}>{item.description}</p>
                   <Link
                     href={item.cta.href}
                     className={
                       primary
-                        ? "inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                        ? "inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
                         : inlineLinkClass
                     }
                   >
@@ -325,23 +325,24 @@ export default function DocsPage() {
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Reading paths</p>
           <h2 className="mt-1 text-xl font-semibold text-slate-950">推荐阅读路径</h2>
         </div>
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-3.5 lg:grid-cols-3">
           {readingPaths.map((path, index) => (
             <Card key={path.title} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
               <CardHeader>
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Path 0{index + 1}</p>
                 <CardTitle className="text-lg text-slate-950">{path.title}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 pb-6">
-                <p className="text-sm leading-6 text-slate-600">{path.summary}</p>
-                <div className="space-y-2">
+              <CardContent className="space-y-3.5 pb-5">
+                <p className="text-sm leading-[1.65] text-slate-600">{path.summary}</p>
+                <div className="space-y-1.5">
                   {path.steps.map((step) => (
                     <Link
                       key={step.href}
                       href={step.href}
-                      className="flex rounded-2xl border border-slate-200 bg-slate-50/80 px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                      className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50/80 px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
                     >
-                      {step.label}
+                      <span>{step.label}</span>
+                      <span aria-hidden className="text-slate-400">→</span>
                     </Link>
                   ))}
                 </div>
@@ -353,21 +354,21 @@ export default function DocsPage() {
 
       <section className="mb-8 grid gap-3.5 xl:grid-cols-[1.02fr_0.98fr]">
         <Card className="rounded-[28px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
-          <CardHeader>
+          <CardHeader className="pb-3.5">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Failure branches</p>
-            <CardTitle className="text-xl text-slate-950">如果你在这里卡住，最该往哪边跳</CardTitle>
+            <CardTitle className="text-lg text-slate-950 sm:text-xl">如果你在这里卡住，最该往哪边跳</CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-3 pb-5 sm:grid-cols-3">
+          <CardContent className="grid gap-2.5 pb-4 pt-0 sm:grid-cols-3 sm:gap-3">
             {branchCards.map((item, index) => (
-              <div key={item.title} className={index === 0 ? "rounded-2xl border border-slate-200 bg-slate-950 p-3.5 text-white" : "rounded-2xl border border-slate-200 bg-white p-3.5"}>
+              <div key={item.title} className={index === 0 ? "rounded-2xl border border-slate-200 bg-slate-950 p-3 text-white" : "rounded-2xl border border-slate-200 bg-white p-3"}>
                 <p className={index === 0 ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{item.title}</p>
-                <p className={index === 0 ? "mt-2 text-sm leading-[1.65] text-slate-300" : "mt-2 text-sm leading-[1.65] text-slate-600"}>{item.detail}</p>
+                <p className={index === 0 ? "mt-1.5 text-sm leading-[1.6] text-slate-300" : "mt-1.5 text-sm leading-[1.6] text-slate-600"}>{item.detail}</p>
                 <Link
                   href={item.href}
                   className={
                     index === 0
-                      ? "mt-3.5 inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
-                      : "mt-3.5 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"
+                      ? "mt-3 inline-flex rounded-full border border-white/15 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
+                      : "mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"
                   }
                 >
                   <span>直接跳转</span>
@@ -379,16 +380,16 @@ export default function DocsPage() {
         </Card>
 
         <Card className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
-          <CardHeader>
+          <CardHeader className="pb-3.5">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Fast lane</p>
-            <CardTitle className="text-xl text-slate-950">如果你要更快落地</CardTitle>
+            <CardTitle className="text-lg text-slate-950 sm:text-xl">如果你要更快落地</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 pb-5 text-sm leading-6 text-slate-600">
-            <p className="rounded-2xl bg-slate-50/80 px-4 py-3">问题还模糊：先看 Diagnose 文档，再进 Diagnose 页面</p>
-            <p className="rounded-2xl bg-slate-50/80 px-4 py-3">方向已经明确：先看 Templates 文档，再进模板详情</p>
-            <p className="rounded-2xl bg-slate-50/80 px-4 py-3">要确认阶段边界：补看 Product Notes，避免误判产品能力</p>
-            <div className="pt-1.5">
-              <Link href="/diagnose" className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
+          <CardContent className="space-y-2.5 pb-4 pt-0 text-sm leading-[1.65] text-slate-600">
+            <p className="rounded-2xl bg-slate-50/80 px-3.5 py-2.5">问题还模糊：先看 Diagnose 文档，再进 Diagnose 页面</p>
+            <p className="rounded-2xl bg-slate-50/80 px-3.5 py-2.5">方向已经明确：先看 Templates 文档，再进模板详情</p>
+            <p className="rounded-2xl bg-slate-50/80 px-3.5 py-2.5">要确认阶段边界：补看 Product Notes，避免误判产品能力</p>
+            <div className="pt-1">
+              <Link href="/diagnose" className="inline-flex rounded-full bg-slate-950 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-slate-800">
                 不确定从哪开始？先体检配置
               </Link>
             </div>
@@ -420,40 +421,40 @@ export default function DocsPage() {
         </Card>
 
         <Card className="rounded-[28px] border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
-          <CardHeader>
+          <CardHeader className="pb-3.5">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Doc promise</p>
-            <CardTitle className="text-xl text-white">这页的承诺不是更全，而是更少走弯路</CardTitle>
+            <CardTitle className="text-lg text-white sm:text-xl">这页的承诺不是更全，而是更少走弯路</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 pb-5 text-sm leading-6 text-slate-300">
-            <p className="rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">不让你在 Diagnose、Templates、Docs 之间盲跳</p>
-            <p className="rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">不把首版能力误判成完整承诺</p>
-            <p className="rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">不把看懂说明误当成已经完成执行与验证</p>
+          <CardContent className="space-y-2.5 pb-4 pt-0 text-sm leading-[1.65] text-slate-300">
+            <p className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">不让你在 Diagnose、Templates、Docs 之间盲跳</p>
+            <p className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">不把首版能力误判成完整承诺</p>
+            <p className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">不把看懂说明误当成已经完成执行与验证</p>
           </CardContent>
         </Card>
       </section>
 
       <section>
-        <div className="mb-4 flex items-center justify-between gap-4">
+        <div className="mb-3.5 flex items-center justify-between gap-4">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">All docs</p>
             <h2 className="mt-1 text-xl font-semibold text-slate-950">全部文档</h2>
-            <p className="mt-1 text-sm leading-6 text-slate-500 sm:hidden">移动端这里保留紧凑入口，详细说明已尽量提前放在上面的职责区、决策图和阅读路径里。</p>
+            <p className="mt-1 text-sm leading-[1.6] text-slate-500 sm:hidden">移动端这里保留紧凑入口，详细说明已尽量提前放在上面的职责区、决策图和阅读路径里。</p>
           </div>
           <Link href="/diagnose" className="hidden text-sm font-medium text-sky-700 sm:inline-flex">
             不确定从哪开始？先体检配置
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3 xl:gap-3.5">
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-3 xl:gap-3.5">
           {docsCatalog.map((item, index) => (
             <Card key={item.slug} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
-              <CardHeader className="pb-3">
+              <CardHeader className="pb-2.5">
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Doc 0{index + 1}</p>
-                <CardTitle className="text-base text-slate-950 sm:text-lg">{item.title}</CardTitle>
+                <CardTitle className="text-[15px] text-slate-950 sm:text-lg">{item.title}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 pb-4">
-                <p className="text-sm leading-[1.65] text-slate-600">{item.description}</p>
+              <CardContent className="space-y-2.5 pb-3.5">
+                <p className="text-sm leading-[1.6] text-slate-600">{item.description}</p>
                 {item.aliases?.length ? (
-                  <p className="text-xs leading-5 text-slate-400">已映射 {item.aliases.length} 个相关主题，适合从不同问题入口跳回来。</p>
+                  <p className="hidden text-xs leading-5 text-slate-400 sm:block">已映射 {item.aliases.length} 个相关主题，适合从不同问题入口跳回来。</p>
                 ) : null}
               </CardContent>
               <CardFooter className="pt-0">
