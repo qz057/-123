@@ -69,37 +69,33 @@ const recommendedEntrances = [
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-10 lg:px-8">
-      <header className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
+      <header className="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <div>
-          <div className="mb-3 flex flex-wrap items-center gap-2 text-xs">
+          <div className="mb-2.5 flex flex-wrap items-center gap-2 text-xs">
             <Badge variant="outline">FlowDock</Badge>
             <Badge variant="secondary">About</Badge>
             <Badge variant="outline">AI 自动化工作台</Badge>
           </div>
           <p className="text-sm font-medium text-sky-700">FlowDock / About</p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">关于 FlowDock</h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
+          <h1 className="mt-2 text-[1.95rem] font-semibold tracking-tight text-slate-950 sm:text-[2.35rem]">关于 FlowDock</h1>
+          <p className="mt-3.5 max-w-3xl text-sm leading-[1.72] text-slate-600 sm:text-[15px]">
             FlowDock 的目标不是再做一个泛 AI 展示站，而是把复杂的 AI 配置、连接、会话和自动化流程整理成真正能推进事情的工具入口。它更像一个帮你少绕弯、少走错页、把当前任务继续做下去的工作台，而不是一个只讲概念的网站。
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2.5">
             <Link
               href="/diagnose"
               className="inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
             >
               从 Diagnose 开始
             </Link>
-            <Link
-              href="/templates"
-              className="inline-flex rounded-full border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-            >
-              先看模板中心
+            <Link href="/templates" className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+              <span>先看模板中心</span>
+              <span aria-hidden>→</span>
             </Link>
-            <Link
-              href="/docs"
-              className="inline-flex rounded-full border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-            >
-              看文档路径
+            <Link href="/docs" className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+              <span>看文档路径</span>
+              <span aria-hidden>→</span>
             </Link>
           </div>
         </div>
@@ -109,10 +105,10 @@ export default function AboutPage() {
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">At a glance</p>
             <CardTitle className="text-2xl text-white">一句话理解它</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 pb-6 text-sm leading-6 text-slate-300">
+          <CardContent className="space-y-3.5 pb-5 text-sm leading-6 text-slate-300">
             <p>FlowDock = 官网入口 + 配置诊断器 + 工作流模板 + 文档路径 + 场景入口。</p>
             <p>重点不是“知道很多”，而是“把现在这件事继续做下去”。</p>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
               <StatCard label="默认第一步" value="Diagnose" />
               <StatCard label="默认闭环" value="先定位 → 再执行 → 再验证" />
               <StatCard label="当前阶段" value="可用首版已跑通，正在继续产品化收口" />
@@ -278,7 +274,7 @@ export default function AboutPage() {
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+    <div className="rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">
       <p className="text-xs font-medium text-slate-400">{label}</p>
       <p className="mt-1 text-sm font-medium leading-6 text-white">{value}</p>
     </div>
