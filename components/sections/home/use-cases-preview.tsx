@@ -1,52 +1,101 @@
 import Link from "next/link";
 import { useCasesCatalog } from "@/data/use-cases/catalog";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function UseCasesPreviewSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_0.82fr] lg:items-end">
-        <div className="max-w-3xl space-y-3">
-          <p className="text-sm font-medium text-sky-700">Use Cases</p>
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-950">适合这些真实工作场景</h2>
-          <p className="text-sm leading-6 text-slate-600 sm:text-base">
-            先找你当前任务所属场景，再进入对应模板和诊断路径，效率会更高。
-          </p>
-        </div>
-        <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm">
-          <p className="text-sm font-medium text-slate-900">场景页的价值</p>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
-            它不是重复模板内容，而是帮用户从任务视角找到最短入口。
-          </p>
-        </div>
-      </div>
+    <section className="relative overflow-hidden bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mb-10 grid gap-6 md:grid-cols-[1fr_0.82fr] md:items-end">
+          <div className="max-w-3xl space-y-4">
+            <Badge variant="outline" className="border-sky-200 bg-sky-50 text-sky-700">
+              Use Cases
+            </Badge>
+            <div className="space-y-3">
+              <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">适合这些真实工作场景</h2>
+              <p className="text-sm leading-6 text-slate-600 sm:text-base">
+                如果你更习惯按任务进入，而不是按功能进入，就从场景页开始。它的作用不是重复模板内容，而是帮你找到最短入口。
+              </p>
+            </div>
+          </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {useCasesCatalog.map((item) => (
-          <Card key={item.slug} className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
-            <CardHeader>
-              <CardTitle className="text-lg text-slate-950">{item.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm leading-6 text-slate-600">{item.summary}</p>
-              <div className="flex flex-wrap gap-2 text-xs text-slate-500">
-                {item.goals.slice(0, 2).map((goal) => (
-                  <span key={goal} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5">
-                    {goal}
+          <div className="hidden rounded-[1.75rem] border border-slate-200 bg-slate-50/90 p-5 shadow-sm md:block">
+            <p className="text-sm font-medium text-slate-900">场景页最该解决的问题</p>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              不是“这个产品能做什么”，而是“我当前这个任务，第一步应该先进哪一页”。
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {useCasesCatalog.map((item, index) => (
+            <Card
+              key={item.slug}
+              className={
+                index === 0
+                  ? "rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-34px_rgba(15,23,42,0.5)]"
+                  : index >= 2
+                    ? "hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm md:flex"
+                    : "rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm"
+              }
+            >
+              <CardHeader className="space-y-4 pb-4">
+                <div className="flex items-center justify-between gap-3">
+                  <CardTitle className={index === 0 ? "text-xl text-white" : "text-xl text-slate-950"}>{item.title}</CardTitle>
+                  <span
+                    className={
+                      index === 0
+                        ? "rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-sky-200"
+                        : "rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500"
+                    }
+                  >
+                    场景入口
                   </span>
-                ))}
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-wrap gap-3 pb-6">
-              <Link href={`/use-cases/${item.slug}`} className="inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
-                查看场景路径
-              </Link>
-              <Link href="/templates" className="inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
-                去模板中心
-              </Link>
-            </CardFooter>
-          </Card>
-        ))}
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className={index === 0 ? "text-sm leading-6 text-slate-300" : "text-sm leading-6 text-slate-600"}>{item.summary}</p>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  {item.goals.slice(0, 2).map((goal) => (
+                    <span
+                      key={goal}
+                      className={
+                        index === 0
+                          ? "rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-slate-300"
+                          : "rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-500"
+                      }
+                    >
+                      {goal}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+              <CardFooter className="flex flex-wrap gap-3 pb-6">
+                <Link
+                  href={`/use-cases/${item.slug}`}
+                  className={
+                    index === 0
+                      ? "inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                      : "inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                  }
+                >
+                  查看场景路径
+                </Link>
+                <Link
+                  href="/templates"
+                  className={
+                    index === 0
+                      ? "inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                      : "inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                  }
+                >
+                  去模板中心
+                </Link>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

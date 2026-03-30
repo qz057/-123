@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const journey = [
@@ -8,6 +9,7 @@ const journey = [
     detail: "负责先归类：连接、配置、会话还是工具接入。",
     href: "/diagnose",
     cta: "先体检配置",
+    stage: "定位入口",
   },
   {
     title: "Templates",
@@ -15,6 +17,7 @@ const journey = [
     detail: "负责承接执行：模板详情页已经包含适配判断、步骤、验收和回滚。",
     href: "/templates",
     cta: "查看模板中心",
+    stage: "执行入口",
   },
   {
     title: "Use Cases",
@@ -22,6 +25,7 @@ const journey = [
     detail: "负责用场景视角组织入口，帮助你更快选对第一步。",
     href: "/use-cases",
     cta: "按场景找入口",
+    stage: "场景入口",
   },
   {
     title: "Docs",
@@ -29,52 +33,115 @@ const journey = [
     detail: "负责把使用顺序、产品边界和可验证路径讲清楚。",
     href: "/docs",
     cta: "查看文档路径",
+    stage: "验证收口",
   },
+] as const;
+
+const routeSignals = [
+  { label: "适合谁先来", value: "先不确定问题属于哪层的人" },
+  { label: "最稳默认路径", value: "Diagnose → Templates → Docs" },
+  { label: "避免的问题", value: "一上来就进错页、拿错方案、漏掉验证" },
 ] as const;
 
 export function ProductJourneySection() {
   return (
-    <section className="border-b border-slate-200 bg-white/80">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_0.82fr] lg:items-end">
-          <div className="max-w-3xl space-y-3">
-            <p className="text-sm font-medium text-sky-700">Product Journey</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-950">FlowDock 不是一堆页面，是一条可执行路径</h2>
-            <p className="text-sm leading-6 text-slate-600 sm:text-base">
-              首页的目标不是把所有内容一次讲完，而是让你更快进入正确入口。默认顺序是：先 Diagnose，再 Templates，必要时用 Use Cases 和 Docs 做承接与收口。
-            </p>
+    <section className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-200 to-transparent" />
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mb-10 grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-end">
+          <div className="max-w-3xl space-y-4">
+            <Badge variant="outline" className="border-sky-200 bg-sky-50 text-sky-700">
+              Product Journey
+            </Badge>
+            <div className="space-y-3">
+              <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+                FlowDock 不是一堆页面，
+                <span className="block text-slate-600">而是一条把问题送进正确入口的执行路径</span>
+              </h2>
+              <p className="max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
+                首页的任务不是把所有内容一次讲完，而是让用户更快走到正确第一步。先定位，再执行，最后验证收口，这是整个产品首页最该传达清楚的结构。
+              </p>
+            </div>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-sm">
-            <p className="text-sm font-medium text-white">为什么这里很重要</p>
-            <p className="mt-3 text-sm leading-6 text-slate-300">
-              很多工具站看起来内容很多，但第一步并不清楚。这个区块的任务就是把入口关系直接说透，避免用户在错误页面里浪费时间。
-            </p>
+
+          <div className="hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_18px_56px_-32px_rgba(15,23,42,0.45)] md:block">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-medium text-white">为什么这个区块值得放首页前排</p>
+              <span className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-slate-300">入口关系</span>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              {routeSignals.map((item) => (
+                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                  <p className="text-xs font-medium uppercase tracking-[0.14em] text-slate-400">{item.label}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.value}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {journey.map((item, index) => (
-            <Card
-              key={item.title}
-              className={index === 0 ? "rounded-3xl border border-slate-200 bg-slate-950 py-0 text-white shadow-sm" : "rounded-3xl border border-slate-200 bg-white py-0 shadow-sm"}
-            >
-              <CardHeader>
-                <div className="flex items-center justify-between gap-3">
-                  <CardTitle className={index === 0 ? "text-lg text-white" : "text-lg text-slate-950"}>{item.title}</CardTitle>
-                  <span className={index === 0 ? "inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-medium text-slate-950" : "inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-950 text-xs font-medium text-white"}>
-                    {index + 1}
-                  </span>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4 pb-6">
-                <p className={index === 0 ? "text-sm leading-6 text-slate-200" : "text-sm leading-6 text-slate-700"}>{item.summary}</p>
-                <p className={index === 0 ? "text-xs leading-5 text-slate-400" : "text-xs leading-5 text-slate-500"}>{item.detail}</p>
-                <Link href={item.href} className={index === 0 ? "inline-flex rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10" : "inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"}>
-                  {item.cta}
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="relative">
+          <div className="absolute left-8 right-8 top-8 hidden h-px bg-gradient-to-r from-sky-200 via-slate-200 to-slate-200 xl:block" />
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {journey.map((item, index) => {
+              const isPrimary = index === 0;
+              const hideOnMobile = index === 3;
+              return (
+                <Card
+                  key={item.title}
+                  className={
+                    isPrimary
+                      ? hideOnMobile
+                        ? "relative hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-32px_rgba(15,23,42,0.5)] sm:block"
+                        : "relative rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-32px_rgba(15,23,42,0.5)]"
+                      : hideOnMobile
+                        ? "relative hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)] sm:block"
+                        : "relative rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)]"
+                  }
+                >
+                  <CardHeader className="space-y-4 pb-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <span
+                        className={
+                          isPrimary
+                            ? "rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-sky-200"
+                            : "rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500"
+                        }
+                      >
+                        {item.stage}
+                      </span>
+                      <span
+                        className={
+                          isPrimary
+                            ? "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-xs font-semibold text-slate-950"
+                            : "inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-950 text-xs font-semibold text-white"
+                        }
+                      >
+                        {index + 1}
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      <CardTitle className={isPrimary ? "text-xl text-white" : "text-xl text-slate-950"}>{item.title}</CardTitle>
+                      <p className={isPrimary ? "text-sm leading-6 text-slate-200" : "text-sm leading-6 text-slate-700"}>{item.summary}</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex flex-1 flex-col space-y-4 pb-6">
+                    <p className={isPrimary ? "hidden text-xs leading-5 text-slate-400 sm:block" : "hidden text-xs leading-5 text-slate-500 sm:block"}>{item.detail}</p>
+                    <Link
+                      href={item.href}
+                      className={
+                        isPrimary
+                          ? "mt-auto inline-flex w-fit rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                          : "mt-auto inline-flex w-fit rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                      }
+                    >
+                      {item.cta}
+                    </Link>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

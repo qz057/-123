@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 const steps = [
   "先用 Diagnose 把问题定位到正确层级",
@@ -13,41 +14,84 @@ const ctas = [
   { label: "查看适用场景", href: "/use-cases", primary: false },
 ] as const;
 
+const outcomeSignals = [
+  { title: "不是继续聊天", detail: "而是先判断问题层级，再进入执行路径" },
+  { title: "不是继续试错", detail: "而是拿现成模板、检查项和回滚策略" },
+  { title: "不是停在感觉可用", detail: "而是回到文档把边界和验证讲清楚" },
+] as const;
+
 export function FinalCtaSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="overflow-hidden rounded-[2rem] bg-slate-950 px-6 py-12 text-white shadow-[0_28px_90px_-40px_rgba(15,23,42,0.6)] sm:px-10 lg:px-12">
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
-          <div className="relative">
-            <div className="absolute -left-10 top-0 hidden h-28 w-28 rounded-full bg-sky-400/10 blur-3xl lg:block" />
-            <p className="relative text-sm font-medium text-sky-300">Ready to Start</p>
-            <h2 className="relative mt-3 text-3xl font-semibold tracking-tight">从聊天式 AI，走到真正可用的自动化</h2>
-            <p className="relative mt-4 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base">
-              如果你已经在尝试用 AI 提高效率，下一步不该只是继续聊天，而是把它真正接进你的工作流程里。
-            </p>
-          </div>
+    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 px-6 py-10 text-white shadow-[0_34px_100px_-48px_rgba(15,23,42,0.72)] sm:px-10 sm:py-12 lg:px-12">
+        <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.28),transparent_70%)]" />
+        <div className="absolute -right-12 top-10 hidden h-44 w-44 rounded-full bg-sky-400/10 blur-3xl lg:block" />
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-            <p className="text-sm font-medium text-white">最稳的首版路径</p>
-            <div className="mt-4 space-y-3 text-sm leading-6 text-slate-200">
-              {steps.map((item, index) => (
-                <div key={item} className="flex items-start gap-3">
-                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-xs font-medium text-slate-950">
-                    {index + 1}
-                  </span>
-                  <span>{item}</span>
+        <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <div>
+            <Badge variant="outline" className="border-sky-300/20 bg-sky-400/10 text-sky-200">
+              Ready to Start
+            </Badge>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              从聊天式 AI，
+              <span className="block text-slate-300">走到真正可用的自动化工作流</span>
+            </h2>
+            <p className="mt-2 text-xs font-medium uppercase tracking-[0.22em] text-sky-200/80">FlowDock 默认闭环</p>
+            <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base">
+              如果你已经在尝试用 AI 提高效率，下一步不该只是继续聊天，而是把它接进真实工作：先诊断，后执行，再验证，让每一步都有承接关系。
+            </p>
+
+            <div className="mt-6 hidden gap-3 md:grid md:grid-cols-3">
+              {outcomeSignals.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <p className="text-sm font-medium text-white">{item.title}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{item.detail}</p>
                 </div>
               ))}
             </div>
           </div>
+
+          <div className="grid gap-4">
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-medium text-white">最稳的首版路径</p>
+                <span className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-slate-300">默认顺序</span>
+              </div>
+              <div className="mt-4 space-y-3 text-sm leading-6 text-slate-200">
+                {steps.map((item, index) => (
+                  <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-slate-950/35 px-4 py-3">
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-xs font-medium text-slate-950">
+                      {index + 1}
+                    </span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden rounded-[1.75rem] border border-sky-300/15 bg-sky-400/10 p-5 md:block">
+              <p className="text-sm font-medium text-white">为什么这里值得现在开始</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                因为你真正缺的通常不是“更多 AI 建议”，而是一个能把问题快速导向正确动作、并且能回头验证的工作台结构。
+              </p>
+            </div>
+
+            <p className="text-sm leading-6 text-slate-300 md:hidden">
+              重点不是继续聊天，而是尽快走到正确第一步：先 Diagnose，再 Templates，最后回 Docs 收口。
+            </p>
+          </div>
         </div>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="relative mt-8 grid grid-cols-2 gap-3 xl:grid-cols-4">
           {ctas.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={item.primary ? "inline-flex justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-100" : "inline-flex justify-center rounded-full border border-white/20 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"}
+              className={
+                item.primary
+                  ? "inline-flex justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-100"
+                  : "inline-flex justify-center rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+              }
             >
               {item.label}
             </Link>

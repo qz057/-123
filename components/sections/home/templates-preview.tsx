@@ -3,47 +3,85 @@ import { templates } from "@/data/home/content";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+const templateSignals = ["适用判断", "执行检查", "失败信号", "回滚策略", "实战案例"] as const;
+
 export function TemplatesPreviewSection() {
   return (
-    <section className="border-y border-slate-200 bg-slate-50/70">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-end">
-          <div className="max-w-3xl">
-            <p className="text-sm font-medium text-sky-700">Templates</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950">现成模板，直接拿去改</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              如果你不想从空白页开始，这里已经整理好一批能直接复用的 AI 自动化模板和搭建路径。
-            </p>
+    <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)]">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mb-10 grid gap-6 md:grid-cols-[1fr_0.85fr] md:items-end">
+          <div className="max-w-3xl space-y-4">
+            <Badge variant="outline" className="border-sky-200 bg-white text-sky-700">
+              Templates
+            </Badge>
+            <div className="space-y-3">
+              <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">现成模板，不从空白页重新开始</h2>
+              <p className="text-sm leading-6 text-slate-600 sm:text-base">
+                如果 Diagnose 已经帮你判断了方向，下一步就该去 Templates 拿可复用方案，而不是回到空白文档重新拼装。
+              </p>
+            </div>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-            <p className="text-sm font-medium text-slate-900">模板页现在不只是文章</p>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              首批详情页已经包含适用判断、执行检查、失败信号、回滚策略和实战案例。
-            </p>
+
+          <div className="hidden rounded-[1.75rem] border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur md:block">
+            <p className="text-sm font-medium text-slate-900">模板页已经不是文章页</p>
+            <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-500">
+              {templateSignals.map((item) => (
+                <span key={item} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5">
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
+
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {templates.map((template) => (
-            <Card key={template.title} className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
-              <CardHeader>
-                <Badge variant="outline" className="w-fit">{template.category}</Badge>
-                <CardTitle className="mt-2 text-lg text-slate-950">{template.title}</CardTitle>
-                <CardDescription className="text-sm leading-6 text-slate-600">{template.description}</CardDescription>
+          {templates.map((template, index) => (
+            <Card
+              key={template.title}
+              className={
+                index === 0
+                  ? "rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-34px_rgba(15,23,42,0.5)]"
+                  : index === 3
+                    ? "hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm md:flex"
+                    : index >= 4
+                      ? "hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm xl:flex"
+                      : "rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm"
+              }
+            >
+              <CardHeader className="space-y-4 pb-4">
+                <Badge variant="outline" className={index === 0 ? "w-fit border-white/15 bg-white/10 text-sky-200" : "w-fit"}>
+                  {template.category}
+                </Badge>
+                <div className="space-y-2">
+                  <CardTitle className={index === 0 ? "text-lg text-white" : "text-lg text-slate-950"}>{template.title}</CardTitle>
+                  <CardDescription className={index === 0 ? "text-sm leading-6 text-slate-300" : "text-sm leading-6 text-slate-600"}>
+                    {template.description}
+                  </CardDescription>
+                </div>
               </CardHeader>
-              <CardContent className="space-y-3 pb-6 text-xs text-slate-500">
-                <p>适合从当前问题快速过渡到下一步动作，而不是停在概念层。</p>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
+              <CardContent className="space-y-4 pb-6 text-xs">
+                <p className={index === 0 ? "leading-5 text-slate-300" : "leading-5 text-slate-500"}>
+                  适合从当前问题快速过渡到下一步动作，而不是停在概念层。
+                </p>
+                <div
+                  className={
+                    index === 0
+                      ? "rounded-2xl border border-white/10 bg-white/5 px-4 py-3 leading-5 text-slate-300"
+                      : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 leading-5 text-slate-500"
+                  }
+                >
                   当前详情结构：适配判断 / 步骤 / 验收 / 回滚 / 案例
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
+
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/templates" className="inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
             查看全部模板
           </Link>
-          <Link href="/docs/templates" className="inline-flex rounded-full border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+          <Link href="/docs/templates" className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
             先看模板文档
           </Link>
         </div>
