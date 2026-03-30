@@ -50,7 +50,7 @@ export default function GettingStartedPage() {
           ],
         },
         {
-          title: "先从哪个入口开始最稳",
+          title: "30 秒选入口：先去哪一页最稳",
           body: "判断标准很简单：如果你现在还说不清问题到底卡在哪，就先去 Diagnose；如果你已经能明确说出目标，例如‘我要做自动化巡检’或‘我要排查模型切换异常’，那就直接去 Templates。Docs 则更像第二层说明书，用来补原理、顺序和验证方法。",
           bullets: [
             "问题模糊：先 Diagnose",
@@ -71,6 +71,16 @@ export default function GettingStartedPage() {
             "第 2 步：用 Diagnose 做问题归类",
             "第 3 步：跳到对应模板页，照步骤执行",
             "第 4 步：回到 Docs 检查优先级、验证方式和边界",
+          ],
+        },
+        {
+          title: "第一次起步时最值得补齐的输入",
+          body: "多数人不是不会做，而是描述问题时缺关键字段，导致一直在错误层打转。首版最值得先补齐的是：当前现象、你本来想达成什么、用了哪个 provider / model、有没有报错、最近改了什么。只要这些信息能说清，Diagnose 和模板的命中率都会明显更高。",
+          bullets: [
+            "当前现象：到底哪里不对，不要只说‘它不行了’",
+            "目标结果：你本来想让它做成什么",
+            "关键环境：provider / model / auth / transport / session",
+            "最近变更：最近一次改动常常就是最好用的排查起点",
           ],
         },
         {

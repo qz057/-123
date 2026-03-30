@@ -5,12 +5,12 @@ export default function DiagnoseDocsPage() {
     <DocShell
       eyebrow="FlowDock / Docs / Diagnose"
       title="Diagnose 文档"
-      intro="Diagnose 首版是规则型诊断器。它的目标不是万能推理，而是把问题稳定归类、输出可解释判断，并把用户送到更合适的模板和文档入口。"
-      badges={["Docs", "Diagnose", "规则型 V1"]}
+      intro="Diagnose 当前是规则型 V2 诊断器。它的目标不是万能推理，而是把问题稳定归类、输出可解释判断，并把用户送到更合适的模板和文档入口。"
+      badges={["Docs", "Diagnose", "规则型 V2"]}
       summary={[
         { label: "核心作用", value: "先把问题归到正确层，再给出修复顺序" },
         { label: "当前覆盖", value: "连接问题、配置不生效、模型切换 / Session 异常、工具接入问题" },
-        { label: "输出重点", value: "结论可解释、下一步明确、能跳到模板与文档" },
+        { label: "输出重点", value: "结论可解释、评分可读、资源优先级明确" },
       ]}
       checklist={[
         {
@@ -33,8 +33,8 @@ export default function DiagnoseDocsPage() {
           title: "读结果时先看哪里",
           items: [
             "先看结论与风险等级，判断是否要停下继续试错",
-            "再看判断依据，确认是不是抓住了你的真实现象",
-            "最后按修复步骤和资源优先级推进，不要跳步",
+            "再看判断依据和评分拆解，确认是不是抓住了你的真实现象",
+            "最后按修复步骤和资源优先级推进，不要跳步", 
           ],
         },
       ]}
