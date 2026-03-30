@@ -68,8 +68,8 @@ export function ProductJourneySection() {
   return (
     <section className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-200 to-transparent" />
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mb-10 grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-end">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mb-8 grid gap-6 md:mb-10 md:grid-cols-[1.05fr_0.95fr] md:items-end">
           <div className="max-w-3xl space-y-4">
             <Badge variant="outline" className="border-sky-200 bg-sky-50 text-sky-700">
               Product Journey
@@ -103,7 +103,7 @@ export function ProductJourneySection() {
 
         <div className="relative">
           <div className="absolute left-8 right-8 top-8 hidden h-px bg-gradient-to-r from-sky-200 via-slate-200 to-slate-200 xl:block" />
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-4">
             {journey.map((item, index) => {
               const isPrimary = index === 0;
               const hideOnMobile = index === 3;
@@ -114,13 +114,13 @@ export function ProductJourneySection() {
                     isPrimary
                       ? hideOnMobile
                         ? "relative hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-32px_rgba(15,23,42,0.5)] sm:block"
-                        : "relative rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-32px_rgba(15,23,42,0.5)]"
+                        : "relative rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-32px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
                       : hideOnMobile
                         ? "relative hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)] sm:block"
-                        : "relative rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)]"
+                        : "relative rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)] sm:rounded-[1.75rem]"
                   }
                 >
-                  <CardHeader className="space-y-4 pb-4">
+                  <CardHeader className="space-y-3 pb-3 sm:space-y-4 sm:pb-4">
                     <div className="flex items-center justify-between gap-3">
                       <span
                         className={
@@ -146,7 +146,7 @@ export function ProductJourneySection() {
                       <p className={isPrimary ? "text-sm leading-6 text-slate-200" : "text-sm leading-6 text-slate-700"}>{item.summary}</p>
                     </div>
                   </CardHeader>
-                  <CardContent className="flex flex-1 flex-col space-y-4 pb-6">
+                  <CardContent className="flex flex-1 flex-col space-y-3 pb-5 sm:space-y-4 sm:pb-6">
                     <p className={isPrimary ? "hidden text-xs leading-5 text-slate-400 sm:block" : "hidden text-xs leading-5 text-slate-500 sm:block"}>{item.detail}</p>
                     <Link
                       href={item.href}
@@ -165,8 +165,8 @@ export function ProductJourneySection() {
           </div>
         </div>
 
-        <div className="mt-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-5 shadow-sm sm:p-6">
-          <div className="mb-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
+        <div className="mt-6 rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-4 shadow-sm sm:mt-8 sm:rounded-[32px] sm:p-6">
+          <div className="mb-4 grid gap-4 lg:mb-5 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Branch map</p>
               <h3 className="mt-1 text-xl font-semibold text-slate-950">当你已经走进首页，最该怎么选第一步</h3>
@@ -174,35 +174,40 @@ export function ProductJourneySection() {
                 这不是另外一组功能介绍，而是把“问题模糊 / 方向明确 / 需要收口”三种最常见现场压成一张更容易执行的路径图。
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-xs leading-5 text-slate-500">
+            <div className="hidden rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-xs leading-5 text-slate-500 lg:block">
               首页最终视觉统一的关键，不是卡片更多，而是让用户从第一屏到第一步之间的判断更短。
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
-            {branchMap.map((item, index) => (
-              <div
-                key={item.title}
-                className={
-                  index === 0
-                    ? "rounded-[28px] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
-                    : "rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm"
-                }
-              >
-                <p className={index === 0 ? "text-lg font-semibold text-white" : "text-lg font-semibold text-slate-950"}>{item.title}</p>
-                <p className={index === 0 ? "mt-3 text-sm leading-6 text-slate-300" : "mt-3 text-sm leading-6 text-slate-600"}>{item.detail}</p>
-                <Link
-                  href={item.href}
+          <div className="grid gap-3 md:grid-cols-3 md:gap-4">
+            {branchMap.map((item, index) => {
+              const hiddenOnMobile = index === 2;
+              return (
+                <div
+                  key={item.title}
                   className={
                     index === 0
-                      ? "mt-5 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
-                      : "mt-5 inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                      ? "rounded-[24px] border border-slate-200 bg-slate-950 p-4 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)] sm:rounded-[28px] sm:p-5"
+                      : hiddenOnMobile
+                        ? "hidden rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm md:block md:rounded-[28px] md:p-5"
+                        : "rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:rounded-[28px] sm:p-5"
                   }
                 >
-                  {item.label}
-                </Link>
-              </div>
-            ))}
+                  <p className={index === 0 ? "text-base font-semibold text-white sm:text-lg" : "text-base font-semibold text-slate-950 sm:text-lg"}>{item.title}</p>
+                  <p className={index === 0 ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{item.detail}</p>
+                  <Link
+                    href={item.href}
+                    className={
+                      index === 0
+                        ? "mt-4 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                        : "mt-4 inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                    }
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
