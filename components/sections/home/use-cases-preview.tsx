@@ -75,7 +75,7 @@ export function UseCasesPreviewSection() {
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="flex flex-wrap gap-2.5 pb-5 sm:gap-3 sm:pb-6">
+              <CardFooter className="pb-5 sm:pb-6">
                 <Link
                   href={`/use-cases/${item.slug}`}
                   className={
@@ -85,16 +85,6 @@ export function UseCasesPreviewSection() {
                   }
                 >
                   查看场景路径
-                </Link>
-                <Link
-                  href="/templates"
-                  className={
-                    index === 0
-                      ? "hidden rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10 sm:inline-flex"
-                      : "hidden rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:inline-flex"
-                  }
-                >
-                  去模板中心
                 </Link>
               </CardFooter>
             </Card>

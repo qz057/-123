@@ -55,7 +55,7 @@ export function HeroSection() {
       <div className="absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.22),transparent_58%)]" />
       <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-sky-300/10 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
         <div className="hidden items-center gap-10 lg:grid lg:grid-cols-[1fr_1.08fr]">
           <HeroCopy />
           <HeroPreview />
@@ -76,7 +76,7 @@ export function HeroSection() {
 
 function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobile?: boolean }) {
   return (
-    <div className={mobile ? "space-y-5" : "space-y-6 sm:space-y-7"}>
+    <div className={mobile ? "space-y-4" : "space-y-5 sm:space-y-6"}>
       <div className="flex flex-wrap gap-2 text-xs">
         <Badge variant="outline" className="border-sky-200 bg-white/80 text-sky-700 backdrop-blur">
           FlowDock
@@ -91,18 +91,18 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
         ) : null}
       </div>
 
-      <div className="space-y-4 sm:space-y-5">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-3 py-1.5 text-xs text-slate-600 shadow-sm backdrop-blur">
+      <div className="space-y-3.5 sm:space-y-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-3 py-1.5 text-[11px] text-slate-600 shadow-sm backdrop-blur sm:text-xs">
           <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-slate-950 text-[10px] font-semibold text-white">FD</span>
           <span>把 AI 从“能聊”推进到“能交付”</span>
         </div>
 
-        <div className="space-y-3 sm:space-y-4">
+        <div className="space-y-2.5 sm:space-y-3.5">
           <h1
             className={
               mobile
-                ? "max-w-3xl text-[2.55rem] font-semibold tracking-tight leading-[1.02] text-slate-950"
-                : "max-w-4xl text-5xl font-semibold tracking-tight text-slate-950 lg:text-[3.7rem] lg:leading-[1.05]"
+                ? "max-w-3xl text-[2.35rem] font-semibold tracking-tight leading-[1.03] text-slate-950"
+                : "max-w-4xl text-[3rem] font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-[3.45rem] lg:leading-[1.04]"
             }
           >
             把 AI 自动化
@@ -111,7 +111,7 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
             </span>
           </h1>
 
-          <p className={mobile ? "max-w-2xl text-[15px] leading-6 text-slate-600" : "max-w-2xl text-base leading-7 text-slate-600 sm:text-lg"}>
+          <p className={mobile ? "max-w-2xl text-[15px] leading-[1.65] text-slate-600" : "max-w-2xl text-[15px] leading-7 text-slate-600 sm:text-[17px]"}>
             从配置诊断、连接排障到工作流模板，FlowDock 不是继续陪你泛聊，而是帮你把问题送进正确入口，把执行送进可复用路径。
           </p>
         </div>
@@ -135,30 +135,28 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
         </div>
       )}
 
-      <div className={compact || mobile ? "flex flex-wrap gap-2.5" : "flex flex-col gap-3 sm:flex-row"}>
+      <div className={compact || mobile ? "flex flex-wrap items-center gap-x-4 gap-y-2" : "flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-4"}>
         <Link
           href="/diagnose"
           className="inline-flex items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 sm:px-5 sm:py-3"
         >
           立即体检配置
         </Link>
-        <Link
-          href="/templates"
-          className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/70 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:px-5 sm:py-3"
-        >
-          查看工作流模板
+        <Link href="/templates" className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+          <span>查看工作流模板</span>
+          <span aria-hidden>→</span>
         </Link>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1.08fr_0.92fr]">
-        <div className={mobile ? "rounded-[1.5rem] border border-white/80 bg-white/80 p-4 shadow-[0_16px_48px_-28px_rgba(15,23,42,0.25)] backdrop-blur" : "rounded-[1.75rem] border border-white/80 bg-white/80 p-5 shadow-[0_16px_48px_-28px_rgba(15,23,42,0.25)] backdrop-blur"}>
+      <div className="grid gap-3.5 lg:grid-cols-[1.08fr_0.92fr] lg:gap-4">
+        <div className={mobile ? "rounded-[1.5rem] border border-white/80 bg-white/80 p-4 shadow-[0_16px_48px_-28px_rgba(15,23,42,0.25)] backdrop-blur" : "rounded-[1.75rem] border border-white/80 bg-white/80 p-4 shadow-[0_16px_48px_-28px_rgba(15,23,42,0.25)] backdrop-blur"}>
           <div className="flex items-center justify-between gap-3">
             <p className={mobile ? "text-[13px] font-medium text-slate-900" : "text-sm font-medium text-slate-900"}>FlowDock 的默认使用顺序</p>
             <span className={mobile ? "rounded-full bg-sky-50 px-2.5 py-1 text-[10px] font-medium text-sky-700" : "rounded-full bg-sky-50 px-3 py-1 text-[11px] font-medium text-sky-700"}>推荐从这里起步</span>
           </div>
-          <ul className={mobile ? "mt-3 space-y-2.5 text-[13px] leading-5 text-slate-600" : "mt-4 space-y-3 text-sm leading-6 text-slate-600"}>
+          <ul className={mobile ? "mt-3 space-y-2.5 text-[13px] leading-5 text-slate-600" : "mt-3.5 space-y-2.5 text-sm leading-6 text-slate-600"}>
             {workflowSteps.map((item, index) => (
-              <li key={item} className={mobile ? "flex items-start gap-2.5 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2.5" : "flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-3"}>
+              <li key={item} className={mobile ? "flex items-start gap-2.5 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2.5" : "flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-3.5 py-2.5"}>
                 <span className={mobile ? "inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-950 text-[11px] font-medium text-white" : "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-medium text-white"}>
                   {index + 1}
                 </span>
@@ -169,14 +167,14 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
         </div>
 
         {!mobile && (
-          <div className="rounded-[1.75rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_18px_50px_-30px_rgba(15,23,42,0.55)]">
+          <div className="rounded-[1.75rem] border border-slate-200 bg-slate-950 p-4 text-white shadow-[0_18px_50px_-30px_rgba(15,23,42,0.55)]">
             <div className="flex items-center justify-between gap-3">
               <p className="text-sm font-medium text-white">三端不是缩放版，而是分别设计</p>
               <span className="rounded-full border border-white/15 px-3 py-1 text-[11px] text-slate-300">多设备入口</span>
             </div>
-            <div className="mt-4 space-y-3">
+            <div className="mt-3.5 space-y-2.5">
               {deviceModes.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-sm font-medium text-white">{item.label}</span>
                     <span className="text-xs text-sky-300">{item.value}</span>
@@ -189,7 +187,7 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
         )}
       </div>
 
-      <div className={mobile ? "space-y-2.5" : "grid gap-3 md:grid-cols-3"}>
+      <div className={mobile ? "space-y-2.5" : "grid gap-2.5 md:grid-cols-3"}>
         {entryRoutes.map((item, index) => {
           if (mobile && index === 2) {
             return (
@@ -199,17 +197,23 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
                   <span className="text-[11px] font-medium text-sky-700">最后收口</span>
                 </div>
                 <p className="mt-2 text-[13px] leading-5 text-slate-600">{item.detail}</p>
-                <Link
-                  href={item.href}
-                  className="mt-3 inline-flex rounded-full border border-sky-200 px-3.5 py-1.5 text-sm font-medium text-sky-700 transition hover:bg-white/70"
-                >
-                  {item.label}
+                <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+                  <span>{item.label}</span>
+                  <span aria-hidden>→</span>
                 </Link>
               </div>
             );
           }
 
           const primaryCard = index === 0;
+          const actionClass = primaryCard
+            ? mobile
+              ? "mt-3 inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
+              : "mt-4 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+            : mobile
+              ? "mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"
+              : "mt-4 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800";
+
           return (
             <div
               key={item.title}
@@ -219,25 +223,15 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
                     ? "rounded-[1.25rem] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
                     : "rounded-[1.25rem] border border-slate-200 bg-white/90 p-3.5 shadow-sm backdrop-blur"
                   : primaryCard
-                    ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 p-4 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
-                    : "rounded-[1.5rem] border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur"
+                    ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
+                    : "rounded-[1.5rem] border border-slate-200 bg-white/90 p-3.5 shadow-sm backdrop-blur"
               }
             >
               <p className={primaryCard ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{item.title}</p>
               <p className={mobile ? primaryCard ? "mt-2 text-[13px] leading-5 text-slate-300" : "mt-2 text-[13px] leading-5 text-slate-600" : primaryCard ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{item.detail}</p>
-              <Link
-                href={item.href}
-                className={
-                  primaryCard
-                    ? mobile
-                      ? "mt-3 inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
-                      : "mt-4 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
-                    : mobile
-                      ? "mt-3 inline-flex rounded-full border border-slate-300 px-3.5 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-                      : "mt-4 inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-                }
-              >
-                {item.label}
+              <Link href={item.href} className={actionClass}>
+                <span>{item.label}</span>
+                {!primaryCard ? <span aria-hidden>→</span> : null}
               </Link>
             </div>
           );

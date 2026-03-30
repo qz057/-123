@@ -7,13 +7,6 @@ const steps = [
   "最后按 Docs 的路径完成验证与落地",
 ] as const;
 
-const ctas = [
-  { label: "立即体检配置", href: "/diagnose", primary: true },
-  { label: "进入模板中心", href: "/templates", primary: false },
-  { label: "查看文档路径", href: "/docs", primary: false },
-  { label: "查看适用场景", href: "/use-cases", primary: false },
-] as const;
-
 const outcomeSignals = [
   { title: "不是继续聊天", detail: "而是先判断问题层级，再进入执行路径" },
   { title: "不是继续试错", detail: "而是拿现成模板、检查项和回滚策略" },
@@ -131,10 +124,11 @@ export function FinalCtaSection() {
                     className={
                       index === 0
                         ? "mt-4 inline-flex rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-slate-100"
-                        : "mt-4 inline-flex rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                        : "mt-4 inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white"
                     }
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    {index !== 0 ? <span aria-hidden>→</span> : null}
                   </Link>
                 </div>
               );
@@ -142,27 +136,8 @@ export function FinalCtaSection() {
           </div>
         </div>
 
-        <div className="relative mt-6 hidden gap-3 sm:mt-8 sm:grid sm:grid-cols-2 xl:grid-cols-4">
-          {ctas.map((item) => {
-            const hiddenOnMobile = item.href === "/use-cases";
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={
-                  item.primary
-                    ? hiddenOnMobile
-                      ? "hidden justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-100 sm:inline-flex"
-                      : "inline-flex justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-100"
-                    : hiddenOnMobile
-                      ? "hidden justify-center rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10 sm:inline-flex"
-                      : "inline-flex justify-center rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
-                }
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+        <div className="relative mt-6 rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-300 sm:mt-8 sm:rounded-[1.5rem] sm:px-5">
+          上面三条起步路已经覆盖首页最常见的开始方式；其余入口保留在顶部导航和对应区块里，不再在这里重复堆一排大按钮。
         </div>
       </div>
     </section>
