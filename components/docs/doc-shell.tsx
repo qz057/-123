@@ -9,9 +9,16 @@ export type DocShellLink = {
   tone?: "primary" | "secondary";
 };
 
+export type DocShellHighlight = {
+  label: string;
+  value: string;
+  tone?: "default" | "warning" | "success";
+};
+
 export type DocShellSection = {
   title: string;
   body: string;
+  highlights?: readonly DocShellHighlight[];
   bullets?: readonly string[];
   links?: readonly DocShellLink[];
 };
@@ -90,7 +97,9 @@ export function DocShell({
           {checklist.map((block, index) => (
             <Card key={block.title} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
               <CardHeader>
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Checklist {String(index + 1).padStart(2, "0")}</p>
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                  Checklist {String(index + 1).padStart(2, "0")}
+                </p>
                 <CardTitle className="text-lg text-slate-950">{block.title}</CardTitle>
               </CardHeader>
               <CardContent className="pb-6">
@@ -137,6 +146,16 @@ export function DocShell({
               </CardHeader>
               <CardContent className="space-y-4 pb-6">
                 <p className="text-sm leading-7 text-slate-600 sm:text-base">{section.body}</p>
+                {section.highlights?.length ? (
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {section.highlights.map((item) => (
+                      <div key={`${section.title}-${item.label}`} className={highlightToneClass(item.tone)}>
+                        <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">{item.label}</p>
+                        <p className="mt-2 text-sm font-medium leading-6 text-slate-900">{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
                 {section.bullets?.length ? (
                   <ul className="grid gap-2 text-sm leading-6 text-slate-600 sm:gap-3">
                     {section.bullets.map((item) => (
@@ -209,7 +228,9 @@ export function DocShell({
                     href={`#${section.anchor}`}
                     className="flex items-start gap-3 rounded-2xl border border-slate-200 px-3 py-3 transition hover:bg-slate-50"
                   >
-                    <span className="mt-0.5 text-xs font-medium text-slate-400">{String(section.index + 1).padStart(2, "0")}</span>
+                    <span className="mt-0.5 text-xs font-medium text-slate-400">
+                      {String(section.index + 1).padStart(2, "0")}
+                    </span>
                     <span className="text-sm font-medium leading-6 text-slate-700">{section.title}</span>
                   </a>
                 ))}
@@ -251,4 +272,16 @@ function createSectionAnchor(title: string, index: number) {
     .trim()
     .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "-")
     .replace(/^-+|-+$/g, "")}`;
+}
+
+function highlightToneClass(tone: DocShellHighlight["tone"] = "default") {
+  if (tone === "warning") {
+    return "rounded-2xl border border-amber-200 bg-amber-50/90 px-4 py-3";
+  }
+
+  if (tone === "success") {
+    return "rounded-2xl border border-emerald-200 bg-emerald-50/90 px-4 py-3";
+  }
+
+  return "rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3";
 }
