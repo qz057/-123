@@ -43,12 +43,12 @@ const launchModes = [
 
 export function FinalCtaSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-      <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 px-5 py-8 text-white shadow-[0_34px_100px_-48px_rgba(15,23,42,0.72)] sm:px-10 sm:py-12 lg:px-12">
+    <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 px-4 py-7 text-white shadow-[0_34px_100px_-48px_rgba(15,23,42,0.72)] sm:px-10 sm:py-12 lg:px-12">
         <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.28),transparent_70%)]" />
         <div className="absolute -right-12 top-10 hidden h-44 w-44 rounded-full bg-sky-400/10 blur-3xl lg:block" />
 
-        <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+        <div className="relative grid gap-5 sm:gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div>
             <Badge variant="outline" className="border-sky-300/20 bg-sky-400/10 text-sky-200">
               Ready to Start
@@ -99,11 +99,11 @@ export function FinalCtaSection() {
           </div>
         </div>
 
-        <div className="relative mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-4 sm:mt-8 sm:rounded-[1.75rem] sm:p-5">
-          <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+        <div className="relative mt-5 rounded-[1.5rem] border border-white/10 bg-white/5 p-3.5 sm:mt-8 sm:rounded-[1.75rem] sm:p-5">
+          <div className="mb-3 flex flex-col gap-3 lg:mb-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Launch lanes</p>
-              <h3 className="mt-1 text-xl font-semibold text-white">如果你现在就要开始，先选这三条起步路之一</h3>
+              <h3 className="mt-1 text-lg font-semibold text-white sm:text-xl">如果你现在就要开始，先选这三条起步路之一</h3>
             </div>
             <p className="hidden max-w-md text-sm leading-6 text-slate-300 lg:block">
               这里不是重复按钮，而是把“我现在最像哪种现场”压成一个更短的第一步判断。
@@ -118,10 +118,10 @@ export function FinalCtaSection() {
                   key={item.title}
                   className={
                     index === 0
-                      ? "rounded-[1.35rem] border border-white/10 bg-slate-950 px-4 py-4 text-white"
+                      ? "rounded-[1.35rem] border border-white/10 bg-slate-950 px-3.5 py-3.5 text-white sm:px-4 sm:py-4"
                       : hiddenOnMobile
-                        ? "hidden rounded-[1.35rem] border border-white/10 bg-white/5 px-4 py-4 text-white md:block"
-                        : "rounded-[1.35rem] border border-white/10 bg-white/5 px-4 py-4 text-white"
+                        ? "hidden rounded-[1.35rem] border border-white/10 bg-white/5 px-3.5 py-3.5 text-white md:block sm:px-4 sm:py-4"
+                        : "rounded-[1.35rem] border border-white/10 bg-white/5 px-3.5 py-3.5 text-white sm:px-4 sm:py-4"
                   }
                 >
                   <p className="text-sm font-medium text-white">{item.title}</p>
@@ -142,7 +142,7 @@ export function FinalCtaSection() {
           </div>
         </div>
 
-        <div className="relative mt-6 grid grid-cols-2 gap-3 sm:mt-8 xl:grid-cols-4">
+        <div className="relative mt-6 hidden gap-3 sm:mt-8 sm:grid sm:grid-cols-2 xl:grid-cols-4">
           {ctas.map((item) => {
             const hiddenOnMobile = item.href === "/use-cases";
             return (

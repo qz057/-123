@@ -9,7 +9,7 @@ export function TrustSection() {
     <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#eef6ff_100%)]">
       <div className="absolute right-10 top-12 hidden h-40 w-40 rounded-full bg-sky-300/10 blur-3xl lg:block" />
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="mb-10 grid gap-6 md:grid-cols-[1fr_0.82fr] md:items-end">
+        <div className="mb-8 grid gap-6 md:mb-10 md:grid-cols-[1fr_0.82fr] md:items-end">
           <div className="max-w-3xl space-y-4">
             <Badge variant="outline" className="border-sky-200 bg-white/80 text-sky-700">
               Why FlowDock
@@ -41,22 +41,22 @@ export function TrustSection() {
           ))}
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
           {trustPoints.map((item, index) => (
             <Card
               key={item.title}
               className={
                 index === 1
-                  ? "rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_20px_60px_-34px_rgba(15,23,42,0.52)]"
+                  ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_20px_60px_-34px_rgba(15,23,42,0.52)] sm:rounded-[1.75rem]"
                   : index === 2
-                    ? "rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm md:col-span-2 xl:col-span-1"
-                    : "rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm"
+                    ? "hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm sm:flex md:col-span-2 xl:col-span-1"
+                    : "rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm sm:rounded-[1.75rem]"
               }
             >
-              <CardHeader className="pb-4">
-                <CardTitle className={index === 1 ? "text-xl text-white" : "text-xl text-slate-950"}>{item.title}</CardTitle>
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className={index === 1 ? "text-lg text-white sm:text-xl" : "text-lg text-slate-950 sm:text-xl"}>{item.title}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 pb-6">
+              <CardContent className="space-y-3 pb-5 sm:space-y-4 sm:pb-6">
                 <p className={index === 1 ? "text-sm leading-6 text-slate-300" : "text-sm leading-6 text-slate-600"}>{item.description}</p>
                 <div
                   className={
