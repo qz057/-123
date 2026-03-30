@@ -43,6 +43,27 @@ const routeSignals = [
   { label: "避免的问题", value: "一上来就进错页、拿错方案、漏掉验证" },
 ] as const;
 
+const branchMap = [
+  {
+    title: "还不知道问题在哪层",
+    detail: "别先跳模板，先用 Diagnose 把层级压清。",
+    href: "/diagnose",
+    label: "先做 Diagnose",
+  },
+  {
+    title: "已经知道方向，只缺执行路径",
+    detail: "别继续停在解释层，直接切到 Templates。",
+    href: "/templates",
+    label: "去模板中心",
+  },
+  {
+    title: "执行后要回头验证边界",
+    detail: "不要把可用首版误当成全场景终版，回 Docs / Product Notes 收口。",
+    href: "/docs",
+    label: "去文档路径",
+  },
+] as const;
+
 export function ProductJourneySection() {
   return (
     <section className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]">
@@ -141,6 +162,47 @@ export function ProductJourneySection() {
                 </Card>
               );
             })}
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-5 shadow-sm sm:p-6">
+          <div className="mb-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Branch map</p>
+              <h3 className="mt-1 text-xl font-semibold text-slate-950">当你已经走进首页，最该怎么选第一步</h3>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
+                这不是另外一组功能介绍，而是把“问题模糊 / 方向明确 / 需要收口”三种最常见现场压成一张更容易执行的路径图。
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-xs leading-5 text-slate-500">
+              首页最终视觉统一的关键，不是卡片更多，而是让用户从第一屏到第一步之间的判断更短。
+            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {branchMap.map((item, index) => (
+              <div
+                key={item.title}
+                className={
+                  index === 0
+                    ? "rounded-[28px] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
+                    : "rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm"
+                }
+              >
+                <p className={index === 0 ? "text-lg font-semibold text-white" : "text-lg font-semibold text-slate-950"}>{item.title}</p>
+                <p className={index === 0 ? "mt-3 text-sm leading-6 text-slate-300" : "mt-3 text-sm leading-6 text-slate-600"}>{item.detail}</p>
+                <Link
+                  href={item.href}
+                  className={
+                    index === 0
+                      ? "mt-5 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                      : "mt-5 inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                  }
+                >
+                  {item.label}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>

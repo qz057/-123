@@ -38,6 +38,39 @@ export default function DiagnoseDocsPage() {
           ],
         },
       ]}
+      workflow={{
+        eyebrow: "Use flow",
+        title: "Diagnose 最稳的现场使用顺序",
+        description:
+          "把 Diagnose 用得稳，不在于你一次填多少，而在于你有没有按顺序：先定问题层，再补关键字段，再确认判断依据，最后再跳执行页。这样结果才不会重新滑回盲试。",
+        steps: [
+          {
+            title: "先压层级",
+            detail: "先判断自己现在更像连接、配置、Session 还是工具接入问题，别一开始就把不同层的信号混在一起。",
+            cue: "起点",
+            href: "/diagnose",
+            actionLabel: "打开 Diagnose",
+            tone: "primary",
+          },
+          {
+            title: "再补最值钱的字段",
+            detail: "优先补 issueType / scenario / provider / model / auth / transport / symptom / error / expected，不靠一句‘不对’硬猜。",
+            cue: "输入质量",
+          },
+          {
+            title: "先验证归类，再看动作",
+            detail: "先看 summary、risk、diagnosisBasis、missingInputs、scoreBreakdown，确认它抓住的是你的真实现场。",
+            cue: "解释层",
+          },
+          {
+            title: "最后才跳模板或文档",
+            detail: "当 Diagnose 已把方向压清，你再进入 Templates 或 Troubleshooting；不要反过来把建议当成直接结案。",
+            cue: "下一跳",
+            href: "/templates",
+            actionLabel: "去模板中心",
+          },
+        ],
+      }}
       sections={[
         {
           title: "Diagnose 现在最该被理解成什么：规则型路由器，不是万能诊断器",
@@ -120,6 +153,25 @@ export default function DiagnoseDocsPage() {
           links: [
             { href: "/templates/model-connection-debug", label: "看模型连接排查模板", tone: "primary" },
             { href: "/docs/templates", label: "看模板使用文档" },
+          ],
+        },
+        {
+          title: "失败分支：如果 Diagnose 暂时抓不准，别继续乱填，而是补最小证据",
+          body: "真实现场里最容易出问题的一种情况，是 Diagnose 已经给了结果，但你自己也觉得‘不像完全抓对’。这时候最危险的不是工具不够聪明，而是你顺着一个半对半错的归类继续叠动作。更稳的做法是先把现场收缩回来：补一条更像真的 symptom / error / expected，或者把问题重新压到更明确的问题类型与场景，而不是继续塞更多模糊描述。",
+          highlights: [
+            { label: "该怀疑归类的信号", value: "评分拆解、判断依据和你的真实现象明显对不上", tone: "warning" },
+            { label: "先补什么", value: "补最小可复现现象、关键报错和期望结果，而不是继续写长描述", tone: "success" },
+            { label: "什么时候回 Troubleshooting", value: "当你已经能大致判层，但需要更稳的停手 / 回滚 / 单变量节奏" },
+            { label: "什么时候回 Templates", value: "当方向已清楚，只是需要一个更稳的执行顺序", tone: "success" },
+          ],
+          bullets: [
+            "Diagnose 的失败分支，不是‘工具废了’，而是提醒你现在需要更小、更真、更能区分层级的输入",
+            "如果你已经能确认方向，却总在 Diagnose 里兜圈，说明该切执行页而不是继续求更长结论",
+            "当解释层与现场不贴时，优先修正输入质量，不要继续扩大操作面",
+          ],
+          links: [
+            { href: "/docs/troubleshooting", label: "转排障顺序文档", tone: "primary" },
+            { href: "/templates", label: "直接看模板中心" },
           ],
         },
         {

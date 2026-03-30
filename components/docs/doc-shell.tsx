@@ -15,6 +15,22 @@ export type DocShellHighlight = {
   tone?: "default" | "warning" | "success";
 };
 
+export type DocShellFlowStep = {
+  title: string;
+  detail: string;
+  cue?: string;
+  href?: string;
+  actionLabel?: string;
+  tone?: "default" | "primary" | "warning";
+};
+
+export type DocShellFlow = {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  steps: readonly DocShellFlowStep[];
+};
+
 export type DocShellSection = {
   title: string;
   body: string;
@@ -35,6 +51,7 @@ export function DocShell({
   badges = [],
   summary = [],
   checklist = [],
+  workflow,
   sections,
   ctaLinks = [],
 }: {
@@ -44,6 +61,7 @@ export function DocShell({
   badges?: readonly string[];
   summary?: readonly { label: string; value: string }[];
   checklist?: readonly DocShellChecklist[];
+  workflow?: DocShellFlow;
   sections: readonly DocShellSection[];
   ctaLinks?: readonly DocShellLink[];
 }) {
@@ -113,6 +131,69 @@ export function DocShell({
               </CardContent>
             </Card>
           ))}
+        </section>
+      ) : null}
+
+      {workflow?.steps.length ? (
+        <section className="mt-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-5 shadow-sm sm:p-6">
+          <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">{workflow.eyebrow ?? "Workflow"}</p>
+              <h2 className="mt-1 text-xl font-semibold text-slate-950 sm:text-2xl">{workflow.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">{workflow.description}</p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-xs leading-5 text-slate-500">
+              这块不是装饰，而是把“现在先做什么 / 卡住时往哪跳”压成一条更容易执行的节奏。
+            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {workflow.steps.map((step, index) => {
+              const primary = step.tone === "primary" || index === 0;
+              const warning = step.tone === "warning";
+              const cardClass = primary
+                ? "rounded-[28px] border border-slate-200 bg-slate-950 px-5 py-5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
+                : warning
+                  ? "rounded-[28px] border border-amber-200 bg-amber-50/90 px-5 py-5"
+                  : "rounded-[28px] border border-slate-200 bg-white px-5 py-5 shadow-sm";
+              const titleClass = primary ? "text-lg text-white" : "text-lg text-slate-950";
+              const bodyClass = primary ? "text-sm leading-6 text-slate-300" : warning ? "text-sm leading-6 text-amber-900/80" : "text-sm leading-6 text-slate-600";
+              const cueClass = primary
+                ? "rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-sky-200"
+                : warning
+                  ? "rounded-full border border-amber-200 bg-white px-3 py-1 text-[11px] font-medium text-amber-700"
+                  : "rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500";
+              const actionClass = primary
+                ? "inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                : warning
+                  ? "inline-flex rounded-full border border-amber-300 bg-white px-4 py-2 text-sm font-medium text-amber-800 transition hover:bg-amber-100"
+                  : "inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50";
+
+              return (
+                <div key={`${step.title}-${index}`} className={cardClass}>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className={cueClass}>{step.cue ?? `Step ${String(index + 1).padStart(2, "0")}`}</span>
+                    <span
+                      className={
+                        primary
+                          ? "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-xs font-semibold text-slate-950"
+                          : "inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-950 text-xs font-semibold text-white"
+                      }
+                    >
+                      {index + 1}
+                    </span>
+                  </div>
+                  <h3 className={`${titleClass} mt-4 font-semibold`}>{step.title}</h3>
+                  <p className={`${bodyClass} mt-3`}>{step.detail}</p>
+                  {step.href && step.actionLabel ? (
+                    <Link href={step.href} className={`${actionClass} mt-5`}>
+                      {step.actionLabel}
+                    </Link>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
         </section>
       ) : null}
 

@@ -20,6 +20,27 @@ const outcomeSignals = [
   { title: "不是停在感觉可用", detail: "而是回到文档把边界和验证讲清楚" },
 ] as const;
 
+const launchModes = [
+  {
+    title: "我现在就有卡点",
+    detail: "直接从 Diagnose 起步，把问题送进正确层级。",
+    href: "/diagnose",
+    label: "先体检配置",
+  },
+  {
+    title: "我已经知道方向",
+    detail: "直接进模板中心，把理解变成执行顺序。",
+    href: "/templates",
+    label: "进入模板中心",
+  },
+  {
+    title: "我要先确认边界",
+    detail: "回文档路径和 Product Notes，先把预期讲清再推进。",
+    href: "/docs",
+    label: "查看文档路径",
+  },
+] as const;
+
 export function FinalCtaSection() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
@@ -79,6 +100,44 @@ export function FinalCtaSection() {
             <p className="text-sm leading-6 text-slate-300 md:hidden">
               重点不是继续聊天，而是尽快走到正确第一步：先 Diagnose，再 Templates，最后回 Docs 收口。
             </p>
+          </div>
+        </div>
+
+        <div className="relative mt-8 rounded-[1.75rem] border border-white/10 bg-white/5 p-4 sm:p-5">
+          <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Launch lanes</p>
+              <h3 className="mt-1 text-xl font-semibold text-white">如果你现在就要开始，先选这三条起步路之一</h3>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-slate-300">
+              这里不是重复按钮，而是把“我现在最像哪种现场”压成一个更短的第一步判断。
+            </p>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-3">
+            {launchModes.map((item, index) => (
+              <div
+                key={item.title}
+                className={
+                  index === 0
+                    ? "rounded-[1.5rem] border border-white/10 bg-slate-950 px-4 py-4 text-white"
+                    : "rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4 text-white"
+                }
+              >
+                <p className="text-sm font-medium text-white">{item.title}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
+                <Link
+                  href={item.href}
+                  className={
+                    index === 0
+                      ? "mt-4 inline-flex rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-slate-100"
+                      : "mt-4 inline-flex rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                  }
+                >
+                  {item.label}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -38,6 +38,39 @@ export default function ProductNotesPage() {
           ],
         },
       ]}
+      workflow={{
+        eyebrow: "Product maturity flow",
+        title: "更稳地理解当前版本：别先问像不像终版，先问值不值得拿来推进真实任务",
+        description:
+          "Product Notes 的作用不是给你更多完成感，而是帮助你先判断当前版本适不适合你的任务、哪些地方已经能用、哪些地方还该保留演进预期。顺序一旦对，预期管理就不会变成返工源头。",
+        steps: [
+          {
+            title: "先看现在已经能做什么",
+            detail: "先确认主链路是不是已经可用，而不是先盯有没有做到所有细节终稿。",
+            cue: "先定可用区",
+            href: "/",
+            actionLabel: "回首页看入口关系",
+            tone: "primary",
+          },
+          {
+            title: "再看哪些地方仍在增强",
+            detail: "把视觉 polish、案例层深度、Diagnose V2+ 这些继续增强项和当前可用能力分开理解。",
+            cue: "别混层",
+          },
+          {
+            title: "用它决定当前怎么推进",
+            detail: "如果任务已在可用区，就直接进入 Diagnose / Templates；如果预期明显超出当前阶段，就先收预期再继续。",
+            cue: "决策分支",
+          },
+          {
+            title: "最后再看下一阶段优先级",
+            detail: "把产品下一步理解成继续增强真实路径，而不是继续堆说明书或制造表面完成感。",
+            cue: "下一阶段",
+            href: "/docs/getting-started",
+            actionLabel: "回起步文档",
+          },
+        ],
+      }}
       sections={[
         {
           title: "FlowDock 现在到底是什么状态：可工作首版，不是空壳，也不是终版",
@@ -108,6 +141,21 @@ export default function ProductNotesPage() {
           ],
         },
         {
+          title: "失败分支：当页面已经很像成品时，怎么避免把预期推得过满",
+          body: "首版最难处理的失败分支，并不是页面难看，而是它已经足够像样，于是团队或使用者自然会把很多还没正式承诺的能力也压上去。更稳的做法不是保守，而是把‘今天已经能依赖什么’和‘接下来还要增强什么’并排说清，这样后续就不会因为预期错位而返工。",
+          highlights: [
+            { label: "该降预期的信号", value: "你开始默认所有长尾异常、深层案例和产品细节都已封板", tone: "warning" },
+            { label: "该继续推进的信号", value: "主链路已稳定、当前任务可以借它减少横跳和盲试", tone: "success" },
+            { label: "更稳说法", value: "先把它当能推进真实任务的工作台，再继续把深层边界和图示层补全" },
+            { label: "最危险动作", value: "把局部成熟度直接解释成整体完成度", tone: "warning" },
+          ],
+          bullets: [
+            "产品最怕的不是被说还没做完，而是被按终版预期使用后再返工",
+            "Product Notes 的真正用途，就是主动给这种误判提前减压",
+            "当预期管理做对，后续每一轮 polish 的收益才更容易累积成产品力",
+          ],
+        },
+        {
           title: "当前明确还没收死的部分：不是缺骨架，而是继续补深度与细节",
           body: "现在剩下的工作，已经不是‘把站先搭出来’，而是沿着真实页面和真实路径继续补深度。重点不再是有没有这些入口，而是它们能不能在更多现场里更像成品、更少误判、更容易被复用。",
           highlights: [
@@ -142,7 +190,7 @@ export default function ProductNotesPage() {
           body: "接下来默认仍沿着‘更像真产品’这条线推进：先继续收口首页与内容总览的视觉一致性，再把 docs 子页的案例层补深，最后继续增强 Diagnose V2+ 的解释密度与场景贴合度。优先级并没有乱，而是在越来越清楚。",
           highlights: [
             { label: "第一优先级", value: "首页 / about / docs 总览继续做设计稿级收口" },
-            { label: "第二优先级", value: "docs/troubleshooting / product-notes 等子页继续补案例层" },
+            { label: "第二优先级", value: "docs 子页继续补图示化流程、失败分支和案例层" },
             { label: "第三优先级", value: "Diagnose V2+ 继续细化归类、失败信号与资源贴合度" },
             { label: "节奏原则", value: "先增强真实使用价值，再扩说明广度", tone: "success" },
           ],

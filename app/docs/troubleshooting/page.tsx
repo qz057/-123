@@ -38,6 +38,39 @@ export default function TroubleshootingDocsPage() {
           ],
         },
       ]}
+      workflow={{
+        eyebrow: "Troubleshooting flow",
+        title: "把坏现场重新拉回可解释区间的顺序",
+        description:
+          "真正稳的排障不是动作更多，而是顺序更清楚：先判层，再做最小真测，再按结果选分支，最后把根因和回滚口径收干净。",
+        steps: [
+          {
+            title: "先判层",
+            detail: "先把问题压回连接、配置、会话或接入层，不要一开始就多层并排怀疑。",
+            cue: "收缩现场",
+            href: "/diagnose",
+            actionLabel: "先做问题归类",
+            tone: "primary",
+          },
+          {
+            title: "做一次最小真测",
+            detail: "只证明一件事：最小请求、最小会话或最小链路到底通没通，别同时改四件事再看结果。",
+            cue: "真测",
+          },
+          {
+            title: "按结果选分支",
+            detail: "如果验证和猜测不一致，就回到更小粒度继续判层；如果一致，再去模板或回滚顺序。",
+            cue: "分支判断",
+          },
+          {
+            title: "收口结论",
+            detail: "写清根因在哪层、哪一步证明确认、下次先从哪一步开始，不把‘现在好了’当结束。",
+            cue: "收口",
+            href: "/docs/product-notes",
+            actionLabel: "补看产品边界",
+          },
+        ],
+      }}
       sections={[
         {
           title: "先把问题压回四层，不然越试越乱",
@@ -109,6 +142,25 @@ export default function TroubleshootingDocsPage() {
           links: [
             { href: "/docs/getting-started", label: "回起步文档" },
             { href: "/docs/templates", label: "按模板单变量推进", tone: "primary" },
+          ],
+        },
+        {
+          title: "分支图：最小验证打出来后，下一步到底往哪边走",
+          body: "很多排障不是败在不会做，而是败在最小验证已经打出来了，却不知道下一步该去哪个入口。更稳的做法是按结果选分支：如果结果推翻了你的猜测，就回 Diagnose 重判层；如果结果支持你的猜测，但执行顺序还乱，就进 Templates；如果问题其实是预期过满，就补看 Product Notes。",
+          highlights: [
+            { label: "验证推翻猜测", value: "说明你一开始判层可能错了，先回 Diagnose 重归类", tone: "warning" },
+            { label: "验证支持猜测", value: "说明可以往模板和具体执行步骤推进", tone: "success" },
+            { label: "验证显示入口层都正常", value: "别继续执着技术排障，改去确认产品边界与期望管理" },
+            { label: "最危险动作", value: "验证刚出来，就一口气再叠三四个变化", tone: "warning" },
+          ],
+          bullets: [
+            "最小验证的价值，不只是证明一次对错，更是帮你决定该换哪个入口继续",
+            "如果验证和认知不一致，先收缩，不要立刻升级动作强压过去",
+            "当你知道为什么跳入口，FlowDock 的路径设计才真正开始生效",
+          ],
+          links: [
+            { href: "/diagnose", label: "回 Diagnose 重归类", tone: "primary" },
+            { href: "/templates", label: "转模板继续推进" },
           ],
         },
         {

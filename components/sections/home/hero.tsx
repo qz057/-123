@@ -22,6 +22,27 @@ const proofPoints = [
   { label: "页面结构", value: "官网 + 真工具" },
 ] as const;
 
+const entryRoutes = [
+  {
+    title: "问题还模糊",
+    detail: "先归类层级，不直接进模板。",
+    href: "/diagnose",
+    label: "先开 Diagnose",
+  },
+  {
+    title: "方向已经明确",
+    detail: "直接进入模板与执行页。",
+    href: "/templates",
+    label: "去模板中心",
+  },
+  {
+    title: "需要规则与边界",
+    detail: "回 Docs 看验证口径与失败分支。",
+    href: "/docs",
+    label: "看文档路径",
+  },
+] as const;
+
 const outputSignals = [
   { title: "先给结论", value: "定位最可能问题层" },
   { title: "再给动作", value: "直接指向修复路径" },
@@ -160,6 +181,32 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
             </div>
           </div>
         )}
+      </div>
+
+      <div className={mobile ? "space-y-3" : "grid gap-3 md:grid-cols-3"}>
+        {entryRoutes.map((item, index) => (
+          <div
+            key={item.title}
+            className={
+              index === 0 && !mobile
+                ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 p-4 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
+                : "rounded-[1.5rem] border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur"
+            }
+          >
+            <p className={index === 0 && !mobile ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{item.title}</p>
+            <p className={index === 0 && !mobile ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{item.detail}</p>
+            <Link
+              href={item.href}
+              className={
+                index === 0 && !mobile
+                  ? "mt-4 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                  : "mt-4 inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              }
+            >
+              {item.label}
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
