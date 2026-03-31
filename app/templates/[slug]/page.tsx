@@ -461,7 +461,7 @@ export default async function TemplateDetailPage({
               <Link href="/diagnose" className={primaryLink}>
                 先体检配置
               </Link>
-              <Link href="/docs" className="rounded-full border border-white/20 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-white/10">
+              <Link href="/docs" className="hidden rounded-full border border-white/20 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-white/10 sm:block">
                 查看文档总览
               </Link>
             </CardContent>
@@ -501,7 +501,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-lg text-slate-950">执行后别断在这里</CardTitle>
             </CardHeader>

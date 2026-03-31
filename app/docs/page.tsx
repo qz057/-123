@@ -244,11 +244,11 @@ export default function DocsPage() {
             >
               先看 Diagnose 文档
             </Link>
-            <Link href="/docs/getting-started" className={inlineLinkClass}>
+            <Link href="/docs/getting-started" className="hidden items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800 sm:inline-flex">
               <span>先看 Getting Started</span>
               <span aria-hidden>→</span>
             </Link>
-            <Link href="/diagnose" className={inlineLinkClass}>
+            <Link href="/diagnose" className="hidden items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800 sm:inline-flex">
               <span>直接打开 Diagnose</span>
               <span aria-hidden>→</span>
             </Link>

@@ -99,7 +99,7 @@ export default function TemplatesPage() {
               <span>先看 Templates 文档</span>
               <span aria-hidden>→</span>
             </Link>
-            <Link href="/use-cases" className={inlineLinkClass}>
+            <Link href="/use-cases" className="hidden items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800 sm:inline-flex">
               <span>按使用场景找入口</span>
               <span aria-hidden>→</span>
             </Link>
