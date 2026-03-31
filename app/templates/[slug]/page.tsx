@@ -211,7 +211,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">案例分支：执行后最常见的两种走向</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">让案例不只停在“看过”，而是直接对应下一跳动作。</CardDescription>
@@ -246,7 +246,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">交付后复盘：怎么让下次不用再从零判断</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">把这次结果沉淀成下次更快的入口，而不是只留一句“之前试过”。</CardDescription>
@@ -278,6 +278,38 @@ export default async function TemplateDetailPage({
                 ]}
                 tone="warning"
                 className="hidden sm:block"
+              />
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:hidden">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">继续推进前，只看这 3 件事</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">把底部重复判断层收成一个更短的 mobile 收口卡，先保证下一跳清楚。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 pb-6">
+              <ChecklistBlock
+                title="结果不稳"
+                items={[
+                  "先保最后一个稳定动作",
+                  "回 Troubleshooting 收清停手点与回滚顺序",
+                ]}
+                tone="success"
+              />
+              <ChecklistBlock
+                title="方向变糊"
+                items={[
+                  "别继续横跳模板或 provider",
+                  "先回 Diagnose 重新判层",
+                ]}
+                tone="warning"
+              />
+              <ChecklistBlock
+                title="准备交付 / 交接"
+                items={[
+                  "至少留下稳定点、done signal、下一跳资源",
+                  relatedDocs[0] ? `优先补看：${relatedDocs[0].title}` : "优先补对应文档，确认边界和验证口径",
+                ]}
               />
             </CardContent>
           </Card>
@@ -318,7 +350,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">什么时候该升级处理，而不是继续在这份模板里硬推</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">模板页不只回答“怎么做”，也要回答“什么时候该切换处理层”。</CardDescription>
@@ -354,7 +386,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">别把“已经跑通一次”直接当成可交付；至少要把最小交付包和升级前检查留清楚。</CardDescription>

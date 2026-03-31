@@ -202,7 +202,7 @@ export default function UseCasesPage() {
                 <CardTitle className="mt-1 text-lg text-slate-950">{item.title}</CardTitle>
                 <CardDescription className="text-sm leading-[1.65] text-slate-600">{item.summary}</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-3.5 pb-4">
+              <CardContent className="space-y-3 pb-4">
                 <div className="rounded-2xl bg-slate-50/80 px-3.5 py-3 text-sm leading-[1.6] text-slate-600">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">Diagnose focus</p>
                   <p className="mt-1.5">{item.diagnoseFocus}</p>
@@ -245,7 +245,7 @@ export default function UseCasesPage() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-amber-100 bg-amber-50/70 px-3.5 py-2.5 text-sm leading-[1.55] text-slate-700">
+                <div className="hidden rounded-2xl border border-amber-100 bg-amber-50/70 px-3.5 py-2.5 text-sm leading-[1.55] text-slate-700 sm:block">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">Common pitfall</p>
                   <p className="mt-1">{item.pitfalls[0] ?? "先确认当前阶段，再决定是否继续深入。"}</p>
                 </div>
@@ -254,7 +254,7 @@ export default function UseCasesPage() {
                 <Link href={`/use-cases/${item.slug}`} className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
                   查看场景路径
                 </Link>
-                <Link href={item.secondaryAction.href} className={inlineLinkClass}>
+                <Link href={item.secondaryAction.href} className={`${inlineLinkClass} hidden sm:inline-flex`}>
                   <span>{item.secondaryAction.label}</span>
                   <span aria-hidden>→</span>
                 </Link>

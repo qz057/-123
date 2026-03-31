@@ -183,7 +183,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">案例分叉：跑到这里以后，下一步通常怎么选</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">把 FAQ 继续往前推一层，让场景页更像决策面，不只是说明面。</CardDescription>
@@ -216,7 +216,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">交付后复盘：什么时候该沿原场景继续，什么时候别再复用旧结论</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景页真正的价值，是让你下次更快决定入口，而不是重复看解释。</CardDescription>
@@ -246,6 +246,36 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                   "现在的问题更像别的层级，而不是原场景的重复",
                 ]}
                 className="hidden sm:block"
+              />
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:hidden">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">继续推进前，只看这 3 件事</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">把底部重复判断层收成一个更短的 mobile 收口卡，先保证第一跳和下一跳清楚。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 pb-6">
+              <InfoBlock
+                title="结果不稳"
+                items={[
+                  "先回最后一个稳定入口",
+                  "再到 Troubleshooting 收清停手点和回滚顺序",
+                ]}
+              />
+              <InfoBlock
+                title="方向变糊"
+                items={[
+                  "别继续沿旧场景硬推",
+                  "先回 Diagnose 重新判层",
+                ]}
+              />
+              <InfoBlock
+                title="准备交付 / 交接"
+                items={[
+                  "至少留下稳定入口、done signal、下一跳资源",
+                  relatedTemplates[0] ? `优先补模板：${relatedTemplates[0].title}` : "优先补最贴近的模板或文档",
+                ]}
               />
             </CardContent>
           </Card>
@@ -284,7 +314,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">什么时候该升级处理，而不是继续沿这个场景硬推</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景页不只给入口，也要告诉你什么时候该切换处理层。</CardDescription>
@@ -318,7 +348,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景跑通不等于可交付；要把别人能接着做的最小交付包一起留下。</CardDescription>

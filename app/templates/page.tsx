@@ -235,7 +235,7 @@ export default function TemplatesPage() {
                 <CardTitle className="mt-1 text-lg text-slate-950">{template.title}</CardTitle>
                 <CardDescription className="text-sm leading-[1.65] text-slate-600">{template.summary}</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-3.5 pb-4">
+              <CardContent className="space-y-3 pb-4">
                 <div className="rounded-2xl bg-slate-50/80 px-3.5 py-3">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">Scenario</p>
                   <p className="mt-1.5 text-sm leading-[1.6] text-slate-600">{template.scenario}</p>
@@ -291,7 +291,7 @@ export default function TemplatesPage() {
                 <Link href={`/templates/${template.slug}`} className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
                   查看模板
                 </Link>
-                <Link href="/use-cases" className={inlineLinkClass}>
+                <Link href="/use-cases" className={`${inlineLinkClass} hidden sm:inline-flex`}>
                   <span>按场景找入口</span>
                   <span aria-hidden>→</span>
                 </Link>
