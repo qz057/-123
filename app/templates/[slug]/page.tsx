@@ -245,6 +245,41 @@ export default async function TemplateDetailPage({
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">交付后复盘：怎么让下次不用再从零判断</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">把这次结果沉淀成下次更快的入口，而不是只留一句“之前试过”。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <ChecklistBlock
+                title="要留下的最小事实"
+                items={[
+                  "哪一步之前是最后一个稳定点",
+                  "哪条最小验证最能证明这次真的恢复",
+                  "这次最容易误判的分支到底是什么",
+                ]}
+              />
+              <ChecklistBlock
+                title="下次直接复用如果"
+                items={[
+                  "目标没变、输入没变、环境也没变",
+                  "这次 done signal 还能稳定复现",
+                  "你还能准确复述这次最值钱的停手点",
+                ]}
+                tone="success"
+              />
+              <ChecklistBlock
+                title="别复用旧结论如果"
+                items={[
+                  "目标已经换了，但你还想沿同一模板硬推",
+                  "输入、环境、入口层都变了，却还拿旧验证当证明",
+                  "这次异常更像新的分支，而不是旧案例的复读",
+                ]}
+                tone="warning"
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">

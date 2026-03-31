@@ -215,6 +215,39 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">交付后复盘：什么时候该沿原场景继续，什么时候别再复用旧结论</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">场景页真正的价值，是让你下次更快决定入口，而不是重复看解释。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <InfoBlock
+                title="这次至少要留下"
+                items={[
+                  "哪个入口是最后稳定入口",
+                  "哪条最小真测最能证明 done signal 真的出现",
+                  "这次最容易走错的是哪条分支",
+                ]}
+              />
+              <InfoBlock
+                title="可以沿原场景继续如果"
+                items={[
+                  "目标、输入、环境都没有明显变化",
+                  "done signal 还能稳定复现",
+                  "你还知道该从哪个入口重开最省时间",
+                ]}
+              />
+              <InfoBlock
+                title="别继续沿原场景硬推如果"
+                items={[
+                  "目标已经变了，但你还想沿旧路径直接复用",
+                  "环境或入口换了，却还拿旧结论当证据",
+                  "现在的问题更像别的层级，而不是原场景的重复",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">

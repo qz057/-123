@@ -198,6 +198,12 @@ const rhythmStrip = [
   { label: "最后收口", value: "边界与验证" },
 ] as const;
 
+const quickReadStrip = [
+  "先看顶部 3 张 lens，确认这页不是目录页。",
+  "再看 task-first / decision map，决定第一跳。",
+  "最后才回 reading paths / all docs 补细节。",
+] as const;
+
 export default function DocsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -258,13 +264,23 @@ export default function DocsPage() {
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Page rhythm</p>
           <CardTitle className="text-lg text-slate-950">这页最稳的阅读节奏</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-3 pb-5 sm:grid-cols-3">
-          {rhythmStrip.map((item, index) => (
-            <div key={item.label} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3"}>
-              <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
-              <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+        <CardContent className="space-y-3 pb-5">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {rhythmStrip.map((item, index) => (
+              <div key={item.label} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3"}>
+                <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
+                <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">30 秒读法</p>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+              {quickReadStrip.map((item) => (
+                <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
+              ))}
             </div>
-          ))}
+          </div>
         </CardContent>
       </section>
 

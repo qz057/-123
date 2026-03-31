@@ -135,6 +135,65 @@ const adjacentBranchHints: Record<DiagnoseIssueType, { title: string; detail: st
   ],
 };
 
+const verificationMismatchHints: Record<DiagnoseIssueType, { title: string; detail: string; href: string; label: string }[]> = {
+  model_connection: [
+    {
+      title: "验证发现请求其实能通",
+      detail: "那就别继续在 auth / transport 上放大动作，优先转配置或 session 分支。",
+      href: "/docs/troubleshooting",
+      label: "转排障顺序",
+    },
+    {
+      title: "验证发现入口层才是问题",
+      detail: "如果 provider 正常但入口不可用，更像桌面 / MCP / 工具接入层。",
+      href: "/use-cases/desktop-tool-integration",
+      label: "看接入场景",
+    },
+  ],
+  config_not_applied: [
+    {
+      title: "验证发现配置其实已经生效",
+      detail: "那就别再纠结配置层，优先回 session 或显示层错配。",
+      href: "/use-cases/model-switch-debug",
+      label: "看切换场景",
+    },
+    {
+      title: "验证发现每次结果都像换模型失败",
+      detail: "更可能是连接层或 provider 层，而不是单纯配置没吃进去。",
+      href: "/templates/model-connection-debug",
+      label: "看连接模板",
+    },
+  ],
+  model_switch_session_mismatch: [
+    {
+      title: "验证发现最小请求都失败",
+      detail: "这说明 session 不是首因，应先回连接层判断。",
+      href: "/templates/model-connection-debug",
+      label: "回连接排查",
+    },
+    {
+      title: "验证发现新会话已经正常，但正式链路仍不稳",
+      detail: "别继续盯 session，先收口到模板 / 排障顺序层。",
+      href: "/docs/troubleshooting",
+      label: "看排障顺序",
+    },
+  ],
+  local_tool_integration: [
+    {
+      title: "验证发现底层链路正常，但入口行为仍怪",
+      detail: "说明问题更像产品化接入或场景组织，不是基础模型问题。",
+      href: "/use-cases/desktop-tool-integration",
+      label: "看桌面场景",
+    },
+    {
+      title: "验证发现结果内容不对而不是入口失效",
+      detail: "那就先回 Diagnose，看是不是又滑回配置层或 session 层。",
+      href: "/diagnose",
+      label: "回 Diagnose",
+    },
+  ],
+};
+
 const scenarioRouteHints: Partial<Record<NonNullable<DiagnoseInput["scenario"]>, { title: string; detail: string; href: string; label: string }[]>> = {
   control_ui: [
     {
@@ -695,6 +754,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
     .slice(0, 2);
   const branchHints = adjacentBranchHints[result.issueType];
   const scenarioHints = currentScenario ? scenarioRouteHints[currentScenario] ?? [] : [];
+  const verificationHints = verificationMismatchHints[result.issueType];
   const primaryResourceHref = primaryResource ? resolveResourceHref(primaryResource.kind, primaryResource.title) : undefined;
   const primaryResourceLabel = primaryResource ? (primaryResource.kind === "template" ? "模板" : "文档") : undefined;
   const topWarning = result.missingInputs?.[0] ?? issueMeta.avoid;
@@ -936,6 +996,24 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-200">{item.detail}</p>
                   <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-cyan-100 transition hover:text-white">
+                    <span>{item.label}</span>
+                    <span aria-hidden>→</span>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!!verificationHints.length && (
+          <div>
+            <h3 className="text-sm font-medium text-white">如果最小验证打出来的结果和当前判断不一致</h3>
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              {verificationHints.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-4">
+                  <p className="text-sm font-medium text-white">{item.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.detail}</p>
+                  <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-amber-100 transition hover:text-white">
                     <span>{item.label}</span>
                     <span aria-hidden>→</span>
                   </Link>
