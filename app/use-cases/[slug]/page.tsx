@@ -245,6 +245,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                   "环境或入口换了，却还拿旧结论当证据",
                   "现在的问题更像别的层级，而不是原场景的重复",
                 ]}
+                className="hidden sm:block"
               />
             </CardContent>
           </Card>
@@ -278,6 +279,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                   "原场景只是部分重叠，不再是主因",
                   "你自己都已经说不清第一跳该去哪",
                 ]}
+                className="hidden sm:block"
               />
             </CardContent>
           </Card>
@@ -311,6 +313,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                   "要求已经明显超出首版当前可依赖范围",
                   "你需要先校正边界，再决定是否继续投入",
                 ]}
+                className="hidden sm:block"
               />
             </CardContent>
           </Card>
@@ -353,6 +356,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                     "把下一位默认第一跳写明白",
                     "把最值钱的回滚证据一起留住",
                   ]}
+                  className="hidden sm:block"
                 />
               </div>
               <div className="grid gap-3 lg:grid-cols-2">
@@ -438,9 +442,9 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
   );
 }
 
-function InfoBlock({ title, items }: { title: string; items: readonly string[] }) {
+function InfoBlock({ title, items, className }: { title: string; items: readonly string[]; className?: string }) {
   return (
-    <div>
+    <div className={className}>
       <h2 className="text-lg font-medium text-slate-950">{title}</h2>
       <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
         {items.map((item) => (

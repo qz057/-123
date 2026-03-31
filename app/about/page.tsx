@@ -191,7 +191,7 @@ export default function AboutPage() {
 
       <section className="mb-8 grid gap-3 sm:grid-cols-3">
         {pageLens.map((item, index) => (
-          <div key={item.label} className={index === 1 ? "rounded-[24px] border border-slate-200 bg-slate-950 px-4 py-3.5 text-white shadow-sm" : "rounded-[24px] border border-slate-200 bg-slate-50/70 px-4 py-3.5 shadow-sm"}>
+          <div key={item.label} className={index === 1 ? "rounded-[24px] border border-slate-200 bg-slate-950 px-4 py-3.5 text-white shadow-sm" : index === 2 ? "hidden rounded-[24px] border border-slate-200 bg-slate-50/70 px-4 py-3.5 shadow-sm sm:block" : "rounded-[24px] border border-slate-200 bg-slate-50/70 px-4 py-3.5 shadow-sm"}>
             <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
             <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
           </div>
@@ -206,7 +206,7 @@ export default function AboutPage() {
         <CardContent className="space-y-3 pb-5">
           <div className="grid gap-3 sm:grid-cols-3">
             {rhythmStrip.map((item, index) => (
-              <div key={item.label} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3"}>
+              <div key={item.label} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white" : index === 2 ? "hidden rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 sm:block" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3"}>
                 <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
                 <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
               </div>

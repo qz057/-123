@@ -277,6 +277,7 @@ export default async function TemplateDetailPage({
                   "这次异常更像新的分支，而不是旧案例的复读",
                 ]}
                 tone="warning"
+                className="hidden sm:block"
               />
             </CardContent>
           </Card>
@@ -312,6 +313,7 @@ export default async function TemplateDetailPage({
                   "新现象更像别的层，不再是这份模板的主分支",
                 ]}
                 tone="warning"
+                className="hidden sm:block"
               />
             </CardContent>
           </Card>
@@ -347,6 +349,7 @@ export default async function TemplateDetailPage({
                   "需要先校正阶段判断，再决定要不要继续推进",
                 ]}
                 tone="warning"
+                className="hidden sm:block"
               />
             </CardContent>
           </Card>
@@ -391,6 +394,7 @@ export default async function TemplateDetailPage({
                     "把下一位默认第一跳写明白",
                     "把最值钱的回滚证据一起留住",
                   ]}
+                  className="hidden sm:block"
                 />
               </div>
               <div className="grid gap-3 lg:grid-cols-2">
@@ -510,10 +514,12 @@ function ChecklistBlock({
   title,
   items,
   tone = "neutral",
+  className,
 }: {
   title: string;
   items: readonly string[];
   tone?: "neutral" | "danger" | "warning" | "success";
+  className?: string;
 }) {
   const toneClass =
     tone === "danger"
@@ -525,7 +531,7 @@ function ChecklistBlock({
           : "border-slate-200 bg-white";
 
   return (
-    <div className={`rounded-2xl border p-4 ${toneClass}`}>
+    <div className={`rounded-2xl border p-4 ${toneClass} ${className ?? ""}`}>
       <h2 className="text-sm font-medium text-slate-950">{title}</h2>
       <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
         {items.length ? (
