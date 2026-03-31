@@ -109,6 +109,12 @@ const pageLens = [
   { label: "读完要做", value: "马上决定从哪一页继续" },
 ] as const;
 
+const rhythmStrip = [
+  { label: "先想清哪层", value: "定位 / 执行 / 边界" },
+  { label: "再选入口", value: "Diagnose / Templates / Docs" },
+  { label: "最后收口", value: "别把首版误判成终版" },
+] as const;
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -166,6 +172,21 @@ export default function AboutPage() {
             <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
           </div>
         ))}
+      </section>
+
+      <section className="mb-8 rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
+        <CardHeader>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Page rhythm</p>
+          <CardTitle className="text-lg text-slate-950">About 这页最稳的阅读节奏</CardTitle>
+        </CardHeader>
+        <CardContent className="grid gap-3 pb-5 sm:grid-cols-3">
+          {rhythmStrip.map((item, index) => (
+            <div key={item.label} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3"}>
+              <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
+              <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+            </div>
+          ))}
+        </CardContent>
       </section>
 
       <section className="mb-8">

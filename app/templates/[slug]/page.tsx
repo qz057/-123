@@ -210,6 +210,41 @@ export default async function TemplateDetailPage({
               </div>
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">案例分支：执行后最常见的两种走向</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">让案例不只停在“看过”，而是直接对应下一跳动作。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <ChecklistBlock
+                title="分支 A · 已经跑通，但还不稳"
+                items={[
+                  "先保留一个最小可复现版本，不急着继续扩步骤",
+                  "把这次有效输入、输出和最小验证写成可复用记录",
+                  "优先回 Troubleshooting 收清停手点与回滚顺序",
+                ]}
+                tone="success"
+              />
+              <ChecklistBlock
+                title="分支 B · 结果还不对，但方向大致对"
+                items={[
+                  "不要一口气换模板、换入口、换 provider 一起救",
+                  "先退回最后一个稳定动作，再做一次最小验证",
+                  "如果已经说不清当前卡在哪层，先回 Diagnose 重判层",
+                ]}
+                tone="warning"
+              />
+              <ChecklistBlock
+                title="FAQ 下一跳"
+                items={[
+                  relatedDocs[0] ? `先补文档：${relatedDocs[0].title}` : "先补对应文档，确认边界和验证口径",
+                  relatedTemplates[0] ? `再看相关模板：${relatedTemplates[0].title}` : "再决定是否切到相邻模板",
+                  "如果结果和案例完全不在一个分支，别硬套，先回 Diagnose",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">

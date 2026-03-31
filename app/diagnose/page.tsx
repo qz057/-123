@@ -135,6 +135,81 @@ const adjacentBranchHints: Record<DiagnoseIssueType, { title: string; detail: st
   ],
 };
 
+const scenarioRouteHints: Partial<Record<NonNullable<DiagnoseInput["scenario"]>, { title: string; detail: string; href: string; label: string }[]>> = {
+  control_ui: [
+    {
+      title: "Control UI 场景优先补哪层",
+      detail: "如果切换结果和页面显示不一致，先看 Session / Troubleshooting，不要先怀疑文案层。",
+      href: "/docs/troubleshooting",
+      label: "看排障顺序",
+    },
+    {
+      title: "Control UI 里方向清楚后去哪",
+      detail: "方向明确就直接切到模型切换模板，不继续停在解释层。",
+      href: "/templates/model-switch-session-mismatch",
+      label: "看切换模板",
+    },
+  ],
+  openclaw: [
+    {
+      title: "OpenClaw 场景更该先核哪层",
+      detail: "优先核配置生效路径与覆盖优先级，再决定是否继续改模型入口。",
+      href: "/docs/product-notes",
+      label: "补边界说明",
+    },
+    {
+      title: "OpenClaw 方向清楚后去哪",
+      detail: "先回模板中心或 OpenClaw 起步模板，把判断压成执行顺序。",
+      href: "/templates/openclaw-bootstrap",
+      label: "看 OpenClaw 模板",
+    },
+  ],
+  desktop_wrapper: [
+    {
+      title: "桌面封装场景先别只盯 UI",
+      detail: "先核开发态 / 打包态最小闭环，再看入口视觉是否正确。",
+      href: "/use-cases/desktop-tool-integration",
+      label: "看桌面场景",
+    },
+    {
+      title: "桌面接入方向明确后去哪",
+      detail: "优先走桌面接入模板，把依赖、入口、回调链路按顺序收清。",
+      href: "/templates/desktop-tool-integration",
+      label: "看桌面模板",
+    },
+  ],
+  workflow_automation: [
+    {
+      title: "自动化场景先看主链，不先扩复杂分支",
+      detail: "先用最小流程证明输入 / 输出闭环，再决定是否加 cron 或多入口。",
+      href: "/use-cases/workflow-automation",
+      label: "看自动化场景",
+    },
+    {
+      title: "自动化方向稳定后去哪",
+      detail: "回 AI 工作流起步模板，把流程、验证和回退点真正固定下来。",
+      href: "/templates/ai-workflow-starter",
+      label: "看工作流模板",
+    },
+  ],
+  mcp_tooling: [
+    {
+      title: "MCP / 工具链优先核哪层",
+      detail: "先确认 effective inventory、注册和回调链路，不要被入口可见性误导。",
+      href: "/docs/troubleshooting",
+      label: "看排障顺序",
+    },
+  ],
+  local_ai_assistant: [
+    {
+      title: "本地助手场景先保最小闭环",
+      detail: "先保一个真实任务能跑通，再考虑继续叠记忆、工具和自动化层。",
+      href: "/use-cases/local-ai-assistant",
+      label: "看本地助手场景",
+    },
+  ],
+};
+
 type DiagnoseExampleCase = {
   title: string;
   description: string;
@@ -619,6 +694,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
     })
     .slice(0, 2);
   const branchHints = adjacentBranchHints[result.issueType];
+  const scenarioHints = currentScenario ? scenarioRouteHints[currentScenario] ?? [] : [];
   const primaryResourceHref = primaryResource ? resolveResourceHref(primaryResource.kind, primaryResource.title) : undefined;
   const primaryResourceLabel = primaryResource ? (primaryResource.kind === "template" ? "模板" : "文档") : undefined;
   const topWarning = result.missingInputs?.[0] ?? issueMeta.avoid;
@@ -842,6 +918,24 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
                   <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                    <span>{item.label}</span>
+                    <span aria-hidden>→</span>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!!scenarioHints.length && (
+          <div>
+            <h3 className="text-sm font-medium text-white">按当前场景继续跳</h3>
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              {scenarioHints.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4">
+                  <p className="text-sm font-medium text-white">{item.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.detail}</p>
+                  <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-cyan-100 transition hover:text-white">
                     <span>{item.label}</span>
                     <span aria-hidden>→</span>
                   </Link>

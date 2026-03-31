@@ -192,6 +192,12 @@ const pageLens = [
   { label: "读完要做", value: "马上决定第一跳" },
 ] as const;
 
+const rhythmStrip = [
+  { label: "先看哪层", value: "入口判断" },
+  { label: "再看哪层", value: "执行 / 排障" },
+  { label: "最后收口", value: "边界与验证" },
+] as const;
+
 export default function DocsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -245,6 +251,21 @@ export default function DocsPage() {
             <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
           </div>
         ))}
+      </section>
+
+      <section className="mb-8 rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
+        <CardHeader>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Page rhythm</p>
+          <CardTitle className="text-lg text-slate-950">这页最稳的阅读节奏</CardTitle>
+        </CardHeader>
+        <CardContent className="grid gap-3 pb-5 sm:grid-cols-3">
+          {rhythmStrip.map((item, index) => (
+            <div key={item.label} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3"}>
+              <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
+              <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+            </div>
+          ))}
+        </CardContent>
       </section>
 
       <section className="mb-8 rounded-[32px] border border-slate-200 bg-slate-50/70 p-3.5 shadow-sm sm:p-4">

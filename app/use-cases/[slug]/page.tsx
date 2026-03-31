@@ -182,6 +182,39 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">案例分叉：跑到这里以后，下一步通常怎么选</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">把 FAQ 继续往前推一层，让场景页更像决策面，不只是说明面。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <InfoBlock
+                title="分叉 A · 场景已跑通，准备扩下一层"
+                items={[
+                  "先保一个最小稳定入口，再考虑继续扩模板或文档",
+                  "优先把 done signal 和最值钱停手点留下来",
+                  "扩下一层前，确认当前目标没有偷偷变化",
+                ]}
+              />
+              <InfoBlock
+                title="分叉 B · 场景方向没错，但结果仍不稳"
+                items={[
+                  "先回最后一个稳定入口，不在错误链路上继续加动作",
+                  "优先做一次最小真测，而不是继续看更多说明",
+                  "如果开始混层，就回 Diagnose 或 Troubleshooting",
+                ]}
+              />
+              <InfoBlock
+                title="FAQ 分支下一跳"
+                items={[
+                  relatedTemplates[0] ? `先补模板：${relatedTemplates[0].title}` : "先补最贴近的模板",
+                  relatedDocs[0] ? `再补文档：${relatedDocs[0].title}` : "再补对应文档，把边界收清",
+                  "如果发现问题已经不是原场景，别硬推，先重判层",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
