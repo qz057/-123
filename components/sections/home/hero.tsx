@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { templatesCatalog } from "@/data/templates/catalog";
+import { useCasesCatalog } from "@/data/use-cases/catalog";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const workflowSteps = [
   "先用 Diagnose 判断问题层级",
-  "再用 Templates 拿可复用方案",
+  "方向明确后进入 Templates 或 Use Cases",
   "最后回 Docs 做验证与收口",
 ] as const;
 
@@ -18,7 +20,7 @@ const capabilitySignals = ["配置诊断", "工作流模板", "场景入口", "�
 
 const proofPoints = [
   { label: "默认入口", value: "Diagnose" },
-  { label: "模板状态", value: "8 个首批模板" },
+  { label: "模板 / 场景", value: `${templatesCatalog.length} 个模板 · ${useCasesCatalog.length} 个场景` },
   { label: "页面结构", value: "官网 + 真工具" },
 ] as const;
 
@@ -146,6 +148,12 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
           <span>查看工作流模板</span>
           <span aria-hidden>→</span>
         </Link>
+        {!mobile ? (
+          <Link href="/use-cases" className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition hover:text-slate-900">
+            <span>按任务找入口</span>
+            <span aria-hidden>→</span>
+          </Link>
+        ) : null}
       </div>
 
       <div className="grid gap-3.5 lg:grid-cols-[1.08fr_0.92fr] lg:gap-4">

@@ -67,6 +67,21 @@ const recommendedEntrances = [
   },
 ] as const;
 
+const decisionPoints = [
+  {
+    title: "我现在更像在定位，还是在执行",
+    detail: "FlowDock 先帮你分辨该先 Diagnose，还是已经可以直接进 Templates / Use Cases。",
+  },
+  {
+    title: "它当前到底能承接到哪一步",
+    detail: "不是泛 AI 概念站，而是把配置、入口、模板和验证真正串成一条主路径。",
+  },
+  {
+    title: "什么时候该继续做，什么时候先收口",
+    detail: "当路径明确就继续推进；当边界不清就先回 Docs / Product Notes 校正预期。",
+  },
+] as const;
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -117,6 +132,25 @@ export default function AboutPage() {
         </Card>
       </header>
 
+      <section className="mb-8">
+        <div className="mb-4">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">What this page helps you decide</p>
+          <h2 className="mt-1 text-xl font-semibold text-slate-950">About 这页真正帮你判断的三件事</h2>
+        </div>
+        <div className="grid gap-3.5 lg:grid-cols-3">
+          {decisionPoints.map((item, index) => (
+            <Card key={item.title} className={index === 2 ? "hidden rounded-[28px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm lg:block" : "rounded-[28px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm"}>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg text-slate-950">{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="pb-5">
+                <p className="text-sm leading-[1.65] text-slate-600">{item.detail}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
         <div className="space-y-6">
           <Card className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
@@ -130,7 +164,7 @@ export default function AboutPage() {
               </p>
               <div className="grid gap-3 md:grid-cols-2">
                 {coreProblems.map((item, index) => (
-                  <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4">
+                  <div key={item} className={index === 3 ? "hidden rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4 md:block" : "rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4"}>
                     <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">0{index + 1}</p>
                     <p className="mt-2 text-sm leading-6 text-slate-700">{item}</p>
                   </div>
@@ -193,8 +227,8 @@ export default function AboutPage() {
               <CardTitle className="text-xl text-slate-950">现在最推荐的进入方式</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-2.5 pb-5 md:grid-cols-3">
-              {recommendedEntrances.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-3.5">
+              {recommendedEntrances.map((item, index) => (
+                <div key={item.title} className={index === 2 ? "hidden rounded-2xl border border-slate-200 bg-slate-50/70 p-3.5 md:block" : "rounded-2xl border border-slate-200 bg-slate-50/70 p-3.5"}>
                   <p className="text-sm font-medium text-slate-950">{item.title}</p>
                   <p className="mt-2 text-sm leading-[1.65] text-slate-600">{item.detail}</p>
                   <Link href={item.action.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">

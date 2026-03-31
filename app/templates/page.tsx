@@ -291,8 +291,8 @@ export default function TemplatesPage() {
                 <Link href={`/templates/${template.slug}`} className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
                   查看模板
                 </Link>
-                <Link href="/docs/templates" className={inlineLinkClass}>
-                  <span>模板说明</span>
+                <Link href="/use-cases" className={inlineLinkClass}>
+                  <span>按场景找入口</span>
                   <span aria-hidden>→</span>
                 </Link>
               </CardFooter>

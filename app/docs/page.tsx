@@ -142,6 +142,29 @@ const branchCards = [
   },
 ] as const;
 
+const docEntryHints: Record<string, { when: string; next: string }> = {
+  "getting-started": {
+    when: "第一次接触 FlowDock，还没建立整体顺序时先点这里。",
+    next: "看完通常下一跳是 Diagnose 或 Templates。",
+  },
+  diagnose: {
+    when: "问题还没压到具体层级，或现场信息还是混的时先点这里。",
+    next: "看完通常下一跳是 Diagnose 页面或 Troubleshooting。",
+  },
+  templates: {
+    when: "方向已经明确，只差执行路径和模板用法时先点这里。",
+    next: "看完通常下一跳是模板中心或具体模板详情页。",
+  },
+  troubleshooting: {
+    when: "已经开始排障，但顺序乱了、改动过多时先点这里。",
+    next: "看完通常下一跳是回 Diagnose 或最小验证。",
+  },
+  "product-notes": {
+    when: "担心把首版能力误判成完整产品承诺时先点这里。",
+    next: "看完通常下一跳是回首页、继续执行，或先停在当前边界。",
+  },
+};
+
 export default function DocsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -197,7 +220,7 @@ export default function DocsPage() {
         </div>
         <div className="grid gap-3.5 lg:grid-cols-3">
           {quickActions.map((item, index) => (
-            <Card key={item.title} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
+            <Card key={item.title} className={index === 2 ? "hidden rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm lg:block" : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"}>
               <CardHeader>
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Route 0{index + 1}</p>
                 <CardTitle className="text-lg text-slate-950">{item.title}</CardTitle>
@@ -292,9 +315,11 @@ export default function DocsPage() {
             <Card
               key={item.title}
               className={
-                index === 1
-                  ? "rounded-[28px] border border-slate-200 bg-slate-950 py-0 text-white shadow-sm"
-                  : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"
+                index >= 3
+                  ? "hidden rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm xl:block"
+                  : index === 1
+                    ? "rounded-[28px] border border-slate-200 bg-slate-950 py-0 text-white shadow-sm"
+                    : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"
               }
             >
               <CardHeader>
@@ -327,7 +352,7 @@ export default function DocsPage() {
         </div>
         <div className="grid gap-3.5 lg:grid-cols-3">
           {readingPaths.map((path, index) => (
-            <Card key={path.title} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
+            <Card key={path.title} className={index === 2 ? "hidden rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm lg:block" : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"}>
               <CardHeader>
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Path 0{index + 1}</p>
                 <CardTitle className="text-lg text-slate-950">{path.title}</CardTitle>
@@ -360,7 +385,7 @@ export default function DocsPage() {
           </CardHeader>
           <CardContent className="grid gap-2.5 pb-4 pt-0 sm:grid-cols-3 sm:gap-3">
             {branchCards.map((item, index) => (
-              <div key={item.title} className={index === 0 ? "rounded-2xl border border-slate-200 bg-slate-950 p-3 text-white" : "rounded-2xl border border-slate-200 bg-white p-3"}>
+              <div key={item.title} className={index === 0 ? "rounded-2xl border border-slate-200 bg-slate-950 p-3 text-white" : index === 2 ? "hidden rounded-2xl border border-slate-200 bg-white p-3 sm:block" : "rounded-2xl border border-slate-200 bg-white p-3"}>
                 <p className={index === 0 ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{item.title}</p>
                 <p className={index === 0 ? "mt-1.5 text-sm leading-[1.6] text-slate-300" : "mt-1.5 text-sm leading-[1.6] text-slate-600"}>{item.detail}</p>
                 <Link
@@ -445,26 +470,38 @@ export default function DocsPage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-3 xl:gap-3.5">
-          {docsCatalog.map((item, index) => (
-            <Card key={item.slug} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
-              <CardHeader className="pb-2.5">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Doc 0{index + 1}</p>
-                <CardTitle className="text-[15px] text-slate-950 sm:text-lg">{item.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2.5 pb-3.5">
-                <p className="text-sm leading-[1.6] text-slate-600">{item.description}</p>
-                {item.aliases?.length ? (
-                  <p className="hidden text-xs leading-5 text-slate-400 sm:block">已映射 {item.aliases.length} 个相关主题，适合从不同问题入口跳回来。</p>
-                ) : null}
-              </CardContent>
-              <CardFooter className="pt-0">
-                <Link href={`/docs/${item.slug}`} className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
-                  <span>查看文档</span>
-                  <span aria-hidden>→</span>
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
+          {docsCatalog.map((item, index) => {
+            const hint = docEntryHints[item.slug] ?? {
+              when: "适合在方向还不稳时先用来校正顺序。",
+              next: "看完再决定是继续执行还是回到诊断。",
+            };
+
+            return (
+              <Card key={item.slug} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
+                <CardHeader className="pb-2.5">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Doc 0{index + 1}</p>
+                  <CardTitle className="text-[15px] text-slate-950 sm:text-lg">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2.5 pb-3.5">
+                  <p className="text-sm leading-[1.6] text-slate-600">{item.description}</p>
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-3 py-2.5">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">先点这个如果</p>
+                    <p className="mt-1.5 text-sm leading-[1.6] text-slate-600">{hint.when}</p>
+                  </div>
+                  <p className="text-xs leading-5 text-slate-400">{hint.next}</p>
+                  {item.aliases?.length ? (
+                    <p className="hidden text-xs leading-5 text-slate-400 sm:block">已映射 {item.aliases.length} 个相关主题，适合从不同问题入口跳回来。</p>
+                  ) : null}
+                </CardContent>
+                <CardFooter className="pt-0">
+                  <Link href={`/docs/${item.slug}`} className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+                    <span>查看文档</span>
+                    <span aria-hidden>→</span>
+                  </Link>
+                </CardFooter>
+              </Card>
+            );
+          })}
         </div>
       </section>
     </div>

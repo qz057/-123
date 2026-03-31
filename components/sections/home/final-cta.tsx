@@ -27,10 +27,10 @@ const launchModes = [
     label: "进入模板中心",
   },
   {
-    title: "我要先确认边界",
-    detail: "回文档路径和 Product Notes，先把预期讲清再推进。",
-    href: "/docs",
-    label: "查看文档路径",
+    title: "我更想按任务推进",
+    detail: "直接进 Use Cases，把页面入口换成任务入口，再决定第一跳。",
+    href: "/use-cases",
+    label: "按场景找入口",
   },
 ] as const;
 
@@ -99,7 +99,7 @@ export function FinalCtaSection() {
               <h3 className="mt-1 text-lg font-semibold text-white sm:text-xl">如果你现在就要开始，先选这三条起步路之一</h3>
             </div>
             <p className="hidden max-w-md text-sm leading-6 text-slate-300 lg:block">
-              这里不是重复按钮，而是把“我现在最像哪种现场”压成一个更短的第一步判断。
+              这里不是重复按钮，而是把“我现在最像哪种现场”压成一个更短的第一步判断；真正的规则与边界仍回 Docs 收口。
             </p>
           </div>
 

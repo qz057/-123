@@ -254,8 +254,8 @@ export default function UseCasesPage() {
                 <Link href={`/use-cases/${item.slug}`} className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
                   查看场景路径
                 </Link>
-                <Link href={item.primaryAction.href} className={inlineLinkClass}>
-                  <span>{item.primaryAction.label}</span>
+                <Link href={item.secondaryAction.href} className={inlineLinkClass}>
+                  <span>{item.secondaryAction.label}</span>
                   <span aria-hidden>→</span>
                 </Link>
               </CardFooter>
