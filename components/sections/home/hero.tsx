@@ -198,19 +198,7 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
       <div className={mobile ? "space-y-2.5" : "grid gap-2.5 md:grid-cols-3"}>
         {entryRoutes.map((item, index) => {
           if (mobile && index === 2) {
-            return (
-              <div key={item.title} className="rounded-[1.25rem] border border-sky-100 bg-sky-50/70 p-3.5">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-medium text-slate-900">{item.title}</p>
-                  <span className="text-[11px] font-medium text-sky-700">最后收口</span>
-                </div>
-                <p className="mt-2 text-[13px] leading-5 text-slate-600">{item.detail}</p>
-                <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
-                  <span>{item.label}</span>
-                  <span aria-hidden>→</span>
-                </Link>
-              </div>
-            );
+            return null;
           }
 
           const primaryCard = index === 0;

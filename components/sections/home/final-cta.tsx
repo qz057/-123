@@ -118,7 +118,7 @@ export function FinalCtaSection() {
                   }
                 >
                   <p className="text-sm font-medium text-white">{item.title}</p>
-                  <p className="mt-2 hidden text-sm leading-6 text-slate-300 sm:block">{item.detail}</p>
+                  <p className={index === 1 ? "mt-2 hidden text-sm leading-6 text-slate-300 md:block" : "mt-2 hidden text-sm leading-6 text-slate-300 sm:block"}>{item.detail}</p>
                   <Link
                     href={item.href}
                     className={

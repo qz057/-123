@@ -115,9 +115,11 @@ export function ProductJourneySection() {
                       ? hideOnMobile
                         ? "relative hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-32px_rgba(15,23,42,0.5)] sm:block"
                         : "relative rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-32px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
-                      : hideOnMobile
+                      : index === 2
                         ? "relative hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)] sm:block"
-                        : "relative rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)] sm:rounded-[1.75rem]"
+                        : hideOnMobile
+                          ? "relative hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)] sm:block"
+                          : "relative rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm transition hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-34px_rgba(15,23,42,0.25)] sm:rounded-[1.75rem]"
                   }
                 >
                   <CardHeader className="space-y-3 pb-3 sm:space-y-3.5 sm:pb-4">
