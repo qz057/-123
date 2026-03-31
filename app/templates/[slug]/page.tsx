@@ -356,41 +356,51 @@ export default async function TemplateDetailPage({
               <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">别把“已经跑通一次”直接当成可交付；至少要把最小交付包和升级前检查留清楚。</CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-4 pb-6 md:grid-cols-4">
-              <ChecklistBlock
-                title="最小交付包"
-                items={[
-                  "最后一个稳定版本 / 稳定入口",
-                  "最小验证口径与 done signal",
-                  "默认第一跳资源与回滚顺序",
-                ]}
-              />
-              <ChecklistBlock
-                title="升级前先确认"
-                items={[
-                  "这次结果已经不只是偶发成功",
-                  "关键输入、环境、目标都已固定",
-                  "交给别人执行时不会先卡在第一步",
-                ]}
-                tone="success"
-              />
-              <ChecklistBlock
-                title="先别打包交付如果"
-                items={[
-                  "最小验证还在摇摆",
-                  "同一现象还能把你带回别的分支",
-                  "现在更像临时救火，而不是稳定方案",
-                ]}
-                tone="warning"
-              />
-              <ChecklistBlock
-                title="升级处理前别漏掉"
-                items={[
-                  "先写清当前页已不再是最佳处理层",
-                  "把下一位默认第一跳写明白",
-                  "把最值钱的回滚证据一起留住",
-                ]}
-              />
+            <CardContent className="space-y-4 pb-6">
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                <ChecklistBlock
+                  title="最小交付包"
+                  items={[
+                    "最后一个稳定版本 / 稳定入口",
+                    "最小验证口径与 done signal",
+                    "默认第一跳资源与回滚顺序",
+                  ]}
+                />
+                <ChecklistBlock
+                  title="升级前先确认"
+                  items={[
+                    "这次结果已经不只是偶发成功",
+                    "关键输入、环境、目标都已固定",
+                    "交给别人执行时不会先卡在第一步",
+                  ]}
+                  tone="success"
+                />
+                <ChecklistBlock
+                  title="先别打包交付如果"
+                  items={[
+                    "最小验证还在摇摆",
+                    "同一现象还能把你带回别的分支",
+                    "现在更像临时救火，而不是稳定方案",
+                  ]}
+                  tone="warning"
+                />
+                <ChecklistBlock
+                  title="升级处理前别漏掉"
+                  items={[
+                    "先写清当前页已不再是最佳处理层",
+                    "把下一位默认第一跳写明白",
+                    "把最值钱的回滚证据一起留住",
+                  ]}
+                />
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">交付前最后确认</p>
+                <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                  <p className="text-sm leading-6 text-slate-600">第一跳别人一看就知道从哪开。</p>
+                  <p className="text-sm leading-6 text-slate-600">done signal 不是一次偶发，而是还能复现。</p>
+                  <p className="text-sm leading-6 text-slate-600">如果还会被别的分支拉走，就先别当正式交付。</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>

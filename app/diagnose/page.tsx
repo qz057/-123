@@ -1101,7 +1101,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
 
         <div>
           <h3 className="text-sm font-medium text-white">复查与交接</h3>
-          <div className="mt-3 grid gap-3 md:grid-cols-3">
+          <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
               <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">复查时先保留</p>
               <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-300">
@@ -1116,6 +1116,14 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                 <li>• 别同时改多个层级再看结果</li>
                 <li>• 别把一次偶发恢复直接当成稳定结论</li>
                 <li>• 别在 {topWarning} 还没澄清前继续放大动作</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-rose-300/15 bg-rose-400/10 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-rose-200">先暂停继续试如果</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
+                <li>• 你已经连续两轮都在扩动作而不是缩变量</li>
+                <li>• 每轮都像有点变化，但没有一条稳定验证</li>
+                <li>• 当前现象已经超出这页现有判断能解释的范围</li>
               </ul>
             </div>
             <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4">

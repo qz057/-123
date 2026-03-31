@@ -320,39 +320,49 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景跑通不等于可交付；要把别人能接着做的最小交付包一起留下。</CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-4 pb-6 md:grid-cols-4">
-              <InfoBlock
-                title="最小交付包"
-                items={[
-                  "最后稳定入口与主分支判断",
-                  "最小真测口径与 done signal",
-                  "默认第一跳资源和回滚顺序",
-                ]}
-              />
-              <InfoBlock
-                title="升级前先确认"
-                items={[
-                  "当前结果已经不只是偶发成功",
-                  "目标 / 输入 / 环境都已固定",
-                  "换个人接手也不会先卡在第一步",
-                ]}
-              />
-              <InfoBlock
-                title="先别直接交付如果"
-                items={[
-                  "done signal 还在摇摆",
-                  "新现象还在把你拉向别的场景分支",
-                  "当前更像临时止血，而不是稳定方案",
-                ]}
-              />
-              <InfoBlock
-                title="升级处理前别漏掉"
-                items={[
-                  "先写清当前场景页已不再是最佳处理层",
-                  "把下一位默认第一跳写明白",
-                  "把最值钱的回滚证据一起留住",
-                ]}
-              />
+            <CardContent className="space-y-4 pb-6">
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                <InfoBlock
+                  title="最小交付包"
+                  items={[
+                    "最后稳定入口与主分支判断",
+                    "最小真测口径与 done signal",
+                    "默认第一跳资源和回滚顺序",
+                  ]}
+                />
+                <InfoBlock
+                  title="升级前先确认"
+                  items={[
+                    "当前结果已经不只是偶发成功",
+                    "目标 / 输入 / 环境都已固定",
+                    "换个人接手也不会先卡在第一步",
+                  ]}
+                />
+                <InfoBlock
+                  title="先别直接交付如果"
+                  items={[
+                    "done signal 还在摇摆",
+                    "新现象还在把你拉向别的场景分支",
+                    "当前更像临时止血，而不是稳定方案",
+                  ]}
+                />
+                <InfoBlock
+                  title="升级处理前别漏掉"
+                  items={[
+                    "先写清当前场景页已不再是最佳处理层",
+                    "把下一位默认第一跳写明白",
+                    "把最值钱的回滚证据一起留住",
+                  ]}
+                />
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">交付前最后确认</p>
+                <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                  <p className="text-sm leading-6 text-slate-600">第一跳别人一看就知道从哪开。</p>
+                  <p className="text-sm leading-6 text-slate-600">done signal 不是一次偶发，而是还能复现。</p>
+                  <p className="text-sm leading-6 text-slate-600">如果还会被别的分支拉走，就先别当正式交付。</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>

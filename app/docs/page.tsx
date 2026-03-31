@@ -198,12 +198,6 @@ const rhythmStrip = [
   { label: "最后收口", value: "边界与验证" },
 ] as const;
 
-const quickReadStrip = [
-  "先看顶部 3 张 lens，确认这页不是目录页。",
-  "再看 task-first / decision map，决定第一跳。",
-  "最后才回 reading paths / all docs 补细节。",
-] as const;
-
 const leavePageStrip = [
   { label: "问题还没压清", href: "/diagnose", value: "先去 Diagnose" },
   { label: "方向已经明确", href: "/templates", value: "先去 Templates" },
@@ -214,6 +208,12 @@ const exitCheckStrip = [
   "现在第一跳已经明确了。",
   "不需要把整页再读完才行动。",
   "如果还是犹豫，默认先回 Diagnose。",
+] as const;
+
+const oneMinuteReadStrip = [
+  "先看 lens，判断这页是不是你现在该停留的层。",
+  "再看默认离页动作，不要把目录页当执行页。",
+  "如果还拿不准，先去 Diagnose，而不是继续横跳。",
 ] as const;
 
 export default function DocsPage() {
@@ -286,9 +286,9 @@ export default function DocsPage() {
             ))}
           </div>
           <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">30 秒读法</p>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">1 分钟读法</p>
             <div className="mt-2 grid gap-2 sm:grid-cols-3">
-              {quickReadStrip.map((item) => (
+              {oneMinuteReadStrip.map((item) => (
                 <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
               ))}
             </div>
