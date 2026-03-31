@@ -350,6 +350,41 @@ export default async function TemplateDetailPage({
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">别把“已经跑通一次”直接当成可交付；至少要把最小交付包和升级前检查留清楚。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <ChecklistBlock
+                title="最小交付包"
+                items={[
+                  "最后一个稳定版本 / 稳定入口",
+                  "最小验证口径与 done signal",
+                  "默认第一跳资源与回滚顺序",
+                ]}
+              />
+              <ChecklistBlock
+                title="升级前先确认"
+                items={[
+                  "这次结果已经不只是偶发成功",
+                  "关键输入、环境、目标都已固定",
+                  "交给别人执行时不会先卡在第一步",
+                ]}
+                tone="success"
+              />
+              <ChecklistBlock
+                title="先别打包交付如果"
+                items={[
+                  "最小验证还在摇摆",
+                  "同一现象还能把你带回别的分支",
+                  "现在更像临时救火，而不是稳定方案",
+                ]}
+                tone="warning"
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">

@@ -210,6 +210,12 @@ const leavePageStrip = [
   { label: "边界还不放心", href: "/docs/product-notes", value: "先看 Product Notes" },
 ] as const;
 
+const exitCheckStrip = [
+  "现在第一跳已经明确了。",
+  "不需要把整页再读完才行动。",
+  "如果还是犹豫，默认先回 Diagnose。",
+] as const;
+
 export default function DocsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -287,15 +293,25 @@ export default function DocsPage() {
               ))}
             </div>
           </div>
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">离开这页默认动作</p>
-            <div className="mt-2 grid gap-3 sm:grid-cols-3">
-              {leavePageStrip.map((item, index) => (
-                <Link key={item.label} href={item.href} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white shadow-sm" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 shadow-sm"}>
-                  <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
-                  <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
-                </Link>
-              ))}
+          <div className="space-y-3">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">离开这页默认动作</p>
+              <div className="mt-2 grid gap-3 sm:grid-cols-3">
+                {leavePageStrip.map((item, index) => (
+                  <Link key={item.label} href={item.href} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white shadow-sm" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 shadow-sm"}>
+                    <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
+                    <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">离开前确认</p>
+              <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                {exitCheckStrip.map((item) => (
+                  <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
+                ))}
+              </div>
             </div>
           </div>
         </CardContent>

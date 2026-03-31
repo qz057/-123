@@ -1129,6 +1129,36 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
           </div>
         </div>
 
+        <div>
+          <h3 className="text-sm font-medium text-white">如果二次排查后你又回到了这里</h3>
+          <div className="mt-3 grid gap-3 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">继续沿当前判断如果</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-300">
+                <li>• 最小验证仍支持当前判断</li>
+                <li>• 当前第一跳资源还没有被反证</li>
+                <li>• 场景没有变，异常也没有换层</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200">改走旁边那条分支如果</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
+                <li>• 最小验证开始直接反证当前判断</li>
+                <li>• 问题越来越像相邻误判分支里的描述</li>
+                <li>• 当前资源已经不能解释新现象</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-cyan-200">升级处理前先带上</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
+                <li>• 这轮最值钱的最小验证结论</li>
+                <li>• 当前不该再放大的动作是什么</li>
+                <li>• 下一位先开哪张卡 / 哪条资源</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {(onReset || onLoadExample || onJumpToExamples || onJumpToInput) && (
           <div className="mt-6 flex flex-wrap gap-3">
             {onJumpToInput && <Button variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white" onClick={onJumpToInput}>回输入区补信息</Button>}

@@ -314,6 +314,39 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">场景跑通不等于可交付；要把别人能接着做的最小交付包一起留下。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <InfoBlock
+                title="最小交付包"
+                items={[
+                  "最后稳定入口与主分支判断",
+                  "最小真测口径与 done signal",
+                  "默认第一跳资源和回滚顺序",
+                ]}
+              />
+              <InfoBlock
+                title="升级前先确认"
+                items={[
+                  "当前结果已经不只是偶发成功",
+                  "目标 / 输入 / 环境都已固定",
+                  "换个人接手也不会先卡在第一步",
+                ]}
+              />
+              <InfoBlock
+                title="先别直接交付如果"
+                items={[
+                  "done signal 还在摇摆",
+                  "新现象还在把你拉向别的场景分支",
+                  "当前更像临时止血，而不是稳定方案",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
