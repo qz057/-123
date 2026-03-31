@@ -780,7 +780,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
           </p>
         )}
       </CardHeader>
-      <CardContent className="space-y-5 pb-6">
+      <CardContent className="space-y-4 pb-5">
         <div className="grid gap-3 md:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">当前更像</p>
@@ -909,12 +909,12 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
         {!!result.scoreBreakdown?.length && (
           <div>
             <h3 className="text-sm font-medium text-white">归类评分解释</h3>
-            <div className="mt-3 space-y-3">
+            <div className="mt-3 grid gap-3 lg:grid-cols-2">
               {result.scoreBreakdown.map((item, index) => {
                 const maxScore = Math.max(...(result.scoreBreakdown ?? []).map((entry) => entry.score), 1);
                 const width = `${Math.max((item.score / maxScore) * 100, item.score > 0 ? 18 : 8)}%`;
                 return (
-                  <div key={item.issueType} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div key={item.issueType} className="rounded-2xl border border-white/10 bg-white/5 p-3.5">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white">{item.label}</span>
@@ -944,9 +944,9 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
         {!!result.patternSignals?.length && (
           <div>
             <h3 className="text-sm font-medium text-white">典型失败信号模板</h3>
-            <div className="mt-3 grid gap-3 md:grid-cols-3">
+            <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {result.patternSignals.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-rose-200/20 bg-rose-400/5 p-4">
+                <div key={item.title} className="rounded-2xl border border-rose-200/20 bg-rose-400/5 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{item.description}</p>
                 </div>
@@ -958,9 +958,9 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
         {!!result.scenarioExamples?.length && (
           <div>
             <h3 className="text-sm font-medium text-white">相似场景参考</h3>
-            <div className="mt-3 space-y-3">
+            <div className="mt-3 grid gap-3 lg:grid-cols-2">
               {result.scenarioExamples.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">场景：{item.context}</p>
                   <p className="mt-2 text-sm leading-6 text-cyan-100">判断重点：{item.implication}</p>
@@ -975,7 +975,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
             <h3 className="text-sm font-medium text-white">相邻误判分支：什么时候该转到旁边那条路</h3>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {branchHints.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
                   <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
@@ -993,7 +993,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
             <h3 className="text-sm font-medium text-white">按当前场景继续跳</h3>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {scenarioHints.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4">
+                <div key={item.title} className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-200">{item.detail}</p>
                   <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-cyan-100 transition hover:text-white">
@@ -1011,7 +1011,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
             <h3 className="text-sm font-medium text-white">如果最小验证打出来的结果和当前判断不一致</h3>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {verificationHints.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-4">
+                <div key={item.title} className="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-200">{item.detail}</p>
                   <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-amber-100 transition hover:text-white">
