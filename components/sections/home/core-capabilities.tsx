@@ -54,6 +54,24 @@ export function CoreCapabilitiesSection() {
           默认结果：先判断层级，再给路径，最后留下可验证结果。
         </div>
 
+        <div className="mb-4 rounded-[1.5rem] border border-white/85 bg-white/90 p-3.5 shadow-sm sm:hidden">
+          <p className="text-sm font-semibold text-slate-950">手机上先记住这 3 个能力</p>
+          <div className="mt-3 grid gap-2 text-sm leading-6 text-slate-700">
+            <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5">先帮你判断问题在哪一层，不继续并排怀疑。</div>
+            <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5">再把它接到正确执行路径，不停在说明层。</div>
+            <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5">最后留下可验证结果，避免只剩“好像好了”。</div>
+          </div>
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2.5">
+            <Link href="/diagnose" className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
+              打开 Diagnose
+            </Link>
+            <Link href="/templates" className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+              <span>进入模板中心</span>
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </div>
+
         <div className="mb-5 hidden flex-wrap gap-2 text-xs text-slate-500 sm:flex">
           {outputs.map((item) => (
             <span key={item} className="rounded-full border border-white/90 bg-white/90 px-3 py-1.5 shadow-sm">
@@ -62,7 +80,7 @@ export function CoreCapabilitiesSection() {
           ))}
         </div>
 
-        <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="hidden gap-3 sm:grid sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
           {capabilities.map((item, index) => {
             const action = capabilityActions[index];
             const primary = index === 1;
