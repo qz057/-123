@@ -76,6 +76,67 @@ const inputPriorityHints = [
   "symptom / error / expected：决定诊断依据、缺失项和建议质量",
 ] as const;
 
+type DiagnoseExampleCase = {
+  title: string;
+  description: string;
+  entry: { label: string; href: string };
+  form: DiagnoseInput;
+};
+
+const diagnoseExampleCases: DiagnoseExampleCase[] = [
+  {
+    title: "UI 已切模型，但当前会话还是旧模型",
+    description: "适合先看 session / 运行态错配，而不是继续怀疑 provider 本身。",
+    entry: { label: "看模型切换异常模板", href: "/templates/model-switch-session-mismatch" },
+    form: {
+      issueType: "model_switch_session_mismatch",
+      scenario: "control_ui",
+      provider: "openai-codex",
+      model: "openai-codex/gpt-5.4",
+      authMode: "oauth",
+      transport: "auto",
+      symptomText: "UI 显示切到了 Codex，但当前会话还是旧模型",
+      errorText: "session 还是 relay / thinking 显示不一致",
+      configSnippet: "agents.defaults.model.primary = openai-codex/gpt-5.4",
+      expectedOutcome: "当前会话真实切到 openai-codex/gpt-5.4",
+    },
+  },
+  {
+    title: "配置写了，但运行结果还是旧值",
+    description: "适合先查配置优先级、覆盖层和运行态刷新，而不是继续叠改动。",
+    entry: { label: "看配置不生效模板", href: "/templates/config-not-applied" },
+    form: {
+      issueType: "config_not_applied",
+      scenario: "openclaw",
+      provider: "relay",
+      model: "relay/gpt-5.4",
+      authMode: "auth_profile",
+      transport: "auto",
+      symptomText: "改了 defaults 配置，但实际回复表现还是旧参数",
+      errorText: "没有显式报错，但行为没有变化",
+      configSnippet: "agents.defaults.model.primary = relay/gpt-5.4",
+      expectedOutcome: "重启或新会话后真实吃到新配置",
+    },
+  },
+  {
+    title: "按钮和入口都在，但执行链路没真的通",
+    description: "适合先确认工具可见性、权限范围和最小真实调用，而不是继续做展示层。",
+    entry: { label: "看桌面/接入模板", href: "/templates/desktop-tool-integration" },
+    form: {
+      issueType: "local_tool_integration",
+      scenario: "desktop_wrapper",
+      provider: "openai",
+      model: "gpt-5.4",
+      authMode: "api_key",
+      transport: "http",
+      symptomText: "入口按钮可见，但点击后没有真实返回或没有调用痕迹",
+      errorText: "桌面壳里无明显报错，打包后行为和开发态不一致",
+      configSnippet: "wrapper exposes tool entry but runtime inventory seems empty",
+      expectedOutcome: "入口存在且能稳定触发一次真实能力调用",
+    },
+  },
+] as const;
+
 const initialForm: DiagnoseInput = {
   issueType: "model_switch_session_mismatch",
   scenario: "control_ui",
@@ -110,6 +171,12 @@ export default function DiagnosePage() {
     setForm(initialForm);
     setResult(analyzeDiagnose(initialForm));
     setMobileStep(1);
+  }
+
+  function applyExample(example: DiagnoseExampleCase) {
+    setForm(example.form);
+    setResult(analyzeDiagnose(example.form));
+    setMobileStep(4);
   }
 
   function resetForm() {
@@ -157,6 +224,39 @@ export default function DiagnosePage() {
           </div>
         </div>
       </header>
+
+      <section className="mb-8 rounded-[28px] border border-slate-200 bg-slate-50/70 p-4 shadow-sm sm:p-5">
+        <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Example cases</p>
+            <h2 className="mt-1 text-lg font-semibold text-slate-950 sm:text-xl">如果你不想从空白输入开始，可以直接从这些典型现场起步</h2>
+          </div>
+          <p className="hidden max-w-md text-sm leading-6 text-slate-500 lg:block">
+            这层的作用不是替你下结论，而是给你一组更接近真实现场的输入起点，并顺手带上推荐入口。
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          {diagnoseExampleCases.map((example, index) => (
+            <div key={example.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-sm" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm"}>
+              <p className={index === 0 ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{example.title}</p>
+              <p className={index === 0 ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{example.description}</p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                <Button
+                  variant={index === 0 ? "secondary" : "outline"}
+                  className={index === 0 ? "rounded-full border border-white/15 bg-white text-slate-950 hover:bg-slate-100" : "rounded-full"}
+                  onClick={() => applyExample(example)}
+                >
+                  载入并看结果
+                </Button>
+                <Link href={example.entry.href} className={index === 0 ? "inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white" : "inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"}>
+                  <span>{example.entry.label}</span>
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <div className="space-y-6 md:hidden">
         {mobileStep === 1 && (
@@ -235,12 +335,12 @@ export default function DiagnosePage() {
 
       <div className="hidden lg:grid lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
         <DesktopForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
-        <ResultCard result={result} />
+        <ResultCard result={result} onApplyExample={applyExample} />
       </div>
 
       <div className="hidden space-y-6 md:block lg:hidden">
         <TabletForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
-        <ResultCard result={result} />
+        <ResultCard result={result} onApplyExample={applyExample} />
       </div>
     </div>
   );
@@ -424,9 +524,10 @@ function NativeSelect({
   );
 }
 
-function ResultCard({ result, onReset, onLoadExample }: { result: DiagnoseResult; onReset?: () => void; onLoadExample?: () => void }) {
+function ResultCard({ result, onReset, onLoadExample, onApplyExample }: { result: DiagnoseResult; onReset?: () => void; onLoadExample?: () => void; onApplyExample?: (example: DiagnoseExampleCase) => void }) {
   const issueMeta = issueTypeMeta[result.issueType];
   const primaryResource = result.recommendedResources?.find((item) => item.priority === "high") ?? result.recommendedResources?.[0];
+  const matchingExamples = diagnoseExampleCases.filter((item) => item.form.issueType === result.issueType).slice(0, 2);
   const primaryResourceHref = primaryResource ? resolveResourceHref(primaryResource.kind, primaryResource.title) : undefined;
   const primaryResourceLabel = primaryResource ? (primaryResource.kind === "template" ? "模板" : "文档") : undefined;
   const topWarning = result.missingInputs?.[0] ?? issueMeta.avoid;
@@ -477,6 +578,32 @@ function ResultCard({ result, onReset, onLoadExample }: { result: DiagnoseResult
             <p className="mt-2 text-sm leading-6 text-slate-200">{topWarning}</p>
           </div>
         </div>
+
+        {!!matchingExamples.length && (
+          <div>
+            <h3 className="text-sm font-medium text-white">相近示例现场 / 推荐入口</h3>
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              {matchingExamples.map((example) => (
+                <div key={example.title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-sm font-medium text-white">{example.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{example.description}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                    {onApplyExample ? (
+                      <button onClick={() => onApplyExample(example)} className="inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                        <span>载入这个示例</span>
+                        <span aria-hidden>→</span>
+                      </button>
+                    ) : null}
+                    <Link href={example.entry.href} className="inline-flex items-center gap-1 text-sm font-medium text-slate-200 transition hover:text-white">
+                      <span>{example.entry.label}</span>
+                      <span aria-hidden>→</span>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {!!result.diagnosisBasis?.length && (
           <div>

@@ -82,6 +82,27 @@ const decisionPoints = [
   },
 ] as const;
 
+const taskFirstRoutes = [
+  {
+    title: "我现在更像在定位问题",
+    detail: "先走 Diagnose，把问题压回正确层，不先停在概念理解。",
+    href: "/diagnose",
+    label: "进入 Diagnose",
+  },
+  {
+    title: "我已经知道目标，要直接做",
+    detail: "直接去 Templates 或 Use Cases，把理解切成执行路径。",
+    href: "/templates",
+    label: "先看模板中心",
+  },
+  {
+    title: "我怕把产品阶段理解过满",
+    detail: "先回 Docs / Product Notes，把首版边界和预期校正清楚。",
+    href: "/docs",
+    label: "先看文档路径",
+  },
+] as const;
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -147,6 +168,37 @@ export default function AboutPage() {
                 <p className="text-sm leading-[1.65] text-slate-600">{item.detail}</p>
               </CardContent>
             </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-8 rounded-[32px] border border-slate-200 bg-slate-50/70 p-3.5 shadow-sm sm:p-4">
+        <div className="mb-3.5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Task-first routes</p>
+            <h2 className="mt-1 text-lg font-semibold text-slate-950 sm:text-[1.35rem]">如果你读完 About 不想停在理解层，最自然的三种继续方式</h2>
+          </div>
+          <p className="hidden max-w-md text-sm leading-6 text-slate-500 lg:block">
+            这层和 Docs 页保持同一套产品语言：读完就继续走，不让 About 停在概念层。
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          {taskFirstRoutes.map((item, index) => (
+            <div key={item.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-sm" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm"}>
+              <p className={index === 0 ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{item.title}</p>
+              <p className={index === 0 ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{item.detail}</p>
+              <Link
+                href={item.href}
+                className={
+                  index === 0
+                    ? "mt-3 inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
+                    : "mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"
+                }
+              >
+                <span>{item.label}</span>
+                {index !== 0 ? <span aria-hidden>→</span> : null}
+              </Link>
+            </div>
           ))}
         </div>
       </section>

@@ -110,6 +110,32 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               </ul>
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">这个场景跑起来后，怎么把结果收住</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">场景页的价值不是告诉你“能做什么”，而是让这次结果能被下一次复用。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <InfoBlock title="先确认闭环" items={useCase.proofOfDone} />
+              <InfoBlock
+                title="顺手沉淀"
+                items={[
+                  "把这次有效的入口顺序、关键判断和最小验证写成可复用记录",
+                  "如果某一步最容易误判，优先把那个停手点记清楚",
+                  "确认下次再做时，你知道该先回场景页、模板还是 Diagnose",
+                ]}
+              />
+              <InfoBlock
+                title="下一跳别断"
+                items={[
+                  relatedTemplates[0] ? `继续补模板：${relatedTemplates[0].title}` : "方向稳定后，补一份最贴近的模板",
+                  relatedDocs[0] ? `补文档：${relatedDocs[0].title}` : "补对应文档，把边界和验证口径收清",
+                  "如果执行后现象和预期不一致，先回 Diagnose 重判层",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
@@ -151,6 +177,20 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                   {item.title}
                 </Link>
               ))}
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-lg text-slate-950">跑通后继续去哪</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 pb-6 text-sm text-slate-600">
+              <Link href={useCase.primaryAction.href} className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
+                继续主入口：{useCase.primaryAction.label}
+              </Link>
+              <Link href="/docs/troubleshooting" className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
+                如果结果不稳：回 Troubleshooting 收口
+              </Link>
             </CardContent>
           </Card>
         </aside>

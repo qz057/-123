@@ -141,6 +141,26 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">执行后怎么收口，才不会只停在“跑过一次”</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">这层不是重复步骤，而是把“验收 / 沉淀 / 下一跳”补完整。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <ChecklistBlock title="最小验收" items={template.outputs.map((item) => `确认已产出：${item}`)} tone="success" />
+              <ChecklistBlock title="收口动作" items={[
+                "把这次有效配置、输入和验证结果留成可复现记录",
+                "如果中间有回滚或停手点，顺手记下最值钱的判断依据",
+                "确认下次再做时，你知道该先从哪一步开始",
+              ]} />
+              <ChecklistBlock title="准备下一跳" items={[
+                relatedDocs[0] ? `补看文档：${relatedDocs[0].title}` : "补看对应文档，确认边界和验证口径",
+                relatedTemplates[0] ? `可继续关联模板：${relatedTemplates[0].title}` : "如果方向已稳定，再决定是否扩到下一个模板",
+                "如果执行后现象和预期仍不一致，先回 Diagnose 重判层",
+              ]} tone="warning" />
+            </CardContent>
+          </Card>
+
           <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">常见问题</CardTitle>
@@ -202,6 +222,20 @@ export default async function TemplateDetailPage({
               ) : (
                 <p>后续补充。</p>
               )}
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-lg text-slate-950">执行后别断在这里</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 pb-6 text-sm text-slate-600">
+              <Link href="/docs/troubleshooting" className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
+                执行后现象不对：回 Troubleshooting 收口
+              </Link>
+              <Link href="/diagnose" className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
+                方向开始变糊：回 Diagnose 重新判层
+              </Link>
             </CardContent>
           </Card>
         </aside>
