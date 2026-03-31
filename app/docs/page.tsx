@@ -323,8 +323,8 @@ export default function DocsPage() {
               <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3">
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">这页最不该做的事</p>
                 <div className="mt-2 grid gap-2 sm:grid-cols-3">
-                  {dontDoStrip.map((item) => (
-                    <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
+                  {dontDoStrip.map((item, index) => (
+                    <p key={item} className={index === 2 ? "hidden text-sm leading-6 text-slate-600 sm:block" : "text-sm leading-6 text-slate-600"}>{item}</p>
                   ))}
                 </div>
               </div>
