@@ -310,7 +310,16 @@ function buildScoreBreakdown(input: DiagnoseInput, combinedRaw: string, scores: 
     }));
 }
 
-function buildRecommendedResources(issueType: DiagnoseIssueType): DiagnoseRecommendedResource[] {
+const scenarioPreferredResourceTitles: Partial<Record<DiagnoseScenario, string[]>> = {
+  control_ui: ["模型切换 / Session 异常模板", "Session 模型绑定说明", "参数覆盖优先级说明"],
+  openclaw: ["OpenClaw 初次搭建模板", "配置优先级说明", "Reload / Restart 说明"],
+  desktop_wrapper: ["桌面工具接入模板", "工具链路检查说明", "本地接入起步指南"],
+  mcp_tooling: ["桌面工具接入模板", "工具链路检查说明", "本地接入起步指南"],
+  workflow_automation: ["AI 工作流起步模板", "配置优先级说明"],
+  local_ai_assistant: ["本地 AI 助手起步模板", "本地接入起步指南"],
+};
+
+function buildRecommendedResources(issueType: DiagnoseIssueType, scenario?: DiagnoseScenario): DiagnoseRecommendedResource[] {
   const templates = templateMap[issueType].map((title, index) => ({
     kind: "template" as const,
     title,
@@ -325,7 +334,31 @@ function buildRecommendedResources(issueType: DiagnoseIssueType): DiagnoseRecomm
     reason: index === 0 ? resourceReasonMap[issueType].doc : "补齐这一类问题的规则、优先级或验证口径。",
   }));
 
-  return [...templates, ...docs];
+  const merged = [...templates, ...docs];
+  const preferredTitles = scenario ? scenarioPreferredResourceTitles[scenario] ?? [] : [];
+
+  if (!preferredTitles.length) {
+    return merged;
+  }
+
+  const ranked = [...merged].sort((a, b) => {
+    const aIndex = preferredTitles.indexOf(a.title);
+    const bIndex = preferredTitles.indexOf(b.title);
+    const aRank = aIndex === -1 ? 999 : aIndex;
+    const bRank = bIndex === -1 ? 999 : bIndex;
+    if (aRank !== bRank) return aRank - bRank;
+    if (a.priority !== b.priority) return a.priority === "high" ? -1 : 1;
+    return 0;
+  });
+
+  return ranked.map((item, index) => ({
+    ...item,
+    priority: index === 0 || (preferredTitles.indexOf(item.title) !== -1 && index < 2) ? "high" : "medium",
+    reason:
+      preferredTitles.indexOf(item.title) !== -1
+        ? `${item.reason} 当前场景 ${scenario} 与这条资源更贴近。`
+        : item.reason,
+  }));
 }
 
 function buildMeta(
@@ -406,7 +439,7 @@ export function analyzeDiagnose(input: DiagnoseInput): DiagnoseResult {
 
   const meta = buildMeta(input, issueType, combinedRaw, { hasAuth, hasTimeout, hasReload, hasSession, hasTool });
   const scoreBreakdown = buildScoreBreakdown(input, combinedRaw, scores);
-  const recommendedResources = buildRecommendedResources(issueType);
+  const recommendedResources = buildRecommendedResources(issueType, input.scenario);
   const patternSignals = patternSignalMap[issueType];
   const scenarioExamples = scenarioExampleMap[issueType];
 

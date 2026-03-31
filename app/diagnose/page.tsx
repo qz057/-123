@@ -354,17 +354,17 @@ export default function DiagnosePage() {
           </Card>
         )}
 
-        {mobileStep === 4 && <ResultCard result={result} onReset={resetForm} onLoadExample={loadExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />}
+        {mobileStep === 4 && <ResultCard result={result} currentScenario={form.scenario} onReset={resetForm} onLoadExample={loadExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />}
       </div>
 
       <div id="diagnose-input-desktop" className="hidden lg:grid lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
         <DesktopForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
-        <ResultCard result={result} onApplyExample={applyExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />
+        <ResultCard result={result} currentScenario={form.scenario} onApplyExample={applyExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />
       </div>
 
       <div id="diagnose-input-tablet" className="hidden space-y-6 md:block lg:hidden">
         <TabletForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
-        <ResultCard result={result} onApplyExample={applyExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />
+        <ResultCard result={result} currentScenario={form.scenario} onApplyExample={applyExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />
       </div>
     </div>
   );
@@ -548,10 +548,17 @@ function NativeSelect({
   );
 }
 
-function ResultCard({ result, onReset, onLoadExample, onApplyExample, onJumpToExamples, onJumpToInput }: { result: DiagnoseResult; onReset?: () => void; onLoadExample?: () => void; onApplyExample?: (example: DiagnoseExampleCase) => void; onJumpToExamples?: () => void; onJumpToInput?: () => void }) {
+function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyExample, onJumpToExamples, onJumpToInput }: { result: DiagnoseResult; currentScenario?: DiagnoseInput["scenario"]; onReset?: () => void; onLoadExample?: () => void; onApplyExample?: (example: DiagnoseExampleCase) => void; onJumpToExamples?: () => void; onJumpToInput?: () => void }) {
   const issueMeta = issueTypeMeta[result.issueType];
   const primaryResource = result.recommendedResources?.find((item) => item.priority === "high") ?? result.recommendedResources?.[0];
-  const matchingExamples = diagnoseExampleCases.filter((item) => item.form.issueType === result.issueType).slice(0, 2);
+  const matchingExamples = [...diagnoseExampleCases]
+    .filter((item) => item.form.issueType === result.issueType)
+    .sort((a, b) => {
+      const aScore = a.form.scenario === currentScenario ? 2 : a.form.scenario ? 1 : 0;
+      const bScore = b.form.scenario === currentScenario ? 2 : b.form.scenario ? 1 : 0;
+      return bScore - aScore;
+    })
+    .slice(0, 2);
   const primaryResourceHref = primaryResource ? resolveResourceHref(primaryResource.kind, primaryResource.title) : undefined;
   const primaryResourceLabel = primaryResource ? (primaryResource.kind === "template" ? "模板" : "文档") : undefined;
   const topWarning = result.missingInputs?.[0] ?? issueMeta.avoid;
