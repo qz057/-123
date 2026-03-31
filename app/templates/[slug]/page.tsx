@@ -356,7 +356,7 @@ export default async function TemplateDetailPage({
               <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">别把“已经跑通一次”直接当成可交付；至少要把最小交付包和升级前检查留清楚。</CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-4">
               <ChecklistBlock
                 title="最小交付包"
                 items={[
@@ -382,6 +382,14 @@ export default async function TemplateDetailPage({
                   "现在更像临时救火，而不是稳定方案",
                 ]}
                 tone="warning"
+              />
+              <ChecklistBlock
+                title="升级处理前别漏掉"
+                items={[
+                  "先写清当前页已不再是最佳处理层",
+                  "把下一位默认第一跳写明白",
+                  "把最值钱的回滚证据一起留住",
+                ]}
               />
             </CardContent>
           </Card>

@@ -1131,7 +1131,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
 
         <div>
           <h3 className="text-sm font-medium text-white">如果二次排查后你又回到了这里</h3>
-          <div className="mt-3 grid gap-3 md:grid-cols-3">
+          <div className="mt-3 grid gap-3 md:grid-cols-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
               <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">继续沿当前判断如果</p>
               <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-300">
@@ -1146,6 +1146,14 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                 <li>• 最小验证开始直接反证当前判断</li>
                 <li>• 问题越来越像相邻误判分支里的描述</li>
                 <li>• 当前资源已经不能解释新现象</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-emerald-300/15 bg-emerald-400/10 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-200">升级到哪个处理层</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
+                <li>• 方向对但结果乱：先回 Troubleshooting</li>
+                <li>• 预期过满：先看 Product Notes / Docs</li>
+                <li>• 现象已经换层：先回 Diagnose 重判</li>
               </ul>
             </div>
             <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4">

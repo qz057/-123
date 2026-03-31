@@ -320,7 +320,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               <CardTitle className="text-xl text-slate-950">如果这次要升级成正式交付包</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景跑通不等于可交付；要把别人能接着做的最小交付包一起留下。</CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-4">
               <InfoBlock
                 title="最小交付包"
                 items={[
@@ -343,6 +343,14 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                   "done signal 还在摇摆",
                   "新现象还在把你拉向别的场景分支",
                   "当前更像临时止血，而不是稳定方案",
+                ]}
+              />
+              <InfoBlock
+                title="升级处理前别漏掉"
+                items={[
+                  "先写清当前场景页已不再是最佳处理层",
+                  "把下一位默认第一跳写明白",
+                  "把最值钱的回滚证据一起留住",
                 ]}
               />
             </CardContent>
