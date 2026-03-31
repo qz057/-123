@@ -67,7 +67,7 @@ export function PainPointsSection() {
         <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-4">
           {painPoints.map((item, index) => {
             const route = routeHints[index];
-            const hideOnMobile = index === 3;
+            const hideOnMobile = index >= 2;
 
             return (
               <Card
