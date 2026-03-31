@@ -319,6 +319,30 @@ const scenarioPreferredResourceTitles: Partial<Record<DiagnoseScenario, string[]
   local_ai_assistant: ["本地 AI 助手起步模板", "本地接入起步指南"],
 };
 
+const instabilityActionMap: Record<DiagnoseIssueType, string> = {
+  model_connection: "如果结果时好时坏，先别继续换 provider / transport，优先回最小连通性验证。",
+  config_not_applied: "如果结果时好时坏，先别继续叠配置，优先回到真实生效路径与覆盖优先级检查。",
+  model_switch_session_mismatch: "如果结果时好时坏，先别继续靠感觉判断，优先回新会话最小验证。",
+  local_tool_integration: "如果结果时好时坏，先别继续加入口，优先回最小闭环与回调链路验证。",
+};
+
+function getAdjacentIssueType(scores: ReturnType<typeof getIssueScores>, issueType: DiagnoseIssueType) {
+  return [...scores]
+    .sort((a, b) => b.score - a.score)
+    .find((item) => item.issueType !== issueType && item.score > 0)?.issueType;
+}
+
+function buildNextActions(issueType: DiagnoseIssueType, base: string[], adjacentIssueType?: DiagnoseIssueType) {
+  const next = [...base];
+
+  if (adjacentIssueType) {
+    next.push(`如果最小验证直接反证当前判断，优先转向「${issueTypeLabels[adjacentIssueType]}」分支重判。`);
+  }
+
+  next.push(instabilityActionMap[issueType]);
+  return next;
+}
+
 function buildRecommendedResources(issueType: DiagnoseIssueType, scenario?: DiagnoseScenario): DiagnoseRecommendedResource[] {
   const templates = templateMap[issueType].map((title, index) => ({
     kind: "template" as const,
@@ -439,6 +463,7 @@ export function analyzeDiagnose(input: DiagnoseInput): DiagnoseResult {
 
   const meta = buildMeta(input, issueType, combinedRaw, { hasAuth, hasTimeout, hasReload, hasSession, hasTool });
   const scoreBreakdown = buildScoreBreakdown(input, combinedRaw, scores);
+  const adjacentIssueType = getAdjacentIssueType(scores, issueType);
   const recommendedResources = buildRecommendedResources(issueType, input.scenario);
   const patternSignals = patternSignalMap[issueType];
   const scenarioExamples = scenarioExampleMap[issueType];
@@ -489,7 +514,7 @@ export function analyzeDiagnose(input: DiagnoseInput): DiagnoseResult {
             verify: "修改 transport 后再次执行最小请求，确认是否恢复。",
           },
         ],
-        nextActions: ["先做最小连通性实测", "若仍失败，再看 auth 与 transport 分支"],
+        nextActions: buildNextActions(issueType, ["先做最小连通性实测", "若仍失败，再看 auth 与 transport 分支"], adjacentIssueType),
         relatedTemplates: templateMap[issueType],
         relatedDocs: docsMap[issueType],
         ...meta,
@@ -540,7 +565,7 @@ export function analyzeDiagnose(input: DiagnoseInput): DiagnoseResult {
             verify: "逐层排除后再次验证目标参数是否真正生效。",
           },
         ],
-        nextActions: ["先核对生效路径", "再检查覆盖优先级"],
+        nextActions: buildNextActions(issueType, ["先核对生效路径", "再检查覆盖优先级"], adjacentIssueType),
         relatedTemplates: templateMap[issueType],
         relatedDocs: docsMap[issueType],
         ...meta,
@@ -589,7 +614,7 @@ export function analyzeDiagnose(input: DiagnoseInput): DiagnoseResult {
             verify: "重复最小任务，确认返回结果和目标模型一致。",
           },
         ],
-        nextActions: ["先验证真实运行模型", "再核对 session 与页面显示是否一致"],
+        nextActions: buildNextActions(issueType, ["先验证真实运行模型", "再核对 session 与页面显示是否一致"], adjacentIssueType),
         relatedTemplates: templateMap[issueType],
         relatedDocs: docsMap[issueType],
         ...meta,
@@ -639,7 +664,7 @@ export function analyzeDiagnose(input: DiagnoseInput): DiagnoseResult {
             verify: "做最小闭环测试，确认从触发到返回全链路通。",
           },
         ],
-        nextActions: ["先确认依赖就绪", "再做最小闭环测试"],
+        nextActions: buildNextActions("local_tool_integration", ["先确认依赖就绪", "再做最小闭环测试"], adjacentIssueType),
         relatedTemplates: templateMap.local_tool_integration,
         relatedDocs: docsMap.local_tool_integration,
         ...meta,

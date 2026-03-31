@@ -280,6 +280,41 @@ export default async function TemplateDetailPage({
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">如果这次要交给别人继续做</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">别把交接留成一句“照这个试试”，而是留下别人能直接接上的最小包。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <ChecklistBlock
+                title="交接最少要给"
+                items={[
+                  "最后一个稳定点是什么",
+                  "哪条最小验证最能证明当前状态",
+                  "下一步优先开哪个模板 / 文档 / Diagnose",
+                ]}
+              />
+              <ChecklistBlock
+                title="别人接手前先确认"
+                items={[
+                  "目标和输入是否仍与这次一致",
+                  "环境 / provider / session 有没有变化",
+                  "done signal 是否还能被独立复现",
+                ]}
+                tone="success"
+              />
+              <ChecklistBlock
+                title="别直接交接旧结论如果"
+                items={[
+                  "这次结果本身就不稳定",
+                  "环境已经变了，却还想照旧结论继续推进",
+                  "新现象更像别的层，不再是这份模板的主分支",
+                ]}
+                tone="warning"
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">

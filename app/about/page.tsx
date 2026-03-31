@@ -121,6 +121,12 @@ const quickReadStrip = [
   "最后才回边界 / 适合对象 / 产品形态补细节。",
 ] as const;
 
+const leavePageStrip = [
+  { label: "现在更像在定位", href: "/diagnose", value: "先去 Diagnose" },
+  { label: "现在就是要执行", href: "/templates", value: "先去 Templates" },
+  { label: "现在要校正预期", href: "/docs", value: "先看 Docs" },
+] as const;
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -201,6 +207,14 @@ export default function AboutPage() {
                 <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
               ))}
             </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {leavePageStrip.map((item, index) => (
+              <Link key={item.label} href={item.href} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white shadow-sm" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 shadow-sm"}>
+                <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
+                <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+              </Link>
+            ))}
           </div>
         </CardContent>
       </section>

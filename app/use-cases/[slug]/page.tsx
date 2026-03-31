@@ -248,6 +248,39 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">如果这次要交给别人继续做</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">把“场景入口”交接成别人也能快速判断第一跳，而不是只能复读原来的解释。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <InfoBlock
+                title="交接最少要带上"
+                items={[
+                  "最后稳定入口是什么",
+                  "哪条最小真测最能证明当前状态",
+                  "下一步优先开哪个场景 / 模板 / Diagnose",
+                ]}
+              />
+              <InfoBlock
+                title="别人接手前先确认"
+                items={[
+                  "目标、输入、环境有没有变化",
+                  "当前 done signal 是否还能独立复现",
+                  "这次异常是否还属于原场景主分支",
+                ]}
+              />
+              <InfoBlock
+                title="别把旧判断直接交接如果"
+                items={[
+                  "现在问题已经更像别的层级",
+                  "原场景只是部分重叠，不再是主因",
+                  "你自己都已经说不清第一跳该去哪",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
