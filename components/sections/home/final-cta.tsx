@@ -92,7 +92,27 @@ export function FinalCtaSection() {
           </div>
         </div>
 
-        <div className="relative mt-5 rounded-[1.5rem] border border-white/10 bg-white/5 p-3.5 sm:mt-8 sm:rounded-[1.75rem] sm:p-5">
+        <div className="relative mt-5 sm:hidden">
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/5 p-3.5 text-white">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Mobile start</p>
+            <h3 className="mt-1 text-lg font-semibold text-white">手机上先从这两步开始</h3>
+            <div className="mt-3 space-y-2.5 text-sm leading-6 text-slate-300">
+              <p className="rounded-2xl border border-white/10 bg-slate-950/35 px-3 py-2.5">问题还糊：先 Diagnose，不在首页继续来回看说明。</p>
+              <p className="rounded-2xl border border-white/10 bg-slate-950/35 px-3 py-2.5">方向已清：直接去 Templates，把理解切成执行顺序。</p>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              <Link href="/diagnose" className="inline-flex rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-slate-100">
+                先体检配置
+              </Link>
+              <Link href="/templates" className="inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                <span>进入模板中心</span>
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative mt-5 hidden rounded-[1.5rem] border border-white/10 bg-white/5 p-3.5 sm:mt-8 sm:block sm:rounded-[1.75rem] sm:p-5">
           <div className="mb-3 flex flex-col gap-3 lg:mb-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Launch lanes</p>

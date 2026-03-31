@@ -575,7 +575,25 @@ export default function DocsPage() {
         </Card>
       </section>
 
-      <section className="mb-8 grid gap-3.5 xl:grid-cols-[1.06fr_0.94fr]">
+      <section className="mb-8 sm:hidden">
+        <Card className="rounded-[28px] border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
+          <CardHeader className="pb-3.5">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Docs on mobile</p>
+            <CardTitle className="text-lg text-white">手机上先把文档当入口，不把它当目录站</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2.5 pb-4 pt-0 text-sm leading-[1.65] text-slate-300">
+            <p className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">想按任务进入：优先去 Use Cases 或模板中心，不需要在这里把所有解释都看完。</p>
+            <p className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">想继续留在文档层：重点看 All docs 的 5 个入口，详细职责前面已经讲过。</p>
+            <div className="pt-1">
+              <Link href="/use-cases" className="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10">
+                按任务找入口
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section className="mb-8 hidden gap-3.5 sm:grid xl:grid-cols-[1.06fr_0.94fr]">
         <Card className="rounded-[28px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
           <CardHeader>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Use cases</p>
@@ -637,11 +655,11 @@ export default function DocsPage() {
                 </CardHeader>
                 <CardContent className="space-y-2.5 pb-3.5">
                   <p className="text-sm leading-[1.6] text-slate-600">{item.description}</p>
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-3 py-2.5">
+                  <div className="hidden rounded-2xl border border-slate-200 bg-slate-50/70 px-3 py-2.5 sm:block">
                     <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">先点这个如果</p>
                     <p className="mt-1.5 text-sm leading-[1.6] text-slate-600">{hint.when}</p>
                   </div>
-                  <p className="text-xs leading-5 text-slate-400">{hint.next}</p>
+                  <p className="hidden text-xs leading-5 text-slate-400 sm:block">{hint.next}</p>
                   {item.aliases?.length ? (
                     <p className="hidden text-xs leading-5 text-slate-400 sm:block">已映射 {item.aliases.length} 个相关主题，适合从不同问题入口跳回来。</p>
                   ) : null}
