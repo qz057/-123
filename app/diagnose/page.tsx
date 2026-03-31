@@ -155,6 +155,16 @@ export default function DiagnosePage() {
   const [result, setResult] = useState<DiagnoseResult>(() => analyzeDiagnose(initialForm));
   const [mobileStep, setMobileStep] = useState(1);
 
+  function jumpToAny(ids: string[]) {
+    for (const id of ids) {
+      const node = document.getElementById(id);
+      if (node) {
+        node.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+  }
+
   const issueTypeValue = useMemo(() => form.issueType ?? "config_not_applied", [form.issueType]);
   const currentIssueMeta = issueTypeMeta[issueTypeValue];
 
@@ -204,6 +214,20 @@ export default function DiagnosePage() {
             输入你的场景、配置和报错信息，快速得到问题判断与修复建议。当前首版按规则型诊断输出，重点是结构稳定、结论可解释、下一步明确。
           </p>
         </div>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+          <button onClick={() => jumpToAny(["diagnose-examples"])} className="inline-flex items-center gap-1 font-medium text-sky-700 transition hover:text-sky-800">
+            <span>先看示例现场</span>
+            <span aria-hidden>→</span>
+          </button>
+          <button onClick={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} className="inline-flex items-center gap-1 font-medium text-sky-700 transition hover:text-sky-800">
+            <span>跳到输入区</span>
+            <span aria-hidden>→</span>
+          </button>
+          <button onClick={() => jumpToAny(["diagnose-result-panel"])} className="inline-flex items-center gap-1 font-medium text-sky-700 transition hover:text-sky-800">
+            <span>看当前结果</span>
+            <span aria-hidden>→</span>
+          </button>
+        </div>
         <div className="grid gap-3 md:grid-cols-3">
           <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">这次先盯什么</p>
@@ -225,7 +249,7 @@ export default function DiagnosePage() {
         </div>
       </header>
 
-      <section className="mb-8 rounded-[28px] border border-slate-200 bg-slate-50/70 p-4 shadow-sm sm:p-5">
+      <section id="diagnose-examples" className="mb-8 rounded-[28px] border border-slate-200 bg-slate-50/70 p-4 shadow-sm sm:p-5">
         <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Example cases</p>
@@ -258,7 +282,7 @@ export default function DiagnosePage() {
         </div>
       </section>
 
-      <div className="space-y-6 md:hidden">
+      <div id="diagnose-input-mobile" className="space-y-6 md:hidden">
         {mobileStep === 1 && (
           <Card className="rounded-2xl border border-slate-200 bg-white py-0 shadow-sm">
             <CardHeader>
@@ -330,17 +354,17 @@ export default function DiagnosePage() {
           </Card>
         )}
 
-        {mobileStep === 4 && <ResultCard result={result} onReset={resetForm} onLoadExample={loadExample} />}
+        {mobileStep === 4 && <ResultCard result={result} onReset={resetForm} onLoadExample={loadExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />}
       </div>
 
-      <div className="hidden lg:grid lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
+      <div id="diagnose-input-desktop" className="hidden lg:grid lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
         <DesktopForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
-        <ResultCard result={result} onApplyExample={applyExample} />
+        <ResultCard result={result} onApplyExample={applyExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />
       </div>
 
-      <div className="hidden space-y-6 md:block lg:hidden">
+      <div id="diagnose-input-tablet" className="hidden space-y-6 md:block lg:hidden">
         <TabletForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
-        <ResultCard result={result} onApplyExample={applyExample} />
+        <ResultCard result={result} onApplyExample={applyExample} onJumpToExamples={() => jumpToAny(["diagnose-examples"])} onJumpToInput={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} />
       </div>
     </div>
   );
@@ -524,7 +548,7 @@ function NativeSelect({
   );
 }
 
-function ResultCard({ result, onReset, onLoadExample, onApplyExample }: { result: DiagnoseResult; onReset?: () => void; onLoadExample?: () => void; onApplyExample?: (example: DiagnoseExampleCase) => void }) {
+function ResultCard({ result, onReset, onLoadExample, onApplyExample, onJumpToExamples, onJumpToInput }: { result: DiagnoseResult; onReset?: () => void; onLoadExample?: () => void; onApplyExample?: (example: DiagnoseExampleCase) => void; onJumpToExamples?: () => void; onJumpToInput?: () => void }) {
   const issueMeta = issueTypeMeta[result.issueType];
   const primaryResource = result.recommendedResources?.find((item) => item.priority === "high") ?? result.recommendedResources?.[0];
   const matchingExamples = diagnoseExampleCases.filter((item) => item.form.issueType === result.issueType).slice(0, 2);
@@ -534,7 +558,7 @@ function ResultCard({ result, onReset, onLoadExample, onApplyExample }: { result
   const topCause = result.causes[0];
 
   return (
-    <Card className="rounded-3xl border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
+    <Card id="diagnose-result-panel" className="rounded-3xl border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
       <CardHeader className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <CardTitle className="text-xl text-white">诊断结果</CardTitle>
@@ -817,8 +841,10 @@ function ResultCard({ result, onReset, onLoadExample, onApplyExample }: { result
           </div>
         </div>
 
-        {(onReset || onLoadExample) && (
+        {(onReset || onLoadExample || onJumpToExamples || onJumpToInput) && (
           <div className="mt-6 flex flex-wrap gap-3">
+            {onJumpToInput && <Button variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white" onClick={onJumpToInput}>回输入区补信息</Button>}
+            {onJumpToExamples && <Button variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white" onClick={onJumpToExamples}>回示例层换现场</Button>}
             {onLoadExample && <Button variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white" onClick={onLoadExample}>载入示例</Button>}
             {onReset && <Button variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white" onClick={onReset}>重新开始</Button>}
           </div>

@@ -244,7 +244,7 @@ export default function DocsPage() {
         </div>
         <div className="grid gap-3 md:grid-cols-3">
           {taskFirstRoutes.map((item, index) => (
-            <div key={item.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-sm" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm"}>
+            <div key={item.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-sm" : index === 2 ? "hidden rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm md:block" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm"}>
               <p className={index === 0 ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{item.title}</p>
               <p className={index === 0 ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{item.detail}</p>
               <Link
@@ -278,7 +278,7 @@ export default function DocsPage() {
                 <CardTitle className="text-lg text-slate-950">{item.title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3.5 pb-5">
-                <p className="text-sm leading-6 text-slate-600">{item.description}</p>
+                <p className="hidden text-sm leading-6 text-slate-600 sm:block">{item.description}</p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
                   <Link href={item.primary.href} className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
                     {item.primary.label}
@@ -338,7 +338,7 @@ export default function DocsPage() {
                   <CardTitle className={primary ? "text-[1.02rem] text-white sm:text-lg" : "text-[1.02rem] text-slate-950 sm:text-lg"}>{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 pb-4 pt-0">
-                  <p className={primary ? "text-sm leading-[1.6] text-slate-300" : "text-sm leading-[1.6] text-slate-600"}>{item.description}</p>
+                  <p className={primary ? "text-sm leading-[1.6] text-slate-300" : "hidden text-sm leading-[1.6] text-slate-600 sm:block"}>{item.description}</p>
                   <Link
                     href={item.cta.href}
                     className={
@@ -379,7 +379,7 @@ export default function DocsPage() {
                 <CardTitle className={index === 1 ? "text-lg text-white" : "text-lg text-slate-950"}>{item.title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3.5 pb-5">
-                <p className={index === 1 ? "text-sm leading-[1.65] text-slate-300" : "text-sm leading-[1.65] text-slate-600"}>{item.detail}</p>
+                <p className={index === 1 ? "hidden text-sm leading-[1.65] text-slate-300 sm:block" : "hidden text-sm leading-[1.65] text-slate-600 sm:block"}>{item.detail}</p>
                 <Link
                   href={item.href}
                   className={

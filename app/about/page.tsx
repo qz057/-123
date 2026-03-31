@@ -184,9 +184,9 @@ export default function AboutPage() {
         </div>
         <div className="grid gap-3 md:grid-cols-3">
           {taskFirstRoutes.map((item, index) => (
-            <div key={item.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-sm" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm"}>
+            <div key={item.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-sm" : index === 2 ? "hidden rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm md:block" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm"}>
               <p className={index === 0 ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{item.title}</p>
-              <p className={index === 0 ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{item.detail}</p>
+              <p className={index === 0 ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 hidden text-sm leading-6 text-slate-600 sm:block"}>{item.detail}</p>
               <Link
                 href={item.href}
                 className={
@@ -236,7 +236,7 @@ export default function AboutPage() {
                   <div key={item.title} className="rounded-2xl border border-slate-200 p-4">
                     <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Principle 0{index + 1}</p>
                     <p className="mt-2 text-sm font-medium text-slate-950">{item.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.detail}</p>
+                    <p className="mt-2 hidden text-sm leading-6 text-slate-600 sm:block">{item.detail}</p>
                   </div>
                 ))}
               </div>

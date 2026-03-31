@@ -164,13 +164,23 @@ export default async function TemplateDetailPage({
           <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">常见问题</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">把最常见的追问拆成更容易判断的短块，而不是一列长问题。</CardDescription>
             </CardHeader>
-            <CardContent className="pb-6">
-              <ul className="space-y-3 text-sm leading-6 text-slate-600">
-                {template.faqs.map((item) => (
-                  <li key={item} className="rounded-2xl border border-slate-200 p-4">• {item}</li>
-                ))}
-              </ul>
+            <CardContent className="grid gap-3 pb-6 md:grid-cols-2">
+              {template.faqs.map((item, index) => (
+                <div key={item} className="rounded-2xl border border-slate-200 p-4">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">FAQ 0{index + 1}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-700">{item}</p>
+                </div>
+              ))}
+              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 md:col-span-2">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">继续判断</p>
+                <div className="mt-2 grid gap-3 md:grid-cols-3">
+                  <p className="text-sm leading-6 text-slate-600">方向还是糊：先回 Diagnose，别继续横跳模板。</p>
+                  <p className="text-sm leading-6 text-slate-600">执行后结果不稳：回 Troubleshooting 把停手点和回滚顺序收清。</p>
+                  <p className="text-sm leading-6 text-slate-600">这份模板已稳定：再决定是否扩到相关模板或 use case。</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>

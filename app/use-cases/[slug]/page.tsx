@@ -136,6 +136,27 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">场景常见追问</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">这层把最常见的“跑起来之后怎么办”拆成更像真实交付的判断块。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 pb-6 md:grid-cols-3">
+              <div className="rounded-2xl border border-slate-200 p-4">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">追问 01</p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">如果这个场景已经能稳定复现，下一步优先补模板，而不是继续把场景页当说明页反复读。</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 p-4">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">追问 02</p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">如果你发现目标变了、输入变了、环境也变了，就先回 Diagnose 重判层，不要硬沿旧场景往下推。</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 p-4">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">追问 03</p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">如果已经跑通一次，最好把最值钱的停手点、误区和 done signal 留下来，下次会直接快很多。</p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
