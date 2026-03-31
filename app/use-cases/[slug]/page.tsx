@@ -281,6 +281,39 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">什么时候该升级处理，而不是继续沿这个场景硬推</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">场景页不只给入口，也要告诉你什么时候该切换处理层。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <InfoBlock
+                title="先升级 Diagnose 如果"
+                items={[
+                  "你已经说不清这还是不是原场景主分支",
+                  "最小验证开始反证当前场景判断",
+                  "第一跳已经不再明确，需要重新判层",
+                ]}
+              />
+              <InfoBlock
+                title="先升级 Troubleshooting 如果"
+                items={[
+                  "方向大致没错，但结果开始时好时坏",
+                  "你需要更稳的停手点与回滚顺序",
+                  "现在更像收口问题，而不是场景理解问题",
+                ]}
+              />
+              <InfoBlock
+                title="先升级 Product Notes / Docs 如果"
+                items={[
+                  "当前问题其实是预期和阶段判断不一致",
+                  "要求已经明显超出首版当前可依赖范围",
+                  "你需要先校正边界，再决定是否继续投入",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">

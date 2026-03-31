@@ -287,13 +287,16 @@ export default function DocsPage() {
               ))}
             </div>
           </div>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {leavePageStrip.map((item, index) => (
-              <Link key={item.label} href={item.href} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white shadow-sm" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 shadow-sm"}>
-                <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
-                <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
-              </Link>
-            ))}
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">离开这页默认动作</p>
+            <div className="mt-2 grid gap-3 sm:grid-cols-3">
+              {leavePageStrip.map((item, index) => (
+                <Link key={item.label} href={item.href} className={index === 1 ? "rounded-2xl border border-slate-200 bg-slate-950 px-4 py-3 text-white shadow-sm" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 shadow-sm"}>
+                  <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
+                  <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </CardContent>
       </section>

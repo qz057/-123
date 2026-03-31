@@ -743,6 +743,7 @@ function NativeSelect({
 
 function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyExample, onJumpToExamples, onJumpToInput }: { result: DiagnoseResult; currentScenario?: DiagnoseInput["scenario"]; onReset?: () => void; onLoadExample?: () => void; onApplyExample?: (example: DiagnoseExampleCase) => void; onJumpToExamples?: () => void; onJumpToInput?: () => void }) {
   const issueMeta = issueTypeMeta[result.issueType];
+  const currentScenarioLabel = scenarios.find((item) => item.value === currentScenario)?.label;
   const primaryResource = result.recommendedResources?.find((item) => item.priority === "high") ?? result.recommendedResources?.[0];
   const matchingExamples = [...diagnoseExampleCases]
     .filter((item) => item.form.issueType === result.issueType)
@@ -1095,6 +1096,36 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                 </Badge>
               );
             })}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-medium text-white">复查与交接</h3>
+          <div className="mt-3 grid gap-3 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">复查时先保留</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-300">
+                <li>• 当前判断：{issueMeta.label}</li>
+                <li>• 最小验证：{result.fixSteps[0]?.verify ?? "先做一条最小真测"}</li>
+                <li>• 当前场景：{currentScenarioLabel ?? "未指定场景"}</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200">复查时先别做</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
+                <li>• 别同时改多个层级再看结果</li>
+                <li>• 别把一次偶发恢复直接当成稳定结论</li>
+                <li>• 别在 {topWarning} 还没澄清前继续放大动作</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-cyan-200">交给下一位时最少带上</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
+                <li>• 当前最高原因：{topCause?.title ?? "待确认"}</li>
+                <li>• 第一跳资源：{primaryResource?.title ?? "先按当前第一跳继续"}</li>
+                <li>• 如果验证反证当前判断，就直接按上面的转分支卡改路</li>
+              </ul>
+            </div>
           </div>
         </div>
 

@@ -315,6 +315,41 @@ export default async function TemplateDetailPage({
               />
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">什么时候该升级处理，而不是继续在这份模板里硬推</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">模板页不只回答“怎么做”，也要回答“什么时候该切换处理层”。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-3">
+              <ChecklistBlock
+                title="先升级 Diagnose 如果"
+                items={[
+                  "你已经说不清当前到底卡在哪层",
+                  "最小验证直接反证了这份模板的主判断",
+                  "现在更像新分支，而不是模板里的同类问题",
+                ]}
+              />
+              <ChecklistBlock
+                title="先升级 Troubleshooting 如果"
+                items={[
+                  "方向大致没错，但结果时好时坏",
+                  "你开始需要明确停手点和回滚顺序",
+                  "需要一条更稳的最小验证 / 收口顺序",
+                ]}
+                tone="success"
+              />
+              <ChecklistBlock
+                title="先升级 Product Notes 如果"
+                items={[
+                  "你现在的问题其实是预期过满，不是单点执行错误",
+                  "当前要求已经明显超过首版能力边界",
+                  "需要先校正阶段判断，再决定要不要继续推进",
+                ]}
+                tone="warning"
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
