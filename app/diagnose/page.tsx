@@ -1173,6 +1173,14 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
               </ul>
             </div>
           </div>
+          <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">二次排查摘要</p>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+              <p className="text-sm leading-6 text-slate-300">先缩变量，不继续放大动作。</p>
+              <p className="text-sm leading-6 text-slate-300">再看最小验证是支持、反证，还是只给噪音。</p>
+              <p className="text-sm leading-6 text-slate-300">最后再决定继续当前分支、转旁支，还是升级处理层。</p>
+            </div>
+          </div>
         </div>
 
         {(onReset || onLoadExample || onJumpToExamples || onJumpToInput) && (

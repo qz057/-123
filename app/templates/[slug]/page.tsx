@@ -393,12 +393,22 @@ export default async function TemplateDetailPage({
                   ]}
                 />
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">交付前最后确认</p>
-                <div className="mt-2 grid gap-2 sm:grid-cols-3">
-                  <p className="text-sm leading-6 text-slate-600">第一跳别人一看就知道从哪开。</p>
-                  <p className="text-sm leading-6 text-slate-600">done signal 不是一次偶发，而是还能复现。</p>
-                  <p className="text-sm leading-6 text-slate-600">如果还会被别的分支拉走，就先别当正式交付。</p>
+              <div className="space-y-3">
+                <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">交付前最后确认</p>
+                  <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                    <p className="text-sm leading-6 text-slate-600">第一跳别人一看就知道从哪开。</p>
+                    <p className="text-sm leading-6 text-slate-600">done signal 不是一次偶发，而是还能复现。</p>
+                    <p className="text-sm leading-6 text-slate-600">如果还会被别的分支拉走，就先别当正式交付。</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">完成定义</p>
+                  <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                    <p className="text-sm leading-6 text-slate-600">别人接手不需要先猜当前层级。</p>
+                    <p className="text-sm leading-6 text-slate-600">最小验证和 done signal 都说得清。</p>
+                    <p className="text-sm leading-6 text-slate-600">回滚顺序和下一跳资源都已经写明白。</p>
+                  </div>
                 </div>
               </div>
             </CardContent>

@@ -216,6 +216,12 @@ const oneMinuteReadStrip = [
   "如果还拿不准，先去 Diagnose，而不是继续横跳。",
 ] as const;
 
+const dontDoStrip = [
+  "别把这页当执行页。",
+  "别为了看全内容推迟第一跳。",
+  "别在目录层反复横跳。",
+] as const;
+
 export default function DocsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -305,12 +311,22 @@ export default function DocsPage() {
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">离开前确认</p>
-              <div className="mt-2 grid gap-2 sm:grid-cols-3">
-                {exitCheckStrip.map((item) => (
-                  <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
-                ))}
+            <div className="space-y-3">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">离开前确认</p>
+                <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                  {exitCheckStrip.map((item) => (
+                    <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
+                  ))}
+                </div>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">这页最不该做的事</p>
+                <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                  {dontDoStrip.map((item) => (
+                    <p key={item} className="text-sm leading-6 text-slate-600">{item}</p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
