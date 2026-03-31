@@ -131,6 +131,33 @@ export default async function TemplateDetailPage({
 
           <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
             <CardHeader>
+              <CardTitle className="text-xl text-slate-950">失败分支怎么缩回去，才不会越改越乱</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">重点不是“再试一次”，而是知道什么时候该停、该退、该留什么证据。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-2">
+              <ChecklistBlock
+                title="别继续放大动作如果"
+                items={[
+                  "已经改了两轮，但还是说不清哪一步真正起效",
+                  "为了追结果开始同时改 provider、session、配置和入口",
+                  "你只能说“好像好一点了”，却拿不出最小验证证据",
+                ]}
+                tone="warning"
+              />
+              <ChecklistBlock
+                title="回滚后要保留的证据"
+                items={[
+                  "哪一步动作前是最后一个稳定点",
+                  "哪条最小验证证明问题仍在 / 已恢复",
+                  "这次最容易误判的信号到底是什么",
+                ]}
+                tone="success"
+              />
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
               <CardTitle className="text-xl text-slate-950">实战案例</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">看一条完整闭环：从问题出现，到如何处理，再到结果是否可复用。</CardDescription>
             </CardHeader>

@@ -76,6 +76,65 @@ const inputPriorityHints = [
   "symptom / error / expected：决定诊断依据、缺失项和建议质量",
 ] as const;
 
+const adjacentBranchHints: Record<DiagnoseIssueType, { title: string; detail: string; href: string; label: string }[]> = {
+  model_connection: [
+    {
+      title: "如果最小请求已经能通，就别继续卡在连接层",
+      detail: "这时更可能是配置没落到运行态，或 session 仍沿用旧结果。",
+      href: "/docs/troubleshooting",
+      label: "转排障顺序",
+    },
+    {
+      title: "如果入口能点但结果链路还是空的",
+      detail: "更像工具接入或 wrapper / MCP 链路问题，而不是 provider 本身不可用。",
+      href: "/use-cases/desktop-tool-integration",
+      label: "看接入场景",
+    },
+  ],
+  config_not_applied: [
+    {
+      title: "如果新会话里也完全没变化",
+      detail: "别只怀疑 refresh；也可能是你一开始改错层，或者其实是 session 错配。",
+      href: "/use-cases/model-switch-debug",
+      label: "看模型切换场景",
+    },
+    {
+      title: "如果配置看起来对，但请求本身一直失败",
+      detail: "那更像连接层问题，先做最小连通性验证。",
+      href: "/templates/model-connection-debug",
+      label: "看连接排查模板",
+    },
+  ],
+  model_switch_session_mismatch: [
+    {
+      title: "如果最小请求都打不出去，就不是 session 先出问题",
+      detail: "先回连接层，排 provider / auth / transport。",
+      href: "/templates/model-connection-debug",
+      label: "回连接排查",
+    },
+    {
+      title: "如果新会话和重开页面后仍完全没变化",
+      detail: "别只盯 session，也可能是配置覆盖或持久化链路没更新。",
+      href: "/docs/troubleshooting",
+      label: "看排障顺序",
+    },
+  ],
+  local_tool_integration: [
+    {
+      title: "如果开发态正常、正式包异常",
+      detail: "更像桌面壳 / preload / 权限 / 路径问题，而不是模型层问题。",
+      href: "/use-cases/desktop-tool-integration",
+      label: "看桌面接入场景",
+    },
+    {
+      title: "如果工具链路正常但输出仍旧不对",
+      detail: "先回 Diagnose 看是不是又滑回配置层或 session 层。",
+      href: "/docs/troubleshooting",
+      label: "回排障顺序",
+    },
+  ],
+};
+
 type DiagnoseExampleCase = {
   title: string;
   description: string;
@@ -559,6 +618,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
       return bScore - aScore;
     })
     .slice(0, 2);
+  const branchHints = adjacentBranchHints[result.issueType];
   const primaryResourceHref = primaryResource ? resolveResourceHref(primaryResource.kind, primaryResource.title) : undefined;
   const primaryResourceLabel = primaryResource ? (primaryResource.kind === "template" ? "模板" : "文档") : undefined;
   const topWarning = result.missingInputs?.[0] ?? issueMeta.avoid;
@@ -767,6 +827,24 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                   <p className="text-sm font-medium text-white">{item.title}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-300">场景：{item.context}</p>
                   <p className="mt-2 text-sm leading-6 text-cyan-100">判断重点：{item.implication}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!!branchHints.length && (
+          <div>
+            <h3 className="text-sm font-medium text-white">相邻误判分支：什么时候该转到旁边那条路</h3>
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              {branchHints.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-sm font-medium text-white">{item.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
+                  <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                    <span>{item.label}</span>
+                    <span aria-hidden>→</span>
+                  </Link>
                 </div>
               ))}
             </div>

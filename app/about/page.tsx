@@ -103,6 +103,12 @@ const taskFirstRoutes = [
   },
 ] as const;
 
+const pageLens = [
+  { label: "这页不是", value: "泛 AI 宣传页" },
+  { label: "默认判断", value: "先分清定位 / 执行 / 边界" },
+  { label: "读完要做", value: "马上决定从哪一页继续" },
+] as const;
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
@@ -152,6 +158,15 @@ export default function AboutPage() {
           </CardContent>
         </Card>
       </header>
+
+      <section className="mb-8 grid gap-3 sm:grid-cols-3">
+        {pageLens.map((item, index) => (
+          <div key={item.label} className={index === 1 ? "rounded-[24px] border border-slate-200 bg-slate-950 px-4 py-3.5 text-white shadow-sm" : "rounded-[24px] border border-slate-200 bg-slate-50/70 px-4 py-3.5 shadow-sm"}>
+            <p className={index === 1 ? "text-xs font-medium uppercase tracking-[0.18em] text-sky-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-400"}>{item.label}</p>
+            <p className={index === 1 ? "mt-2 text-sm font-medium leading-6 text-white" : "mt-2 text-sm font-medium leading-6 text-slate-900"}>{item.value}</p>
+          </div>
+        ))}
+      </section>
 
       <section className="mb-8">
         <div className="mb-4">

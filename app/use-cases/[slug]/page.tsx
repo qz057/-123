@@ -157,6 +157,31 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               </div>
             </CardContent>
           </Card>
+
+          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">失败分支与回滚证据</CardTitle>
+              <CardDescription className="text-sm leading-6 text-slate-600">场景页最怕的不是失败，而是失败后继续沿着错误入口放大动作。</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 pb-6 md:grid-cols-2">
+              <InfoBlock
+                title="别继续往下推如果"
+                items={[
+                  "你已经说不清当前是在定位、执行还是补边界",
+                  "为了救现场开始同时换入口、换模板、换配置",
+                  "done signal 还没出现，就已经开始扩下一阶段目标",
+                ]}
+              />
+              <InfoBlock
+                title="回滚后先留住这些证据"
+                items={[
+                  "最后一个稳定入口是什么",
+                  "哪条最小验证证明现在已经恢复 / 仍失败",
+                  "这次最容易误判的分支是哪一条",
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
