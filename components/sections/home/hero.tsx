@@ -81,7 +81,7 @@ function HeroCopy({ compact = false, mobile = false }: { compact?: boolean; mobi
     <div className={mobile ? "space-y-4" : "space-y-5 sm:space-y-6"}>
       <div className="flex flex-wrap gap-2 text-xs">
         <Badge variant="outline" className="border-sky-200 bg-white/80 text-sky-700 backdrop-blur">
-          FlowDock
+          山谷神奇 FlowDock
         </Badge>
         <Badge variant="secondary" className="bg-slate-950 text-white">
           AI 自动化工作台
