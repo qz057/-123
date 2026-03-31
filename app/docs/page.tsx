@@ -333,7 +333,7 @@ export default function DocsPage() {
         </CardContent>
       </section>
 
-      <section className="mb-8 rounded-[32px] border border-slate-200 bg-slate-50/70 p-3.5 shadow-sm sm:p-4">
+      <section className="mb-8 hidden rounded-[32px] border border-slate-200 bg-slate-50/70 p-3.5 shadow-sm sm:block sm:p-4">
         <div className="mb-3.5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Task-first routes</p>
@@ -364,7 +364,7 @@ export default function DocsPage() {
         </div>
       </section>
 
-      <section className="mb-7">
+      <section className="mb-7 hidden sm:block">
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Entry routes</p>
@@ -395,7 +395,7 @@ export default function DocsPage() {
         </div>
       </section>
 
-      <section className="mb-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-3.5 shadow-sm sm:p-4">
+      <section className="mb-8 hidden rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-3.5 shadow-sm sm:block sm:p-4">
         <div className="mb-3.5 grid gap-3.5 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Decision map</p>
@@ -458,7 +458,7 @@ export default function DocsPage() {
         </div>
       </section>
 
-      <section className="mb-8">
+      <section className="mb-8 hidden sm:block">
         <div className="mb-4">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Roles</p>
           <h2 className="mt-1 text-xl font-semibold text-slate-950">五份文档分别负责什么</h2>
@@ -498,7 +498,7 @@ export default function DocsPage() {
         </div>
       </section>
 
-      <section className="mb-8">
+      <section className="mb-8 hidden sm:block">
         <div className="mb-4">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Reading paths</p>
           <h2 className="mt-1 text-xl font-semibold text-slate-950">推荐阅读路径</h2>
@@ -530,7 +530,7 @@ export default function DocsPage() {
         </div>
       </section>
 
-      <section className="mb-8 grid gap-3.5 xl:grid-cols-[1.02fr_0.98fr]">
+      <section className="mb-8 hidden gap-3.5 sm:grid xl:grid-cols-[1.02fr_0.98fr]">
         <Card className="rounded-[28px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
           <CardHeader className="pb-3.5">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Failure branches</p>
@@ -634,7 +634,7 @@ export default function DocsPage() {
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">All docs</p>
             <h2 className="mt-1 text-xl font-semibold text-slate-950">全部文档</h2>
-            <p className="mt-1 text-sm leading-[1.6] text-slate-500 sm:hidden">移动端这里保留紧凑入口，详细说明已尽量提前放在上面的职责区、决策图和阅读路径里。</p>
+            <p className="mt-1 text-sm leading-[1.6] text-slate-500 sm:hidden">移动端这里直接保留紧凑入口；前面的目录解释层已收成更短的 mobile 导航卡，避免在真正选文档前先滚太久。</p>
           </div>
           <Link href="/diagnose" className="hidden text-sm font-medium text-sky-700 sm:inline-flex">
             不确定从哪开始？先体检配置

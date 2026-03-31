@@ -119,7 +119,33 @@ export default function TemplatesPage() {
         </Card>
       </header>
 
-      <section className="mb-8">
+      <section className="mb-8 sm:hidden">
+        <Card className="rounded-[28px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+          <CardHeader>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Mobile pick guide</p>
+            <CardTitle className="text-xl text-slate-950">手机上先这样选模板</CardTitle>
+            <CardDescription className="text-sm leading-6 text-slate-600">
+              先把最值钱的判断压短：先判层，再看模板卡里的适配信号，不在上面几层说明里来回读。
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 pb-5 text-sm leading-[1.65] text-slate-600">
+            <p className="rounded-2xl bg-white px-4 py-3">问题还糊：先 Diagnose，不要直接按模板标题猜。</p>
+            <p className="rounded-2xl bg-white px-4 py-3">方向已清：直接进模板卡，优先看“适合你如果 / 先别用如果 / 输出”。</p>
+            <p className="rounded-2xl bg-white px-4 py-3">怕选错：先看 failure signals 和 outputs，别先被卡片数量带着走。</p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5 pt-1">
+              <Link href="/diagnose" className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
+                先去 Diagnose
+              </Link>
+              <Link href="#template-grid" className={inlineLinkClass}>
+                <span>直接看模板列表</span>
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section className="mb-8 hidden sm:block">
         <div className="mb-4">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Entry routes</p>
           <h2 className="mt-1 text-xl font-semibold text-slate-950">现在最常见的三种进模板方式</h2>
@@ -148,7 +174,7 @@ export default function TemplatesPage() {
         </div>
       </section>
 
-      <section className="mb-7">
+      <section className="mb-7 hidden sm:block">
         <div className="mb-3.5">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Decision points</p>
           <h2 className="mt-1 text-xl font-semibold text-slate-950">这页真正帮你决定的，不只是“点哪个模板”</h2>
@@ -167,7 +193,7 @@ export default function TemplatesPage() {
         </div>
       </section>
 
-      <section id="template-rules" className="mb-8 grid gap-3.5 xl:grid-cols-[1.04fr_0.96fr]">
+      <section id="template-rules" className="mb-8 hidden gap-3.5 xl:grid-cols-[1.04fr_0.96fr] sm:grid">
         <Card className="rounded-[28px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
           <CardHeader>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Selection rules</p>

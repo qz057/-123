@@ -129,7 +129,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">失败分支怎么缩回去，才不会越改越乱</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">重点不是“再试一次”，而是知道什么时候该停、该退、该留什么证据。</CardDescription>
@@ -156,7 +156,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">实战案例</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">看一条完整闭环：从问题出现，到如何处理，再到结果是否可复用。</CardDescription>
