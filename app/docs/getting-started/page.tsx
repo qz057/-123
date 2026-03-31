@@ -38,6 +38,41 @@ export default function GettingStartedPage() {
           ],
         },
       ]}
+      workflow={{
+        eyebrow: "Start flow",
+        title: "第一次进入 FlowDock，最稳的使用顺序",
+        description:
+          "起步时最怕的不是信息不够，而是一开始就走错入口。更稳的节奏是：先判断你现在更像在定位问题，还是已经明确要执行什么，再决定 Diagnose、Templates、Use Cases 和 Docs 的先后顺序。",
+        steps: [
+          {
+            title: "先判断你现在更像哪种现场",
+            detail: "如果你还说不清问题在哪层，说明现在最缺的是归类；如果你已经明确要做什么，说明现在更缺执行路径。",
+            cue: "起点判断",
+            href: "/diagnose",
+            actionLabel: "先看 Diagnose",
+            tone: "primary",
+          },
+          {
+            title: "问题模糊先 Diagnose",
+            detail: "先把问题压回连接、配置、Session 或接入层，不要一开始就横跳模板和文档。",
+            cue: "先压层",
+          },
+          {
+            title: "方向明确再进 Templates / Use Cases",
+            detail: "当目标已经清楚，就直接切执行层，不再继续停在概念理解和目录浏览。",
+            cue: "转执行",
+            href: "/templates",
+            actionLabel: "打开模板中心",
+          },
+          {
+            title: "最后才回 Docs 收口验证",
+            detail: "当你需要边界、顺序、失败分支和验证口径时，再回到文档，不把文档当成第一入口。",
+            cue: "收口",
+            href: "/docs/troubleshooting",
+            actionLabel: "补看排障顺序",
+          },
+        ],
+      }}
       sections={[
         {
           title: "FlowDock 首版到底是什么",
@@ -81,6 +116,19 @@ export default function GettingStartedPage() {
             "目标结果：你本来想让它做成什么",
             "关键环境：provider / model / auth / transport / session",
             "最近变更：最近一次改动常常就是最好用的排查起点",
+          ],
+        },
+        {
+          title: "失败分支：如果第一天就开始横跳多个入口，怎么收回来",
+          body: "起步最容易出问题的一种情况，是刚接触 FlowDock 就同时打开 Diagnose、Templates、Use Cases、Docs，还顺手改了几份配置。这样最难受的不是信息不够，而是你已经说不清哪一步真正改变了状态。更稳的做法是先把现场收回来：重新只保留一个主入口，再按‘一步一验’的节奏继续。",
+          bullets: [
+            "如果问题还模糊，只保留 Diagnose 作为唯一主入口，先别继续翻模板",
+            "如果方向已经明确，只保留一份模板或一个 use case，不要三页并行读",
+            "每完成一步就做一次最小验证，不把 4 个动作堆到最后一起验",
+          ],
+          links: [
+            { href: "/diagnose", label: "回 Diagnose 重新起步", tone: "primary" },
+            { href: "/templates", label: "只保留模板主链路" },
           ],
         },
         {

@@ -1,8 +1,15 @@
+import Link from "next/link";
 import { trustPoints } from "@/data/home/content";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const trustSignals = ["真实问题驱动", "结果优先", "可回头验证"] as const;
+
+const trustActions = [
+  { label: "先做问题归类", href: "/diagnose" },
+  { label: "进入模板中心", href: "/templates" },
+  { label: "补文档与边界", href: "/docs" },
+] as const;
 
 export function TrustSection() {
   return (
@@ -70,6 +77,33 @@ export function TrustSection() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="mt-5 rounded-[28px] border border-slate-200 bg-white/85 px-4 py-4 shadow-sm sm:mt-6 sm:px-5">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Trust, translated into action</p>
+              <h3 className="mt-1 text-lg font-semibold text-slate-950 sm:text-xl">如果你只记住一件事：可信，不是因为说得多，而是因为下一步接得住</h3>
+            </div>
+            <p className="hidden max-w-md text-sm leading-6 text-slate-500 lg:block">
+              所以信任区不只讲理念，必须把用户继续送回 Diagnose、Templates 和 Docs 三条主路径里。
+            </p>
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            {trustActions.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={
+                  index === 0
+                    ? "inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+                    : "inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                }
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>

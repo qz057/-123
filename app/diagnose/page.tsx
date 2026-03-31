@@ -47,6 +47,29 @@ function resolveResourceHref(kind: "template" | "doc", title: string) {
   return kind === "template" ? templateHrefByTitle.get(title) : resolveDocHref(title);
 }
 
+const issueTypeMeta: Record<DiagnoseIssueType, { label: string; focus: string; avoid: string }> = {
+  model_connection: {
+    label: "模型连接问题",
+    focus: "先确认 provider / auth / transport 有没有真的打出最小请求。",
+    avoid: "别在连通性还没证实时，同时继续改 session、模板和展示层。",
+  },
+  config_not_applied: {
+    label: "配置不生效",
+    focus: "先确认运行态到底吃到了哪份配置、谁覆盖了谁。",
+    avoid: "别把文件改动或 UI 显示直接当成运行态已经更新。",
+  },
+  model_switch_session_mismatch: {
+    label: "模型切换 / Session 异常",
+    focus: "先确认当前会话是否真的切到目标模型，而不是只看默认值。",
+    avoid: "别在旧会话里靠感觉判断是否切换成功。",
+  },
+  local_tool_integration: {
+    label: "本地助手 / 工具接入问题",
+    focus: "先确认入口可见性和真实执行链路是不是都通了。",
+    avoid: "别把按钮可见或菜单存在直接当成接入已经完成。",
+  },
+};
+
 const initialForm: DiagnoseInput = {
   issueType: "model_switch_session_mismatch",
   scenario: "control_ui",
@@ -99,7 +122,7 @@ export default function DiagnosePage() {
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <Badge variant="outline">FlowDock</Badge>
           <Badge variant="secondary">Diagnose</Badge>
-          <Badge variant="outline">规则型 V1</Badge>
+          <Badge variant="outline">规则型 V2</Badge>
         </div>
         <div className="space-y-3">
           <h1 className="text-3xl font-semibold tracking-tight text-slate-950">配置诊断器</h1>
@@ -308,11 +331,21 @@ function NativeSelect({
 }
 
 function ResultCard({ result, onReset, onLoadExample }: { result: DiagnoseResult; onReset?: () => void; onLoadExample?: () => void }) {
+  const issueMeta = issueTypeMeta[result.issueType];
+  const primaryResource = result.recommendedResources?.find((item) => item.priority === "high") ?? result.recommendedResources?.[0];
+  const primaryResourceHref = primaryResource ? resolveResourceHref(primaryResource.kind, primaryResource.title) : undefined;
+  const primaryResourceLabel = primaryResource ? (primaryResource.kind === "template" ? "模板" : "文档") : undefined;
+  const topWarning = result.missingInputs?.[0] ?? issueMeta.avoid;
+  const topCause = result.causes[0];
+
   return (
     <Card className="rounded-3xl border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
-      <CardHeader>
+      <CardHeader className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <CardTitle className="text-xl text-white">诊断结果</CardTitle>
+          <Badge variant="secondary" className="border border-white/15 bg-white/10 text-slate-100">
+            {issueMeta.label}
+          </Badge>
           <Badge variant="secondary" className="border border-white/15 bg-white/10 text-slate-100">
             {result.riskLevel.toUpperCase()}
           </Badge>
@@ -325,6 +358,32 @@ function ResultCard({ result, onReset, onLoadExample }: { result: DiagnoseResult
         )}
       </CardHeader>
       <CardContent className="space-y-5 pb-6">
+        <div className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">当前更像</p>
+            <p className="mt-2 text-sm font-medium text-white">{issueMeta.label}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">{issueMeta.focus}</p>
+          </div>
+
+          <div className="rounded-2xl border border-emerald-300/15 bg-emerald-400/10 p-4">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-emerald-200">建议第一跳</p>
+            <p className="mt-2 text-sm font-medium text-white">{primaryResource?.title ?? result.nextActions[0] ?? "先确认归类是否抓对"}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">{primaryResource?.reason ?? "先按当前最高概率路径推进，再用最小验证确认结果。"}</p>
+            {primaryResourceHref && primaryResourceLabel ? (
+              <div className="mt-3">
+                <Link href={primaryResourceHref} className="inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10">
+                  打开{primaryResourceLabel}
+                </Link>
+              </div>
+            ) : null}
+          </div>
+
+          <div className="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-4">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-amber-200">现在先别做</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">{topWarning}</p>
+          </div>
+        </div>
+
         {!!result.diagnosisBasis?.length && (
           <div>
             <h3 className="text-sm font-medium text-white">判断依据</h3>
@@ -336,39 +395,66 @@ function ResultCard({ result, onReset, onLoadExample }: { result: DiagnoseResult
           </div>
         )}
 
+        <div>
+          <h3 className="text-sm font-medium text-white">当前最值得先处理的原因</h3>
+          <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {result.causes.map((cause, index) => (
+              <div key={cause.title} className={index === 0 ? "rounded-2xl border border-white/10 bg-white/5 p-4" : "rounded-2xl border border-white/10 bg-white/5 p-4"}>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-medium text-white">{cause.title}</p>
+                  <Badge variant="outline" className="border-white/20 text-slate-100">
+                    {cause.confidence.toUpperCase()}
+                  </Badge>
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{cause.reason}</p>
+                {index === 0 && topCause ? <p className="mt-2 text-xs leading-5 text-cyan-100">优先从这个原因开始做最小验证。</p> : null}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {!!result.missingInputs?.length && (
           <div>
             <h3 className="text-sm font-medium text-white">建议补充信息</h3>
-            <ul className="mt-3 space-y-2 text-sm leading-6 text-amber-200">
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
               {result.missingInputs.map((item) => (
-                <li key={item}>• {item}</li>
+                <div key={item} className="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-4 text-sm leading-6 text-amber-100">
+                  {item}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
 
         <div>
-          <h3 className="text-sm font-medium text-white">高概率原因</h3>
-          <ul className="mt-3 space-y-3 text-sm leading-6 text-slate-300">
-            {result.causes.map((cause) => (
-              <li key={cause.title}>
-                <span className="font-medium text-white">{cause.title}</span>：{cause.reason}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-sm font-medium text-white">修复步骤</h3>
-          <ol className="mt-3 space-y-3 text-sm leading-6 text-slate-300">
+          <h3 className="text-sm font-medium text-white">建议执行顺序</h3>
+          <div className="mt-3 grid gap-3">
             {result.fixSteps.map((step) => (
-              <li key={step.step}>
-                <span className="font-medium text-white">{step.step}. {step.action}</span>
-                <div>原因：{step.why}</div>
-                <div>验证：{step.verify}</div>
-              </li>
+              <div key={step.step} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-semibold text-slate-950">
+                      {step.step}
+                    </span>
+                    <p className="text-sm font-medium text-white">{step.action}</p>
+                  </div>
+                  <Badge variant="outline" className="border-white/20 text-slate-100">
+                    顺序 {step.step}
+                  </Badge>
+                </div>
+                <div className="mt-3 grid gap-3 md:grid-cols-2">
+                  <div className="rounded-2xl border border-white/10 bg-slate-950/35 px-3.5 py-3">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">为什么先做</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{step.why}</p>
+                  </div>
+                  <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 px-3.5 py-3">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-cyan-200">完成证明</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-200">{step.verify}</p>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
 
         {!!result.scoreBreakdown?.length && (
@@ -438,7 +524,7 @@ function ResultCard({ result, onReset, onLoadExample }: { result: DiagnoseResult
         {!!result.recommendedResources?.length && (
           <div>
             <h3 className="text-sm font-medium text-white">推荐资源优先级</h3>
-            <div className="mt-3 space-y-3">
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
               {result.recommendedResources.map((resource) => {
                 const href = resolveResourceHref(resource.kind, resource.title);
                 const label = resource.kind === "template" ? "模板" : "文档";

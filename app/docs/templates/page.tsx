@@ -38,6 +38,39 @@ export default function TemplatesDocsPage() {
           ],
         },
       ]}
+      workflow={{
+        eyebrow: "Execution flow",
+        title: "把模板用成执行路径，而不是阅读材料",
+        description:
+          "模板真正的价值不在于内容多，而在于它能把‘我接下来先做什么’压成更稳的主链路。更稳的顺序是：先确认模板选对，再补输入，按单变量推进，最后把 done signal 与回滚口径收清。",
+        steps: [
+          {
+            title: "先判断模板是不是选对了",
+            detail: "先看 fit signals / not fit signals，而不是看到标题接近就直接开始做。",
+            cue: "先选对",
+            href: "/templates",
+            actionLabel: "打开模板中心",
+            tone: "primary",
+          },
+          {
+            title: "再补齐最值钱的输入",
+            detail: "把账号、报错、配置片段、运行环境和目标结果先补齐，不在输入残缺时硬推进。",
+            cue: "补输入",
+          },
+          {
+            title: "执行时坚持单变量推进",
+            detail: "一次只改一层、验一层，不把 4 个动作一起堆到最后再判断是否成功。",
+            cue: "主链路",
+          },
+          {
+            title: "最后看 done signal 和回滚口径",
+            detail: "模板不是看到最后就算完成，必须确认真实输出、失败信号和回滚步骤都可复用。",
+            cue: "验收 / 回滚",
+            href: "/docs/troubleshooting",
+            actionLabel: "补看排障顺序",
+          },
+        ],
+      }}
       sections={[
         {
           title: "分类体系为什么这样划分",
@@ -92,6 +125,19 @@ export default function TemplatesDocsPage() {
           links: [
             { href: "/diagnose", label: "回 Diagnose 重新判断" },
             { href: "/use-cases", label: "按使用场景找入口" },
+          ],
+        },
+        {
+          title: "失败分支：模板越换越乱时，怎么把现场收回来",
+          body: "模板使用里最常见的失败分支，不是模板内容不够，而是你一旦发现这份模板没立刻解决问题，就开始横跳第二份、第三份。结果不是路径更多，而是顺序感更差。更稳的做法是先停手，把现场收回到一条主链路：确认你现在到底是选错模板，还是输入不足，还是执行时一次改了太多变量。",
+          bullets: [
+            "如果问题层级本身还模糊，先回 Diagnose，不要继续横跳模板",
+            "如果模板方向没错，但总是卡在中段，先检查是不是输入不全或缺最小验证",
+            "如果模板已经看懂但状态越来越乱，优先按回滚步骤撤到上一稳定点再继续",
+          ],
+          links: [
+            { href: "/diagnose", label: "回 Diagnose 重新归类", tone: "primary" },
+            { href: "/docs/troubleshooting", label: "看回滚与停手顺序" },
           ],
         },
         {
