@@ -27,10 +27,10 @@ const difficultyStats = ["新手", "进阶", "技术向"] as const;
 
 const templateStats = [
   { label: "当前模板数", value: `${templatesCatalog.length} 个` },
-  { label: "先看哪类", value: "不清楚方向先 Diagnose" },
+  { label: "默认第一步", value: "方向不清时先 Diagnose" },
   {
-    label: "主要用途",
-    value: "把模糊问题压成可执行顺序",
+    label: "页面职责",
+    value: "把问题归到正确模板，再进入详情执行",
   },
 ] as const;
 
@@ -52,6 +52,21 @@ const entryRoutes = [
     description: "先看模板是否真的适配当前阶段，再看步骤数、输出物和失败信号是否匹配。",
     primary: { label: "先看筛选原则", href: "#template-rules" },
     secondary: { label: "回 Getting Started", href: "/docs/getting-started" },
+  },
+] as const;
+
+const decisionPoints = [
+  {
+    title: "先判断你在哪一层",
+    description: "搭建、排障、自动化、产品化先分开，不要按页面标题凭感觉选。",
+  },
+  {
+    title: "再确认模板会产出什么",
+    description: "先看 outputs、steps 和 failure signals，确认它真能把你带到下一步。",
+  },
+  {
+    title: "列表页负责选路，详情页负责执行",
+    description: "列表页是入口分流器；真正的步骤、验收和回退逻辑在详情页里。",
   },
 ] as const;
 
@@ -80,7 +95,7 @@ export default function TemplatesPage() {
             <Link href="/diagnose" className={primaryButtonClass}>
               不知道选哪个？先体检配置
             </Link>
-            <Link href="/docs/templates" className={inlineLinkClass}>
+            <Link href="/docs/templates" className={`${inlineLinkClass} hidden sm:inline-flex`}>
               <span>先看 Templates 文档</span>
               <span aria-hidden>→</span>
             </Link>
@@ -127,6 +142,25 @@ export default function TemplatesPage() {
                     <span aria-hidden>→</span>
                   </Link>
                 </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-7">
+        <div className="mb-3.5">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Decision points</p>
+          <h2 className="mt-1 text-xl font-semibold text-slate-950">这页真正帮你决定的，不只是“点哪个模板”</h2>
+        </div>
+        <div className="grid gap-3 lg:grid-cols-3">
+          {decisionPoints.map((item) => (
+            <Card key={item.title} className="rounded-[24px] border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+              <CardHeader className="pb-2.5">
+                <CardTitle className="text-base text-slate-950 sm:text-lg">{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="pb-4">
+                <p className="text-sm leading-[1.6] text-slate-600">{item.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -183,13 +217,13 @@ export default function TemplatesPage() {
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">All templates</p>
             <h2 className="mt-1 text-xl font-semibold text-slate-950">首批模板</h2>
-            <p className="mt-1 text-sm leading-6 text-slate-500 sm:hidden">移动端优先保留模板摘要、适用对象和执行规模，详细判断放进模板详情页。</p>
+            <p className="mt-1 text-sm leading-6 text-slate-500 sm:hidden">移动端优先保留适配判断、输出物和动作入口，详细步骤放进模板详情页。</p>
           </div>
           <Link href="/diagnose" className="hidden text-sm font-medium text-sky-700 sm:inline-flex">
             不知道选哪个？先体检配置
           </Link>
         </div>
-        <div className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-4 xl:gap-3">
           {templatesCatalog.map((template, index) => (
             <Card key={template.slug} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
               <CardHeader className="pb-3">
@@ -202,11 +236,24 @@ export default function TemplatesPage() {
                 <CardDescription className="text-sm leading-[1.65] text-slate-600">{template.summary}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3.5 pb-4">
-                <div className="rounded-2xl bg-slate-50/80 px-3.5 py-3 text-sm leading-[1.65] text-slate-600">
+                <div className="rounded-2xl bg-slate-50/80 px-3.5 py-3">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">Scenario</p>
-                  <p className="mt-1.5">{template.scenario}</p>
+                  <p className="mt-1.5 text-sm leading-[1.6] text-slate-600">{template.scenario}</p>
+                  <div className="mt-3 space-y-2">
+                    <CompactDecisionRow
+                      label="适合你如果"
+                      tone="sky"
+                      text={template.fitSignals[0] ?? "先看当前问题是不是这类模板要解决的对象。"}
+                    />
+                    <CompactDecisionRow
+                      label="先别用如果"
+                      tone="rose"
+                      text={template.notFitSignals[0] ?? "如果当前阶段不匹配，先回 Diagnose 或换入口。"}
+                    />
+                  </div>
                 </div>
-                <div className="grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
+
+                <div className="grid grid-cols-2 gap-2 text-center text-xs text-slate-500 sm:grid-cols-3">
                   <div className="rounded-2xl border border-slate-200 bg-white px-2.5 py-2.5">
                     <p className="font-medium text-slate-950">{template.steps.length}</p>
                     <p className="mt-1">步骤</p>
@@ -215,12 +262,24 @@ export default function TemplatesPage() {
                     <p className="font-medium text-slate-950">{template.outputs.length}</p>
                     <p className="mt-1">输出</p>
                   </div>
-                  <div className="rounded-2xl border border-slate-200 bg-white px-2.5 py-2.5">
-                    <p className="font-medium text-slate-950">{template.relatedDocs?.length ?? 0}</p>
+                  <div className="hidden rounded-2xl border border-slate-200 bg-white px-2.5 py-2.5 sm:block">
+                    <p className="font-medium text-slate-950">{template.relatedDocs.length}</p>
                     <p className="mt-1">相关文档</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+
+                <div className="hidden rounded-2xl border border-slate-200 bg-slate-50/60 px-3.5 py-3 sm:block">
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">Expected outputs</p>
+                  <div className="mt-2 flex flex-wrap gap-2 text-xs text-slate-600">
+                    {template.outputs.slice(0, 2).map((item) => (
+                      <span key={item} className="rounded-full bg-white px-3 py-1">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="hidden flex-wrap gap-2 text-xs text-slate-500 sm:flex">
                   {template.audience.slice(0, 2).map((item) => (
                     <span key={item} className="rounded-full bg-slate-100 px-3 py-1">
                       {item}
@@ -250,6 +309,28 @@ function DarkStatCard({ label, value }: { label: string; value: string }) {
     <div className="rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">
       <p className="text-xs font-medium text-slate-400">{label}</p>
       <p className="mt-1 text-sm font-medium leading-6 text-white">{value}</p>
+    </div>
+  );
+}
+
+function CompactDecisionRow({
+  label,
+  text,
+  tone,
+}: {
+  label: string;
+  text: string;
+  tone: "sky" | "rose";
+}) {
+  const toneClass =
+    tone === "sky"
+      ? "border-sky-100 bg-sky-50/80 text-slate-700"
+      : "border-rose-100 bg-rose-50/70 text-slate-700";
+
+  return (
+    <div className={`rounded-xl border px-3 py-2.5 ${toneClass}`}>
+      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">{label}</p>
+      <p className="mt-1 text-sm leading-[1.55]">{text}</p>
     </div>
   );
 }
