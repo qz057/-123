@@ -79,9 +79,18 @@ export function ProductJourneySection() {
                 FlowDock 不是一堆页面，
                 <span className="block text-slate-600">而是一条把问题送进正确入口的执行路径</span>
               </h2>
-              <p className="max-w-3xl text-sm leading-6 text-slate-600 sm:text-[15px] sm:leading-6">
+              <p className="hidden max-w-3xl text-sm leading-6 text-slate-600 sm:block sm:text-[15px] sm:leading-6">
                 首页的任务不是把所有内容一次讲完，而是让用户更快走到正确第一步。先定位，再执行，最后验证收口，这是整个产品首页最该传达清楚的结构。
               </p>
+            </div>
+          </div>
+
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 p-3.5 shadow-sm md:hidden">
+            <p className="text-sm font-semibold text-slate-950">手机上先记住这 3 件事</p>
+            <div className="mt-3 grid gap-2">
+              <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm leading-6 text-slate-700">先 Diagnose，把问题压回正确层级。</div>
+              <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm leading-6 text-slate-700">再 Templates / Use Cases，把理解变成执行。</div>
+              <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm leading-6 text-slate-700">最后回 Docs，把边界和验证收清。</div>
             </div>
           </div>
 
@@ -103,7 +112,7 @@ export function ProductJourneySection() {
 
         <div className="relative">
           <div className="absolute left-8 right-8 top-8 hidden h-px bg-gradient-to-r from-sky-200 via-slate-200 to-slate-200 xl:block" />
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4 xl:gap-3.5">
+          <div className="hidden gap-3 md:grid md:grid-cols-2 xl:grid-cols-4 xl:gap-3.5">
             {journey.map((item, index) => {
               const isPrimary = index === 0;
               const hideOnMobile = index === 3;

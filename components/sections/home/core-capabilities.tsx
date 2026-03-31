@@ -74,7 +74,7 @@ export function CoreCapabilitiesSection() {
                   primary
                     ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_20px_60px_-34px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
                     : index === 2
-                      ? "rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm md:col-span-2 xl:col-span-1 sm:rounded-[1.75rem]"
+                      ? "hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm sm:block md:col-span-2 xl:col-span-1"
                       : "rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm sm:rounded-[1.75rem]"
                 }
               >
