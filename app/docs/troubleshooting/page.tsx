@@ -36,6 +36,7 @@ export default function TroubleshootingDocsPage() {
             "方向清楚但执行顺序不稳：切 Templates，按单变量节奏推进",
             "怀疑自己在拿首版能力强行做成熟产品预期：补看 Product Notes",
           ],
+          mobileHidden: true,
         },
       ]}
       workflow={{
@@ -128,6 +129,7 @@ export default function TroubleshootingDocsPage() {
         {
           title: "案例 03：文档都看过了，现场还是越做越乱",
           body: "这不是理解力问题，通常是执行顺序失控。你可能已经看了 Diagnose、Templates、Docs，甚至还额外开了几个页面和配置文件，但每一步都缺一个小验证。最后最难受的不是没思路，而是已经分不清自己是在修问题，还是在堆更多变量。",
+          mobileHidden: true,
           highlights: [
             { label: "现场症状", value: "看了很多入口、改了很多地方，但说不清哪一步让状态变化" },
             { label: "常见源头", value: "并行开太多路径，缺少‘一步一验’的节奏" },
@@ -200,6 +202,7 @@ export default function TroubleshootingDocsPage() {
         {
           title: "排障完成的标准：不是‘看起来恢复了’，而是你能更快再做一次",
           body: "真正的排障收口至少满足三件事：目标行为已经稳定复现、你知道根因属于哪一层、下一次遇到时能更快定位。如果只满足第一件，那往往只是暂时恢复。FlowDock 这套文档、模板和诊断入口的意义，就是帮你把一次修复沉淀成下次更稳的路径。",
+          mobileHidden: true,
           highlights: [
             { label: "结果层", value: "目标行为已稳定复现，而不是偶发成功一次", tone: "success" },
             { label: "原因层", value: "能明确归因到 auth、配置覆盖、session 绑定或接入链路中的某一层" },

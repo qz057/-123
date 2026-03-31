@@ -22,6 +22,7 @@ export type DocShellFlowStep = {
   href?: string;
   actionLabel?: string;
   tone?: "default" | "primary" | "warning";
+  mobileHidden?: boolean;
 };
 
 export type DocShellFlow = {
@@ -37,11 +38,13 @@ export type DocShellSection = {
   highlights?: readonly DocShellHighlight[];
   bullets?: readonly string[];
   links?: readonly DocShellLink[];
+  mobileHidden?: boolean;
 };
 
 export type DocShellChecklist = {
   title: string;
   items: readonly string[];
+  mobileHidden?: boolean;
 };
 
 export function DocShell({
@@ -113,7 +116,7 @@ export function DocShell({
       {checklist.length ? (
         <section className="mt-8 grid gap-4 lg:grid-cols-3">
           {checklist.map((block, index) => (
-            <Card key={block.title} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
+            <Card key={block.title} className={block.mobileHidden ? "hidden rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm md:block" : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"}>
               <CardHeader>
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
                   Checklist {String(index + 1).padStart(2, "0")}
@@ -170,7 +173,7 @@ export function DocShell({
                   : "inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50";
 
               return (
-                <div key={`${step.title}-${index}`} className={cardClass}>
+                <div key={`${step.title}-${index}`} className={step.mobileHidden ? `${cardClass} hidden md:block` : cardClass}>
                   <div className="flex items-center justify-between gap-3">
                     <span className={cueClass}>{step.cue ?? `Step ${String(index + 1).padStart(2, "0")}`}</span>
                     <span
@@ -199,7 +202,7 @@ export function DocShell({
 
       {sectionEntries.length ? (
         <div className="mt-8 flex flex-wrap gap-2 lg:hidden">
-          {sectionEntries.map((section) => (
+          {sectionEntries.filter((section) => !section.mobileHidden).map((section) => (
             <a
               key={section.anchor}
               href={`#${section.anchor}`}
@@ -217,7 +220,7 @@ export function DocShell({
             <Card
               key={section.anchor}
               id={section.anchor}
-              className="scroll-mt-24 rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"
+              className={section.mobileHidden ? "hidden scroll-mt-24 rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm md:block" : "scroll-mt-24 rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"}
             >
               <CardHeader className="gap-3">
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">

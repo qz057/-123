@@ -70,6 +70,12 @@ const issueTypeMeta: Record<DiagnoseIssueType, { label: string; focus: string; a
   },
 };
 
+const inputPriorityHints = [
+  "issueType / scenario：先把问题压到更接近真实现场的分支",
+  "provider / model / auth / transport：帮助区分连接层和运行态层",
+  "symptom / error / expected：决定诊断依据、缺失项和建议质量",
+] as const;
+
 const initialForm: DiagnoseInput = {
   issueType: "model_switch_session_mismatch",
   scenario: "control_ui",
@@ -89,6 +95,7 @@ export default function DiagnosePage() {
   const [mobileStep, setMobileStep] = useState(1);
 
   const issueTypeValue = useMemo(() => form.issueType ?? "config_not_applied", [form.issueType]);
+  const currentIssueMeta = issueTypeMeta[issueTypeValue];
 
   function updateField<K extends keyof DiagnoseInput>(key: K, value: DiagnoseInput[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -118,7 +125,7 @@ export default function DiagnosePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <header className="mb-10 flex flex-col gap-4">
+      <header className="mb-8 flex flex-col gap-4 md:mb-10">
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <Badge variant="outline">FlowDock</Badge>
           <Badge variant="secondary">Diagnose</Badge>
@@ -129,6 +136,25 @@ export default function DiagnosePage() {
           <p className="max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
             输入你的场景、配置和报错信息，快速得到问题判断与修复建议。当前首版按规则型诊断输出，重点是结构稳定、结论可解释、下一步明确。
           </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">这次先盯什么</p>
+            <p className="mt-2 text-sm font-medium text-slate-950">{currentIssueMeta.label}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{currentIssueMeta.focus}</p>
+          </div>
+          <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-amber-700">这次先别做</p>
+            <p className="mt-2 text-sm leading-6 text-slate-700">{currentIssueMeta.avoid}</p>
+          </div>
+          <div className="hidden rounded-2xl border border-slate-200 bg-white px-4 py-3 md:block">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">最值钱输入</p>
+            <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-600">
+              {inputPriorityHints.map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </header>
 
@@ -208,38 +234,78 @@ export default function DiagnosePage() {
       </div>
 
       <div className="hidden lg:grid lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
-        <DesktopForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
+        <DesktopForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
         <ResultCard result={result} />
       </div>
 
       <div className="hidden space-y-6 md:block lg:hidden">
-        <TabletForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
+        <TabletForm form={form} setForm={updateField} issueTypeValue={issueTypeValue} issueMeta={currentIssueMeta} onAnalyze={runDiagnose} onLoadExample={loadExample} onReset={resetForm} />
         <ResultCard result={result} />
       </div>
     </div>
   );
 }
 
-function DesktopForm({ form, setForm, issueTypeValue, onAnalyze, onLoadExample, onReset }: FormProps) {
+function DesktopForm({ form, setForm, issueTypeValue, issueMeta, onAnalyze, onLoadExample, onReset }: FormProps) {
   return (
     <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
       <CardHeader>
         <CardTitle className="text-xl text-slate-950">输入</CardTitle>
-        <CardDescription>先选问题类型，再补 provider、model、配置片段与报错信息。</CardDescription>
+        <CardDescription>先定问题层，再补现场上下文和最小证据，不靠一句“不对”硬猜。</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5 pb-6">
-        <IssueTypeSelector value={issueTypeValue} onChange={(value) => setForm("issueType", value)} />
-        <div className="grid gap-3 sm:grid-cols-2">
-          <NativeSelect value={form.scenario ?? "openclaw"} onChange={(value) => setForm("scenario", value as DiagnoseInput["scenario"])} options={scenarios} />
-          <Input value={form.provider ?? ""} onChange={(event) => setForm("provider", event.target.value)} placeholder="provider" />
-          <Input value={form.model ?? ""} onChange={(event) => setForm("model", event.target.value)} placeholder="model" />
-          <NativeSelect value={form.authMode ?? "unknown"} onChange={(value) => setForm("authMode", value)} options={authModes.map((item) => ({ label: item, value: item }))} />
-          <NativeSelect value={form.transport ?? "auto"} onChange={(value) => setForm("transport", value)} options={transports.map((item) => ({ label: item, value: item }))} />
+        <div className="grid gap-3 xl:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">这轮先盯</p>
+            <p className="mt-2 text-sm font-medium text-slate-950">{issueMeta.label}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{issueMeta.focus}</p>
+          </div>
+          <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-amber-700">别先这样做</p>
+            <p className="mt-2 text-sm leading-6 text-slate-700">{issueMeta.avoid}</p>
+          </div>
         </div>
-        <Textarea value={form.configSnippet ?? ""} onChange={(event) => setForm("configSnippet", event.target.value)} placeholder="配置片段" className="min-h-32" />
-        <Textarea value={form.errorText ?? ""} onChange={(event) => setForm("errorText", event.target.value)} placeholder="报错信息" className="min-h-32" />
-        <Textarea value={form.symptomText ?? ""} onChange={(event) => setForm("symptomText", event.target.value)} placeholder="当前现象" />
-        <Textarea value={form.expectedOutcome ?? ""} onChange={(event) => setForm("expectedOutcome", event.target.value)} placeholder="期望结果" />
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">Step 1 · 先定问题层</p>
+          <div className="mt-3">
+            <IssueTypeSelector value={issueTypeValue} onChange={(value) => setForm("issueType", value)} />
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">Step 2 · 补基础上下文</p>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <NativeSelect value={form.scenario ?? "openclaw"} onChange={(value) => setForm("scenario", value as DiagnoseInput["scenario"])} options={scenarios} />
+            <Input value={form.provider ?? ""} onChange={(event) => setForm("provider", event.target.value)} placeholder="provider" />
+            <Input value={form.model ?? ""} onChange={(event) => setForm("model", event.target.value)} placeholder="model" />
+            <NativeSelect value={form.authMode ?? "unknown"} onChange={(value) => setForm("authMode", value)} options={authModes.map((item) => ({ label: item, value: item }))} />
+            <NativeSelect value={form.transport ?? "auto"} onChange={(value) => setForm("transport", value)} options={transports.map((item) => ({ label: item, value: item }))} />
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">Step 3 · 补现场证据</p>
+            <span className="text-xs text-slate-400">越接近真实现场，结果越稳</span>
+          </div>
+          <div className="mt-3 grid gap-3">
+            <Textarea value={form.configSnippet ?? ""} onChange={(event) => setForm("configSnippet", event.target.value)} placeholder="配置片段" className="min-h-28" />
+            <Textarea value={form.errorText ?? ""} onChange={(event) => setForm("errorText", event.target.value)} placeholder="报错信息" className="min-h-28" />
+            <Textarea value={form.symptomText ?? ""} onChange={(event) => setForm("symptomText", event.target.value)} placeholder="当前现象" />
+            <Textarea value={form.expectedOutcome ?? ""} onChange={(event) => setForm("expectedOutcome", event.target.value)} placeholder="期望结果" />
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">启动前检查</p>
+          <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-600">
+            {inputPriorityHints.map((item) => (
+              <li key={item}>• {item}</li>
+            ))}
+          </ul>
+        </div>
+
         <div className="flex flex-wrap gap-3">
           <Button className="rounded-full" onClick={onAnalyze}>开始诊断</Button>
           <Button variant="outline" className="rounded-full" onClick={onLoadExample}>载入示例</Button>
@@ -250,13 +316,25 @@ function DesktopForm({ form, setForm, issueTypeValue, onAnalyze, onLoadExample, 
   );
 }
 
-function TabletForm({ form, setForm, issueTypeValue, onAnalyze, onLoadExample, onReset }: FormProps) {
+function TabletForm({ form, setForm, issueTypeValue, issueMeta, onAnalyze, onLoadExample, onReset }: FormProps) {
   return (
     <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
       <CardHeader>
         <CardTitle className="text-xl text-slate-950">输入</CardTitle>
+        <CardDescription>先压层，再补上下文和现场证据。</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5 pb-6">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">这次先盯</p>
+            <p className="mt-2 text-sm font-medium text-slate-950">{issueMeta.label}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{issueMeta.focus}</p>
+          </div>
+          <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-amber-700">先别这样做</p>
+            <p className="mt-2 text-sm leading-6 text-slate-700">{issueMeta.avoid}</p>
+          </div>
+        </div>
         <IssueTypeSelector value={issueTypeValue} onChange={(value) => setForm("issueType", value)} />
         <div className="grid gap-3 sm:grid-cols-2">
           <NativeSelect value={form.scenario ?? "openclaw"} onChange={(value) => setForm("scenario", value as DiagnoseInput["scenario"])} options={scenarios} />
@@ -270,6 +348,14 @@ function TabletForm({ form, setForm, issueTypeValue, onAnalyze, onLoadExample, o
           <Textarea value={form.errorText ?? ""} onChange={(event) => setForm("errorText", event.target.value)} placeholder="报错信息" />
           <Textarea value={form.symptomText ?? ""} onChange={(event) => setForm("symptomText", event.target.value)} placeholder="当前现象" />
           <Textarea value={form.expectedOutcome ?? ""} onChange={(event) => setForm("expectedOutcome", event.target.value)} placeholder="期望结果" />
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">最值钱输入</p>
+          <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-600">
+            {inputPriorityHints.map((item) => (
+              <li key={item}>• {item}</li>
+            ))}
+          </ul>
         </div>
         <div className="flex flex-wrap gap-3">
           <Button className="rounded-full" onClick={onAnalyze}>开始诊断</Button>
@@ -285,6 +371,7 @@ type FormProps = {
   form: DiagnoseInput;
   setForm: <K extends keyof DiagnoseInput>(key: K, value: DiagnoseInput[K]) => void;
   issueTypeValue: DiagnoseIssueType;
+  issueMeta: { label: string; focus: string; avoid: string };
   onAnalyze: () => void;
   onLoadExample: () => void;
   onReset: () => void;
@@ -292,16 +379,23 @@ type FormProps = {
 
 function IssueTypeSelector({ value, onChange }: { value: DiagnoseIssueType; onChange: (value: DiagnoseIssueType) => void }) {
   return (
-    <div className="flex flex-wrap gap-2">
-      {issueTypes.map((item) => (
-        <button
-          key={item.value}
-          onClick={() => onChange(item.value)}
-          className={`rounded-full px-4 py-2 text-sm transition ${value === item.value ? "bg-sky-100 text-sky-800" : "border border-slate-200 text-slate-700 hover:bg-slate-50"}`}
-        >
-          {item.label}
-        </button>
-      ))}
+    <div className="grid gap-2 sm:grid-cols-2">
+      {issueTypes.map((item) => {
+        const selected = value === item.value;
+        const meta = issueTypeMeta[item.value];
+        return (
+          <button
+            key={item.value}
+            onClick={() => onChange(item.value)}
+            className={`rounded-2xl border px-4 py-3 text-left text-sm transition ${
+              selected ? "border-sky-300 bg-sky-50 text-sky-900" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+            }`}
+          >
+            <p className="font-medium">{item.label}</p>
+            <p className={`mt-1 text-xs leading-5 ${selected ? "text-sky-800" : "text-slate-500"}`}>{meta.focus}</p>
+          </button>
+        );
+      })}
     </div>
   );
 }

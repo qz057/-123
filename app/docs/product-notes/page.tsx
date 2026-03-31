@@ -36,6 +36,7 @@ export default function ProductNotesPage() {
             "你担心某个页面看起来很完整，但实际成熟度可能没到你想的程度",
             "你想知道下一阶段默认优先级，不想只盯当前单页效果",
           ],
+          mobileHidden: true,
         },
       ]}
       workflow={{
@@ -158,6 +159,7 @@ export default function ProductNotesPage() {
         {
           title: "当前明确还没收死的部分：不是缺骨架，而是继续补深度与细节",
           body: "现在剩下的工作，已经不是‘把站先搭出来’，而是沿着真实页面和真实路径继续补深度。重点不再是有没有这些入口，而是它们能不能在更多现场里更像成品、更少误判、更容易被复用。",
+          mobileHidden: true,
           highlights: [
             { label: "视觉层", value: "首页 / about / docs 总览仍可继续做设计稿级微调" },
             { label: "内容层", value: "docs 子页的案例层、失败分支和现场表达仍会继续加深" },
@@ -173,6 +175,7 @@ export default function ProductNotesPage() {
         {
           title: "为什么它现在仍然值得继续推进：最难的 0→1 已经过了",
           body: "对一个正在收口的产品来说，最难的往往不是再补几页内容，而是从 0 到 1 搭出一套真实能运转的结构。FlowDock 现在已经有真实路由、真实内容、真实互链、真实审看与验证工作流，所以后面的增强会开始持续累积，而不是每次都回到空白状态。",
+          mobileHidden: true,
           highlights: [
             { label: "已建立的基础", value: "真实页面 + 真实内容 + 真实互链 + 真实验证流程", tone: "success" },
             { label: "后续优化性质", value: "更像产品 polish，而不是继续补骨架" },

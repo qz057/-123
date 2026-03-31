@@ -118,7 +118,7 @@ export function FinalCtaSection() {
                   }
                 >
                   <p className="text-sm font-medium text-white">{item.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
+                  <p className="mt-2 hidden text-sm leading-6 text-slate-300 sm:block">{item.detail}</p>
                   <Link
                     href={item.href}
                     className={
@@ -136,7 +136,7 @@ export function FinalCtaSection() {
           </div>
         </div>
 
-        <div className="relative mt-6 rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-300 sm:mt-8 sm:rounded-[1.5rem] sm:px-5">
+        <div className="relative mt-6 hidden rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-300 sm:mt-8 sm:block sm:rounded-[1.5rem] sm:px-5">
           上面三条起步路已经覆盖首页最常见的开始方式；其余入口保留在顶部导航和对应区块里，不再在这里重复堆一排大按钮。
         </div>
       </div>

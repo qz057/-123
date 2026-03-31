@@ -180,36 +180,46 @@ export function ProductJourneySection() {
             </div>
           </div>
 
-          <div className="grid gap-3 md:grid-cols-3 md:gap-3">
-            {branchMap.map((item, index) => {
-              const hiddenOnMobile = index === 2;
-              return (
-                <div
-                  key={item.title}
+          <div className="rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)] md:hidden">
+            <p className="text-sm font-semibold text-white">移动端先只记住一件事</p>
+            <p className="mt-2 text-sm leading-[1.6] text-slate-300">问题还模糊就先 Diagnose；方向已经明确就直接 Templates；需要收口和边界时再回 Docs。</p>
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <Link href="/diagnose" className="inline-flex items-center gap-1 font-medium text-sky-200 transition hover:text-white">
+                <span>先做 Diagnose</span>
+                <span aria-hidden>→</span>
+              </Link>
+              <Link href="/templates" className="inline-flex items-center gap-1 font-medium text-slate-200 transition hover:text-white">
+                <span>去模板中心</span>
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="hidden gap-3 md:grid md:grid-cols-3 md:gap-3">
+            {branchMap.map((item, index) => (
+              <div
+                key={item.title}
+                className={
+                  index === 0
+                    ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)] sm:rounded-[28px] sm:p-3.5"
+                    : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm sm:rounded-[28px] sm:p-3.5"
+                }
+              >
+                <p className={index === 0 ? "text-[15px] font-semibold text-white sm:text-[17px]" : "text-[15px] font-semibold text-slate-950 sm:text-[17px]"}>{item.title}</p>
+                <p className={index === 0 ? "mt-2 text-sm leading-[1.6] text-slate-300" : "mt-2 text-sm leading-[1.6] text-slate-600"}>{item.detail}</p>
+                <Link
+                  href={item.href}
                   className={
                     index === 0
-                      ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)] sm:rounded-[28px] sm:p-3.5"
-                      : hiddenOnMobile
-                        ? "hidden rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm md:block md:rounded-[28px] md:p-3.5"
-                        : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm sm:rounded-[28px] sm:p-3.5"
+                      ? "mt-3.5 inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
+                      : "mt-3.5 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"
                   }
                 >
-                  <p className={index === 0 ? "text-[15px] font-semibold text-white sm:text-[17px]" : "text-[15px] font-semibold text-slate-950 sm:text-[17px]"}>{item.title}</p>
-                  <p className={index === 0 ? "mt-2 text-sm leading-[1.6] text-slate-300" : "mt-2 text-sm leading-[1.6] text-slate-600"}>{item.detail}</p>
-                  <Link
-                    href={item.href}
-                    className={
-                      index === 0
-                        ? "mt-3.5 inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-white transition hover:bg-white/10"
-                        : "mt-3.5 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"
-                    }
-                  >
-                    <span>{item.label}</span>
-                    {index !== 0 ? <span aria-hidden>→</span> : null}
-                  </Link>
-                </div>
-              );
-            })}
+                  <span>{item.label}</span>
+                  {index !== 0 ? <span aria-hidden>→</span> : null}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>
