@@ -37,11 +37,11 @@ export function UseCasesPreviewSection() {
                 className={
                   primary
                     ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-34px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
-                    : index === 2
-                      ? "hidden rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm md:block sm:rounded-[1.75rem]"
-                      : index === 3
-                        ? "hidden rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm xl:block sm:rounded-[1.75rem]"
-                        : "rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm sm:rounded-[1.75rem]"
+                    : index === 1
+                      ? "hidden rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm sm:rounded-[1.75rem] sm:block"
+                      : index === 2
+                        ? "hidden rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm md:block sm:rounded-[1.75rem]"
+                        : "hidden rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm xl:block sm:rounded-[1.75rem]"
                 }
               >
                 <CardHeader className="space-y-3 pb-3 sm:space-y-4 sm:pb-4">
