@@ -282,7 +282,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">如果这次要交给别人继续做</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">别把交接留成一句“照这个试试”，而是留下别人能直接接上的最小包。</CardDescription>

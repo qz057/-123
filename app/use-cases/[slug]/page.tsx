@@ -250,7 +250,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-white py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">如果这次要交给别人继续做</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">把“场景入口”交接成别人也能快速判断第一跳，而不是只能复读原来的解释。</CardDescription>

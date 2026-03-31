@@ -198,7 +198,7 @@ export default function AboutPage() {
         ))}
       </section>
 
-      <section className="mb-8 rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm">
+      <section className="mb-8 hidden rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm sm:block">
         <CardHeader>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Page rhythm</p>
           <CardTitle className="text-lg text-slate-950">About 这页最稳的阅读节奏</CardTitle>
