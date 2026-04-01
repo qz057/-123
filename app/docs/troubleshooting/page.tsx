@@ -5,7 +5,7 @@ export default function TroubleshootingDocsPage() {
     <DocShell
       eyebrow="FlowDock / Docs / Troubleshooting"
       title="Troubleshooting 文档"
-      intro="这页不想把你推进更复杂的排障，而是想帮你更快看见：当前卡点更像哪一层、最常见的误判是什么、下一步到底该收缩动作还是升级验证。相比‘多试几次’，FlowDock 当前更强调真实现场里的判断顺序。"
+      intro="这页不想把你推进更复杂的排障，而是想帮你更快看见：当前卡点更像哪一层、最常见的误判是什么、下一步到底该收缩动作还是升级验证。相比“多试几次”，FlowDock 当前更强调真实现场里的判断顺序。"
       badges={["Docs", "Troubleshooting"]}
       summary={[
         { label: "排障起点", value: "先判层，再做单变量验证，不在噪音里猜" },
@@ -65,7 +65,7 @@ export default function TroubleshootingDocsPage() {
           },
           {
             title: "收口结论",
-            detail: "写清根因在哪层、哪一步证明确认、下次先从哪一步开始，不把‘现在好了’当结束。",
+            detail: "写清根因在哪层、哪一步证明确认、下次先从哪一步开始，不把“现在好了”当结束。",
             cue: "收口",
             href: "/docs/product-notes",
             actionLabel: "补看产品边界",
@@ -94,7 +94,7 @@ export default function TroubleshootingDocsPage() {
         },
         {
           title: "案例 01：看起来已经切模型，输出却还是旧味道",
-          body: "这是最容易被误判成‘模型切换失败’的一类现场。很多时候并不是新模型不可用，而是当前 session 仍绑着旧参数、旧 profile，或者你只改了默认配置，却没触发真实运行态刷新。结果就是：页面、命令回显、配置文件都像是换了，实际输出还是旧行为。",
+          body: "这是最容易被误判成“模型切换失败”的一类现场。很多时候并不是新模型不可用，而是当前 session 仍绑着旧参数、旧 profile，或者你只改了默认配置，却没触发真实运行态刷新。结果就是：页面、命令回显、配置文件都像是换了，实际输出还是旧行为。",
           highlights: [
             { label: "现场症状", value: "设置里显示已切换，但长会话里的表现几乎没变" },
             { label: "最常见误判", value: "把默认模型变化，误认成当前会话已完成切换", tone: "warning" },
@@ -114,7 +114,7 @@ export default function TroubleshootingDocsPage() {
             { label: "现场症状", value: "入口可见、列表可见，但真实动作没有结果或走错分支" },
             { label: "根因高发区", value: "工具暴露策略、权限范围、当前会话可见性、effective inventory" },
             { label: "稳定处理", value: "看一次最小真实执行，而不是只看 UI 截图或配置文本", tone: "success" },
-            { label: "最危险误区", value: "把‘看得到入口’直接等同于‘执行链路已闭环’", tone: "warning" },
+            { label: "最危险误区", value: "把“看得到入口”直接等同于“执行链路已闭环”", tone: "warning" },
           ],
           bullets: [
             "新接入项先确认暴露规则、权限范围和当前 session 是否真的可见",
@@ -132,7 +132,7 @@ export default function TroubleshootingDocsPage() {
           mobileHidden: true,
           highlights: [
             { label: "现场症状", value: "看了很多入口、改了很多地方，但说不清哪一步让状态变化" },
-            { label: "常见源头", value: "并行开太多路径，缺少‘一步一验’的节奏" },
+            { label: "常见源头", value: "并行开太多路径，缺少“一步一验”的节奏" },
             { label: "稳定处理", value: "强制收回到一条主链路，每完成一步就做一次小验证", tone: "success" },
             { label: "升级条件", value: "如果顺序感已经完全丢失，先回滚到最近稳定状态再继续" },
           ],
@@ -175,14 +175,14 @@ export default function TroubleshootingDocsPage() {
             { label: "更稳做法", value: "停掉扩散式试错，改成一次只证明一件事", tone: "success" },
           ],
           bullets: [
-            "‘我再顺手改一个地方看看’通常就是排障开始漂移的标志",
+            "“我再顺手改一个地方看看”通常就是排障开始漂移的标志",
             "停手不是放弃，而是保护你还剩下的判断信息不被继续污染",
             "如果必须升级动作，也要先把上一轮的结论写清，不然你会失去复盘基线",
           ],
         },
         {
           title: "最稳的回滚顺序：不是全删重来，而是一层层撤",
-          body: "当你已经叠了几轮修改，最稳的回滚方式通常不是一次全盘清空，而是从最近一层新增改动开始，逐层撤回，并且每撤一层就做一次最小验证。这样你不会把‘到底哪一步有效’这条线索一起删掉。",
+          body: "当你已经叠了几轮修改，最稳的回滚方式通常不是一次全盘清空，而是从最近一层新增改动开始，逐层撤回，并且每撤一层就做一次最小验证。这样你不会把“到底哪一步有效”这条线索一起删掉。",
           highlights: [
             { label: "回滚第一步", value: "先撤最近新增的一层改动，不直接做全盘清空" },
             { label: "每层动作", value: "撤一层，立刻做一次最小验证，看状态是否回到可解释区间" },
@@ -200,14 +200,14 @@ export default function TroubleshootingDocsPage() {
           ],
         },
         {
-          title: "排障完成的标准：不是‘看起来恢复了’，而是你能更快再做一次",
+          title: "排障完成的标准：不是“看起来恢复了”，而是你能更快再做一次",
           body: "真正的排障收口至少满足三件事：目标行为已经稳定复现、你知道根因属于哪一层、下一次遇到时能更快定位。如果只满足第一件，那往往只是暂时恢复。FlowDock 这套文档、模板和诊断入口的意义，就是帮你把一次修复沉淀成下次更稳的路径。",
           mobileHidden: true,
           highlights: [
             { label: "结果层", value: "目标行为已稳定复现，而不是偶发成功一次", tone: "success" },
             { label: "原因层", value: "能明确归因到 auth、配置覆盖、session 绑定或接入链路中的某一层" },
             { label: "复用层", value: "下一次遇到时，你知道先从哪一步验证、何时该停手回滚", tone: "success" },
-            { label: "不算完成", value: "只是‘现在好像好了’，但仍说不清为什么会好", tone: "warning" },
+            { label: "不算完成", value: "只是“现在好像好了”，但仍说不清为什么会好", tone: "warning" },
           ],
           bullets: [
             "如果问题有复发概率，最好顺手把结论沉淀到模板、检查清单或文档入口里",

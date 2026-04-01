@@ -85,7 +85,7 @@ export function DocShell({
         ))}
       </div>
 
-      <p className="mt-4 text-sm font-medium text-sky-700">{eyebrow}</p>
+      <p className="mt-4 text-sm font-medium text-indigo-700">{eyebrow}</p>
       <div className="mt-3 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">{title}</h1>
@@ -118,7 +118,7 @@ export function DocShell({
           {checklist.map((block, index) => (
             <Card key={block.title} className={block.mobileHidden ? "hidden rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm md:block" : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"}>
               <CardHeader>
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">
                   Checklist {String(index + 1).padStart(2, "0")}
                 </p>
                 <CardTitle className="text-lg text-slate-950">{block.title}</CardTitle>
@@ -126,7 +126,7 @@ export function DocShell({
               <CardContent className="pb-6">
                 <ul className="space-y-2.5 text-sm leading-6 text-slate-600">
                   {block.items.map((item) => (
-                    <li key={item} className="rounded-2xl bg-slate-50/80 px-3 py-2">
+                    <li key={item} className="rounded-2xl bg-indigo-50/80 px-3 py-2">
                       {item}
                     </li>
                   ))}
@@ -141,7 +141,7 @@ export function DocShell({
         <section className="mt-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-5 shadow-sm sm:p-6">
           <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">{workflow.eyebrow ?? "Workflow"}</p>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">{workflow.eyebrow ?? "Workflow"}</p>
               <h2 className="mt-1 text-xl font-semibold text-slate-950 sm:text-2xl">{workflow.title}</h2>
               <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">{workflow.description}</p>
             </div>
@@ -155,14 +155,14 @@ export function DocShell({
               const primary = step.tone === "primary" || index === 0;
               const warning = step.tone === "warning";
               const cardClass = primary
-                ? "rounded-[28px] border border-slate-200 bg-slate-950 px-5 py-5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
+                ? "rounded-[28px] border border-slate-200 bg-indigo-950 px-5 py-5 text-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.45)]"
                 : warning
                   ? "rounded-[28px] border border-amber-200 bg-amber-50/90 px-5 py-5"
                   : "rounded-[28px] border border-slate-200 bg-white px-5 py-5 shadow-sm";
               const titleClass = primary ? "text-lg text-white" : "text-lg text-slate-950";
-              const bodyClass = primary ? "text-sm leading-6 text-slate-300" : warning ? "text-sm leading-6 text-amber-900/80" : "text-sm leading-6 text-slate-600";
+              const bodyClass = primary ? "text-sm leading-6 text-slate-200" : warning ? "text-sm leading-6 text-amber-900/80" : "text-sm leading-6 text-slate-600";
               const cueClass = primary
-                ? "rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-sky-200"
+                ? "rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-violet-200"
                 : warning
                   ? "rounded-full border border-amber-200 bg-white px-3 py-1 text-[11px] font-medium text-amber-700"
                   : "rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500";
@@ -170,7 +170,7 @@ export function DocShell({
                 ? "inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
                 : warning
                   ? "inline-flex rounded-full border border-amber-300 bg-white px-4 py-2 text-sm font-medium text-amber-800 transition hover:bg-amber-100"
-                  : "inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50";
+                  : "inline-flex rounded-full border border-indigo-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50";
 
               return (
                 <div key={`${step.title}-${index}`} className={step.mobileHidden ? `${cardClass} hidden md:block` : cardClass}>
@@ -180,7 +180,7 @@ export function DocShell({
                       className={
                         primary
                           ? "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-xs font-semibold text-slate-950"
-                          : "inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-950 text-xs font-semibold text-white"
+                          : "inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-950 text-xs font-semibold text-white"
                       }
                     >
                       {index + 1}
@@ -206,7 +206,7 @@ export function DocShell({
             <a
               key={section.anchor}
               href={`#${section.anchor}`}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-50"
+              className="inline-flex rounded-full border border-indigo-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-50"
             >
               {section.title}
             </a>
@@ -243,7 +243,7 @@ export function DocShell({
                 {section.bullets?.length ? (
                   <ul className="grid gap-2 text-sm leading-6 text-slate-600 sm:gap-3">
                     {section.bullets.map((item) => (
-                      <li key={item} className="rounded-2xl bg-slate-50/80 px-3 py-2.5">
+                      <li key={item} className="rounded-2xl bg-indigo-50/80 px-3 py-2.5">
                         {item}
                       </li>
                     ))}
@@ -257,8 +257,8 @@ export function DocShell({
                         href={link.href}
                         className={
                           link.tone === "primary"
-                            ? "inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-                            : "inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                            ? "inline-flex rounded-full bg-indigo-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-900"
+                            : "inline-flex rounded-full border border-indigo-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
                         }
                       >
                         {link.label}
@@ -271,11 +271,11 @@ export function DocShell({
           ))}
 
           {ctaLinks.length ? (
-            <Card className="rounded-[28px] border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
+            <Card className="rounded-[28px] border border-slate-200 bg-indigo-950 py-0 text-white shadow-sm">
               <CardHeader>
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Next Step</p>
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">Next Step</p>
                 <CardTitle className="text-2xl text-white">读完这页，别停在理解层</CardTitle>
-                <CardDescription className="text-slate-300">
+                <CardDescription className="text-slate-200">
                   这页的目标不是让你多看一层，而是帮你更快切到下一步动作。
                 </CardDescription>
               </CardHeader>
@@ -312,7 +312,7 @@ export function DocShell({
                     href={`#${section.anchor}`}
                     className="flex items-start gap-3 rounded-2xl border border-slate-200 px-3 py-3 transition hover:bg-slate-50"
                   >
-                    <span className="mt-0.5 text-xs font-medium text-slate-400">
+                    <span className="mt-0.5 text-xs font-medium text-slate-300">
                       {String(section.index + 1).padStart(2, "0")}
                     </span>
                     <span className="text-sm font-medium leading-6 text-slate-700">{section.title}</span>
@@ -322,7 +322,7 @@ export function DocShell({
             </Card>
 
             {ctaLinks.length ? (
-              <Card className="rounded-[28px] border border-slate-200 bg-slate-50/80 py-0 shadow-sm">
+              <Card className="rounded-[28px] border border-slate-200 bg-indigo-50/80 py-0 shadow-sm">
                 <CardHeader>
                   <CardTitle className="text-lg text-slate-950">读完之后做什么</CardTitle>
                 </CardHeader>
@@ -333,8 +333,8 @@ export function DocShell({
                       href={link.href}
                       className={
                         link.tone === "primary"
-                          ? "flex rounded-2xl bg-slate-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
-                          : "flex rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                          ? "flex rounded-2xl bg-indigo-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-violet-900"
+                          : "flex rounded-2xl border border-indigo-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
                       }
                     >
                       {link.label}
@@ -367,5 +367,5 @@ function highlightToneClass(tone: DocShellHighlight["tone"] = "default") {
     return "rounded-2xl border border-emerald-200 bg-emerald-50/90 px-4 py-3";
   }
 
-  return "rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3";
+  return "rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3";
 }
