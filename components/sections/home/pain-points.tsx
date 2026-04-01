@@ -30,12 +30,12 @@ const routeHints = [
 
 export function PainPointsSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f8f7ff_100%)]">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-100 to-transparent" />
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mb-8 grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-end md:gap-8 lg:mb-10">
           <div className="max-w-3xl space-y-4">
-            <Badge variant="outline" className="border-sky-200 bg-sky-50 text-sky-700">
+            <Badge variant="outline" className="border-indigo-200 bg-indigo-50 text-indigo-700">
               Pain Points
             </Badge>
             <div className="space-y-3">
@@ -49,7 +49,7 @@ export function PainPointsSection() {
             </div>
           </div>
 
-          <div className="hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_18px_56px_-32px_rgba(15,23,42,0.45)] md:block">
+          <div className="hidden rounded-[1.75rem] border border-slate-200 bg-indigo-950 p-5 text-white shadow-[0_18px_56px_-32px_rgba(15,23,42,0.45)] md:block">
             <p className="text-sm font-medium text-white">典型问题的共同点</p>
             <p className="mt-3 text-sm leading-6 text-slate-300">
               表面看像是很多小问题，实际核心是：没有人先帮你判断问题属于哪层，也没有把下一步动作稳定接住。
@@ -86,10 +86,10 @@ export function PainPointsSection() {
                 </CardHeader>
                 <CardContent className="space-y-3 pb-5 sm:space-y-4 sm:pb-6">
                   <p className="text-sm leading-6 text-slate-600">{item.description}</p>
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+                  <div className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3">
                     <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">更自然下一跳</p>
                     <p className="mt-2 hidden text-sm leading-[1.6] text-slate-600 sm:block">{route.note}</p>
-                    <Link href={route.href} className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800 sm:mt-3">
+                    <Link href={route.href} className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-indigo-700 transition hover:text-violet-700 sm:mt-3">
                       <span>{route.label}</span>
                       <span aria-hidden>→</span>
                     </Link>

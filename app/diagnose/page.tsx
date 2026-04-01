@@ -394,7 +394,7 @@ export default function DiagnosePage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="fd-page-chrome mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <header className="mb-8 flex flex-col gap-4 md:mb-10">
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <Badge variant="outline">FlowDock</Badge>
@@ -408,21 +408,21 @@ export default function DiagnosePage() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-          <button onClick={() => jumpToAny(["diagnose-examples"])} className="inline-flex items-center gap-1 font-medium text-sky-700 transition hover:text-sky-800">
+          <button onClick={() => jumpToAny(["diagnose-examples"])} className="inline-flex items-center gap-1 font-medium text-indigo-700 transition hover:text-violet-700">
             <span>先看示例现场</span>
             <span aria-hidden>→</span>
           </button>
-          <button onClick={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} className="inline-flex items-center gap-1 font-medium text-sky-700 transition hover:text-sky-800">
+          <button onClick={() => jumpToAny(["diagnose-input-mobile", "diagnose-input-tablet", "diagnose-input-desktop"])} className="inline-flex items-center gap-1 font-medium text-indigo-700 transition hover:text-violet-700">
             <span>跳到输入区</span>
             <span aria-hidden>→</span>
           </button>
-          <button onClick={() => jumpToAny(["diagnose-result-panel"])} className="inline-flex items-center gap-1 font-medium text-sky-700 transition hover:text-sky-800">
+          <button onClick={() => jumpToAny(["diagnose-result-panel"])} className="inline-flex items-center gap-1 font-medium text-indigo-700 transition hover:text-violet-700">
             <span>看当前结果</span>
             <span aria-hidden>→</span>
           </button>
         </div>
         <div className="grid gap-3 md:grid-cols-3">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+          <div className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">这次先盯什么</p>
             <p className="mt-2 text-sm font-medium text-slate-950">{currentIssueMeta.label}</p>
             <p className="mt-2 text-sm leading-6 text-slate-600">{currentIssueMeta.focus}</p>
@@ -442,7 +442,7 @@ export default function DiagnosePage() {
         </div>
       </header>
 
-      <section id="diagnose-examples" className="mb-8 rounded-[28px] border border-slate-200 bg-slate-50/70 p-4 shadow-sm sm:p-5">
+      <section id="diagnose-examples" className="mb-8 rounded-[28px] border border-slate-200 bg-indigo-50/70 p-4 shadow-sm sm:p-5">
         <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Example cases</p>
@@ -454,7 +454,7 @@ export default function DiagnosePage() {
         </div>
         <div className="grid gap-3 md:grid-cols-3">
           {diagnoseExampleCases.map((example, index) => (
-            <div key={example.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-slate-950 p-3.5 text-white shadow-sm" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm"}>
+            <div key={example.title} className={index === 0 ? "rounded-[24px] border border-slate-200 bg-indigo-950 p-3.5 text-white shadow-sm fd-dark-card" : "rounded-[24px] border border-slate-200 bg-white p-3.5 shadow-sm fd-glass-card"}>
               <p className={index === 0 ? "text-sm font-medium text-white" : "text-sm font-medium text-slate-950"}>{example.title}</p>
               <p className={index === 0 ? "mt-2 text-sm leading-6 text-slate-300" : "mt-2 text-sm leading-6 text-slate-600"}>{example.description}</p>
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -465,7 +465,7 @@ export default function DiagnosePage() {
                 >
                   载入并看结果
                 </Button>
-                <Link href={example.entry.href} className={index === 0 ? "inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white" : "inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"}>
+                <Link href={example.entry.href} className={index === 0 ? "inline-flex items-center gap-1 text-sm font-medium text-violet-200 transition hover:text-white" : "inline-flex items-center gap-1 text-sm font-medium text-indigo-700 transition hover:text-violet-700"}>
                   <span>{example.entry.label}</span>
                   <span aria-hidden>→</span>
                 </Link>
@@ -487,7 +487,7 @@ export default function DiagnosePage() {
                 <button
                   key={item.value}
                   onClick={() => updateField("issueType", item.value)}
-                  className={`rounded-2xl border px-4 py-3 text-left text-sm transition ${issueTypeValue === item.value ? "border-sky-300 bg-sky-50 text-sky-900" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}
+                  className={`rounded-2xl border px-4 py-3 text-left text-sm transition ${issueTypeValue === item.value ? "border-violet-300 bg-indigo-50 text-indigo-900" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}
                 >
                   {item.label}
                 </button>
@@ -572,7 +572,7 @@ function DesktopForm({ form, setForm, issueTypeValue, issueMeta, onAnalyze, onLo
       </CardHeader>
       <CardContent className="space-y-5 pb-6">
         <div className="grid gap-3 xl:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+          <div className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">这轮先盯</p>
             <p className="mt-2 text-sm font-medium text-slate-950">{issueMeta.label}</p>
             <p className="mt-2 text-sm leading-6 text-slate-600">{issueMeta.focus}</p>
@@ -614,7 +614,7 @@ function DesktopForm({ form, setForm, issueTypeValue, issueMeta, onAnalyze, onLo
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+        <div className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3">
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">启动前检查</p>
           <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-600">
             {inputPriorityHints.map((item) => (
@@ -642,7 +642,7 @@ function TabletForm({ form, setForm, issueTypeValue, issueMeta, onAnalyze, onLoa
       </CardHeader>
       <CardContent className="space-y-5 pb-6">
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+          <div className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">这次先盯</p>
             <p className="mt-2 text-sm font-medium text-slate-950">{issueMeta.label}</p>
             <p className="mt-2 text-sm leading-6 text-slate-600">{issueMeta.focus}</p>
@@ -666,7 +666,7 @@ function TabletForm({ form, setForm, issueTypeValue, issueMeta, onAnalyze, onLoa
           <Textarea value={form.symptomText ?? ""} onChange={(event) => setForm("symptomText", event.target.value)} placeholder="当前现象" />
           <Textarea value={form.expectedOutcome ?? ""} onChange={(event) => setForm("expectedOutcome", event.target.value)} placeholder="期望结果" />
         </div>
-        <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+        <div className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3">
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">最值钱输入</p>
           <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-600">
             {inputPriorityHints.map((item) => (
@@ -705,11 +705,11 @@ function IssueTypeSelector({ value, onChange }: { value: DiagnoseIssueType; onCh
             key={item.value}
             onClick={() => onChange(item.value)}
             className={`rounded-2xl border px-4 py-3 text-left text-sm transition ${
-              selected ? "border-sky-300 bg-sky-50 text-sky-900" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+              selected ? "border-violet-300 bg-indigo-50 text-indigo-900" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
             }`}
           >
             <p className="font-medium">{item.label}</p>
-            <p className={`mt-1 text-xs leading-5 ${selected ? "text-sky-800" : "text-slate-500"}`}>{meta.focus}</p>
+            <p className={`mt-1 text-xs leading-5 ${selected ? "text-indigo-800" : "text-slate-500"}`}>{meta.focus}</p>
           </button>
         );
       })}
@@ -730,7 +730,7 @@ function NativeSelect({
     <select
       value={value}
       onChange={(event) => onChange(event.target.value)}
-      className="h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-sky-400"
+      className="h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-violet-400"
     >
       {options.map((item) => (
         <option key={item.value} value={item.value}>
@@ -762,7 +762,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
   const topCause = result.causes[0];
 
   return (
-    <Card id="diagnose-result-panel" className="rounded-3xl border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
+    <Card id="diagnose-result-panel" className="rounded-3xl border border-slate-200 bg-indigo-950 py-0 text-white shadow-sm fd-dark-card">
       <CardHeader className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <CardTitle className="text-xl text-white">诊断结果</CardTitle>
@@ -773,7 +773,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
             {result.riskLevel.toUpperCase()}
           </Badge>
         </div>
-        <CardDescription className="text-sm leading-6 text-slate-300">{result.summary}</CardDescription>
+        <CardDescription className="text-sm leading-6 text-slate-200">{result.summary}</CardDescription>
         {result.confidenceNote && (
           <p className="rounded-2xl border border-white/15 bg-white/5 px-3 py-2 text-xs leading-5 text-slate-200">
             判断稳定性：{result.confidenceNote}
@@ -783,9 +783,9 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
       <CardContent className="space-y-4 pb-5">
         <div className="grid gap-3 md:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">当前更像</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200">当前更像</p>
             <p className="mt-2 text-sm font-medium text-white">{issueMeta.label}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">{issueMeta.focus}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-200">{issueMeta.focus}</p>
           </div>
 
           <div className="rounded-2xl border border-emerald-300/15 bg-emerald-400/10 p-4">
@@ -814,10 +814,10 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
               {matchingExamples.map((example) => (
                 <div key={example.title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
                   <p className="text-sm font-medium text-white">{example.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{example.description}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{example.description}</p>
                   <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
                     {onApplyExample ? (
-                      <button onClick={() => onApplyExample(example)} className="inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                      <button onClick={() => onApplyExample(example)} className="inline-flex items-center gap-1 text-sm font-medium text-violet-200 transition hover:text-white">
                         <span>载入这个示例</span>
                         <span aria-hidden>→</span>
                       </button>
@@ -836,7 +836,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
         {!!result.diagnosisBasis?.length && (
           <div>
             <h3 className="text-sm font-medium text-white">判断依据</h3>
-            <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-300">
+            <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-200">
               {result.diagnosisBasis.map((item) => (
                 <li key={item}>• {item}</li>
               ))}
@@ -855,7 +855,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                     {cause.confidence.toUpperCase()}
                   </Badge>
                 </div>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{cause.reason}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-200">{cause.reason}</p>
                 {index === 0 && topCause ? <p className="mt-2 text-xs leading-5 text-cyan-100">优先从这个原因开始做最小验证。</p> : null}
               </div>
             ))}
@@ -892,9 +892,9 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                   </Badge>
                 </div>
                 <div className="mt-3 grid gap-3 md:grid-cols-2">
-                  <div className="rounded-2xl border border-white/10 bg-slate-950/35 px-3.5 py-3">
-                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">为什么先做</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">{step.why}</p>
+                  <div className="rounded-2xl border border-white/10 bg-indigo-950/35 px-3.5 py-3">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-200">为什么先做</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-200">{step.why}</p>
                   </div>
                   <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 px-3.5 py-3">
                     <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-cyan-200">完成证明</p>
@@ -924,12 +924,12 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                           </Badge>
                         ) : null}
                       </div>
-                      <span className="text-xs font-medium text-slate-300">得分 {item.score}</span>
+                      <span className="text-xs font-medium text-slate-200">得分 {item.score}</span>
                     </div>
                     <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
                       <div className="h-full rounded-full bg-gradient-to-r from-sky-400 to-cyan-300" style={{ width }} />
                     </div>
-                    <ul className="mt-3 space-y-1 text-xs leading-5 text-slate-300">
+                    <ul className="mt-3 space-y-1 text-xs leading-5 text-slate-200">
                       {item.highlights.map((highlight) => (
                         <li key={highlight}>• {highlight}</li>
                       ))}
@@ -948,7 +948,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
               {result.patternSignals.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-rose-200/20 bg-rose-400/5 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.description}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -962,7 +962,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
               {result.scenarioExamples.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">场景：{item.context}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">场景：{item.context}</p>
                   <p className="mt-2 text-sm leading-6 text-cyan-100">判断重点：{item.implication}</p>
                 </div>
               ))}
@@ -977,8 +977,8 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
               {branchHints.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-3.5">
                   <p className="text-sm font-medium text-white">{item.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
-                  <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white">
+                  <p className="mt-2 text-sm leading-6 text-slate-200">{item.detail}</p>
+                  <Link href={item.href} className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-violet-200 transition hover:text-white">
                     <span>{item.label}</span>
                     <span aria-hidden>→</span>
                   </Link>
@@ -1045,7 +1045,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
                       </Badge>
                     </div>
                     <p className="mt-3 text-sm font-medium text-white">{resource.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">{resource.reason}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-200">{resource.reason}</p>
                     {href ? (
                       <div className="mt-3">
                         <Link href={href} className="inline-flex rounded-full border border-white/20 px-4 py-2 text-xs font-medium text-white transition hover:bg-white/10">
@@ -1062,7 +1062,7 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
 
         <div>
           <h3 className="text-sm font-medium text-white">下一步与资源</h3>
-          <ul className="mt-3 space-y-2 text-sm text-slate-300">
+          <ul className="mt-3 space-y-2 text-sm text-slate-200">
             {result.nextActions.map((item) => (
               <li key={item}>• {item}</li>
             ))}
@@ -1103,8 +1103,8 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
           <h3 className="text-sm font-medium text-white">复查与交接</h3>
           <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">复查时先保留</p>
-              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-300">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-200">复查时先保留</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
                 <li>• 当前判断：{issueMeta.label}</li>
                 <li>• 最小验证：{result.fixSteps[0]?.verify ?? "先做一条最小真测"}</li>
                 <li>• 当前场景：{currentScenarioLabel ?? "未指定场景"}</li>
@@ -1141,8 +1141,8 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
           <h3 className="text-sm font-medium text-white">如果二次排查后你又回到了这里</h3>
           <div className="mt-3 grid gap-3 md:grid-cols-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">继续沿当前判断如果</p>
-              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-300">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-200">继续沿当前判断如果</p>
+              <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-200">
                 <li>• 最小验证仍支持当前判断</li>
                 <li>• 当前第一跳资源还没有被反证</li>
                 <li>• 场景没有变，异常也没有换层</li>
@@ -1174,11 +1174,11 @@ function ResultCard({ result, currentScenario, onReset, onLoadExample, onApplyEx
             </div>
           </div>
           <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 p-4">
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">二次排查摘要</p>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-200">二次排查摘要</p>
             <div className="mt-2 grid gap-2 sm:grid-cols-3">
-              <p className="text-sm leading-6 text-slate-300">先缩变量，不继续放大动作。</p>
-              <p className="text-sm leading-6 text-slate-300">再看最小验证是支持、反证，还是只给噪音。</p>
-              <p className="text-sm leading-6 text-slate-300">最后再决定继续当前分支、转旁支，还是升级处理层。</p>
+              <p className="text-sm leading-6 text-slate-200">先缩变量，不继续放大动作。</p>
+              <p className="text-sm leading-6 text-slate-200">再看最小验证是支持、反证，还是只给噪音。</p>
+              <p className="text-sm leading-6 text-slate-200">最后再决定继续当前分支、转旁支，还是升级处理层。</p>
             </div>
           </div>
         </div>

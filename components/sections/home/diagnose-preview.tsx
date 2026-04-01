@@ -11,11 +11,11 @@ const resultSignals = [
 
 export function DiagnosePreviewSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f6f3ff_100%)]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mb-8 grid gap-6 md:mb-10 md:grid-cols-[0.92fr_1.08fr] md:items-end">
           <div className="max-w-3xl space-y-4">
-            <Badge variant="outline" className="border-sky-200 bg-sky-50 text-sky-700">
+            <Badge variant="outline" className="border-indigo-200 bg-indigo-50 text-indigo-700">
               Diagnose Preview
             </Badge>
             <div className="space-y-3">
@@ -26,7 +26,7 @@ export function DiagnosePreviewSection() {
             </div>
           </div>
 
-          <div className="hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_18px_56px_-32px_rgba(15,23,42,0.45)] md:block">
+          <div className="hidden rounded-[1.75rem] border border-slate-200 bg-indigo-950 p-5 text-white shadow-[0_18px_56px_-32px_rgba(15,23,42,0.45)] md:block">
             <p className="text-sm font-medium text-white">这页真正输出什么</p>
             <div className="mt-4 space-y-3 text-sm leading-6 text-slate-300">
               {resultSignals.map((item, index) => (
@@ -55,7 +55,7 @@ export function DiagnosePreviewSection() {
                 <li>• 配置片段 / 报错信息</li>
                 <li>• 当前现象与期望结果</li>
               </ul>
-              <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-3 sm:rounded-2xl sm:p-4">
+              <div className="rounded-xl border border-slate-200 bg-indigo-50/80 p-3 sm:rounded-2xl sm:p-4">
                 <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500 sm:text-sm sm:normal-case sm:tracking-normal sm:text-slate-900">
                   首版判断依据
                 </p>
@@ -70,7 +70,7 @@ export function DiagnosePreviewSection() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_64px_-34px_rgba(15,23,42,0.55)] sm:rounded-[1.75rem]">
+          <Card className="rounded-[1.5rem] border border-slate-200 bg-indigo-950 py-0 text-white shadow-[0_22px_64px_-34px_rgba(15,23,42,0.55)] sm:rounded-[1.75rem]">
             <CardHeader className="space-y-3 pb-3 sm:space-y-4 sm:pb-4">
               <div className="flex flex-wrap items-center gap-2">
                 <CardTitle className="text-lg text-white sm:text-xl">你会得到这样的结果</CardTitle>
@@ -84,7 +84,7 @@ export function DiagnosePreviewSection() {
               <CardDescription className="text-slate-300">先给结论，再给原因、评分和资源优先级。</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 pb-5 text-sm leading-6 text-slate-200 sm:space-y-4 sm:pb-6">
-              <div className="rounded-xl border border-sky-300/15 bg-sky-400/10 p-3.5 text-slate-100 sm:rounded-2xl sm:p-4">
+              <div className="rounded-xl border border-violet-300/20 bg-violet-400/10 p-3.5 text-slate-100 sm:rounded-2xl sm:p-4">
                 当前问题更像是会话没有真正切到目标模型，而不是 provider 本身不可用。
               </div>
               <div className="space-y-2 rounded-xl border border-white/10 bg-white/5 p-3.5 text-slate-300 sm:rounded-2xl sm:p-4">
@@ -97,10 +97,10 @@ export function DiagnosePreviewSection() {
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
-          <Link href="/diagnose" className="inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
+          <Link href="/diagnose" className="inline-flex rounded-full bg-indigo-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-violet-900">
             开始诊断
           </Link>
-          <Link href="/docs/diagnose" className="hidden rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:inline-flex">
+          <Link href="/docs/diagnose" className="hidden rounded-full border border-indigo-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:inline-flex">
             先看 Diagnose 文档
           </Link>
         </div>

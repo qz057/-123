@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className="h-full antialiased">
-      <body className="min-h-full bg-[linear-gradient(to_bottom,#ffffff,#f8fafc)] text-slate-950">
+      <body className="min-h-full bg-[linear-gradient(to_bottom,#f7f8ff,#eef2ff_42%,#f8faff)] text-slate-950">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1">{children}</main>

@@ -9,11 +9,11 @@ const templateSignals = ["适用判断", "执行检查", "失败信号", "回滚
 
 export function TemplatesPreviewSection() {
   return (
-    <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)]">
+    <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f5f7ff_0%,#ffffff_100%)]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mb-8 grid gap-6 md:mb-10 md:grid-cols-[1fr_0.85fr] md:items-end">
           <div className="max-w-3xl space-y-4">
-            <Badge variant="outline" className="border-sky-200 bg-white text-sky-700">
+            <Badge variant="outline" className="border-indigo-200 bg-white text-indigo-700">
               Templates
             </Badge>
             <div className="space-y-3">
@@ -48,7 +48,7 @@ export function TemplatesPreviewSection() {
                 key={template.slug}
                 className={
                   primary
-                    ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_22px_60px_-34px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
+                    ? "rounded-[1.5rem] border border-slate-200 bg-indigo-950 py-0 text-white shadow-[0_22px_60px_-34px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
                     : index === 1
                       ? "hidden rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm sm:block sm:rounded-[1.75rem]"
                       : index === 2
@@ -58,7 +58,7 @@ export function TemplatesPreviewSection() {
               >
                 <CardHeader className="space-y-3 pb-3 sm:space-y-4 sm:pb-4">
                   <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="outline" className={primary ? "border-white/15 bg-white/10 text-sky-200" : "w-fit"}>
+                    <Badge variant="outline" className={primary ? "border-white/15 bg-white/10 text-violet-200" : "w-fit"}>
                       {template.category}
                     </Badge>
                     <Badge variant={primary ? "outline" : "secondary"} className={primary ? "border-white/15 bg-white/10 text-slate-200" : ""}>
@@ -73,8 +73,8 @@ export function TemplatesPreviewSection() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3 pb-4 sm:space-y-4">
-                  <div className={primary ? "rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3" : "rounded-2xl border border-slate-200 bg-slate-50/70 px-3.5 py-3"}>
-                    <p className={primary ? "text-[11px] font-medium uppercase tracking-[0.16em] text-sky-200" : "text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400"}>
+                  <div className={primary ? "rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3" : "rounded-2xl border border-slate-200 bg-indigo-50/70 px-3.5 py-3"}>
+                    <p className={primary ? "text-[11px] font-medium uppercase tracking-[0.16em] text-violet-200" : "text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400"}>
                       适合你如果
                     </p>
                     <p className={primary ? "mt-2 text-sm leading-[1.6] text-slate-300" : "mt-2 text-sm leading-[1.6] text-slate-600"}>
@@ -114,7 +114,7 @@ export function TemplatesPreviewSection() {
                     className={
                       primary
                         ? "inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
-                        : "inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+                        : "inline-flex rounded-full bg-indigo-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-900"
                     }
                   >
                     查看模板
@@ -123,8 +123,8 @@ export function TemplatesPreviewSection() {
                     href="/templates"
                     className={
                       primary
-                        ? "hidden items-center gap-1 text-sm font-medium text-sky-200 transition hover:text-white sm:inline-flex"
-                        : "hidden items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800 sm:inline-flex"
+                        ? "hidden items-center gap-1 text-sm font-medium text-violet-200 transition hover:text-white sm:inline-flex"
+                        : "hidden items-center gap-1 text-sm font-medium text-indigo-700 transition hover:text-violet-700 sm:inline-flex"
                     }
                   >
                     <span>模板中心</span>
@@ -137,10 +137,10 @@ export function TemplatesPreviewSection() {
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
-          <Link href="/templates" className="inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
+          <Link href="/templates" className="inline-flex rounded-full bg-indigo-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-violet-900">
             查看全部模板
           </Link>
-          <Link href="/docs/templates" className="hidden rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:inline-flex">
+          <Link href="/docs/templates" className="hidden rounded-full border border-indigo-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:inline-flex">
             先看模板文档
           </Link>
         </div>

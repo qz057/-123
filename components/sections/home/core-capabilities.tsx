@@ -26,12 +26,12 @@ const capabilityActions = [
 
 export function CoreCapabilitiesSection() {
   return (
-    <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#f1f5f9_100%)]">
-      <div className="absolute left-1/2 top-0 h-36 w-36 -translate-x-1/2 rounded-full bg-sky-300/10 blur-3xl" />
+    <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f5f7ff_0%,#eef2ff_100%)]">
+      <div className="absolute left-1/2 top-0 h-36 w-36 -translate-x-1/2 rounded-full bg-violet-400/12 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mb-8 grid gap-6 md:grid-cols-[1fr_0.78fr] md:items-end">
           <div className="max-w-3xl space-y-4">
-            <Badge variant="outline" className="border-sky-200 bg-white/80 text-sky-700">
+            <Badge variant="outline" className="border-indigo-200 bg-white/80 text-indigo-700">
               Capabilities
             </Badge>
             <div className="space-y-3">
@@ -62,10 +62,10 @@ export function CoreCapabilitiesSection() {
             <div className="rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5">最后留下可验证结果，避免只剩“好像好了”。</div>
           </div>
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2.5">
-            <Link href="/diagnose" className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800">
+            <Link href="/diagnose" className="inline-flex rounded-full bg-indigo-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-900">
               打开 Diagnose
             </Link>
-            <Link href="/templates" className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800">
+            <Link href="/templates" className="inline-flex items-center gap-1 text-sm font-medium text-indigo-700 transition hover:text-violet-700">
               <span>进入模板中心</span>
               <span aria-hidden>→</span>
             </Link>
@@ -90,7 +90,7 @@ export function CoreCapabilitiesSection() {
                 key={item.title}
                 className={
                   primary
-                    ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_20px_60px_-34px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
+                    ? "rounded-[1.5rem] border border-slate-200 bg-indigo-950 py-0 text-white shadow-[0_20px_60px_-34px_rgba(15,23,42,0.5)] sm:rounded-[1.75rem]"
                     : index === 2
                       ? "hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm sm:block md:col-span-2 xl:col-span-1"
                       : "rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm sm:rounded-[1.75rem]"
@@ -100,7 +100,7 @@ export function CoreCapabilitiesSection() {
                   <div className="flex items-center justify-between gap-3">
                     <Badge
                       variant="outline"
-                      className={primary ? "w-fit border-white/15 bg-white/10 text-sky-200" : "w-fit border-sky-200 bg-sky-50 text-sky-700"}
+                      className={primary ? "w-fit border-white/15 bg-white/10 text-violet-200" : "w-fit border-indigo-200 bg-indigo-50 text-indigo-700"}
                     >
                       能力 {index + 1}
                     </Badge>
@@ -114,10 +114,10 @@ export function CoreCapabilitiesSection() {
                     className={
                       primary
                         ? "rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
-                        : "rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3"
+                        : "rounded-2xl border border-slate-200 bg-indigo-50/80 px-4 py-3"
                     }
                   >
-                    <p className={primary ? "text-[11px] font-medium uppercase tracking-[0.16em] text-sky-200" : "text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400"}>
+                    <p className={primary ? "text-[11px] font-medium uppercase tracking-[0.16em] text-violet-200" : "text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400"}>
                       更自然下一跳
                     </p>
                     <p className={primary ? "mt-2 hidden text-sm leading-[1.6] text-slate-300 sm:block" : "mt-2 hidden text-sm leading-[1.6] text-slate-600 sm:block"}>{action.note}</p>
@@ -126,7 +126,7 @@ export function CoreCapabilitiesSection() {
                       className={
                         primary
                           ? "mt-3 inline-flex rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
-                          : "mt-3 inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800"
+                          : "mt-3 inline-flex items-center gap-1 text-sm font-medium text-indigo-700 transition hover:text-violet-700"
                       }
                     >
                       <span>{action.label}</span>
@@ -147,8 +147,8 @@ export function CoreCapabilitiesSection() {
               "再用 Templates / Use Cases 承接执行，不停在说明层。",
               "最后回 Docs 做验证、边界确认和失败分支复核。",
             ].map((item, index) => (
-              <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 px-3.5 py-3 text-sm leading-[1.6] text-slate-600">
-                <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-950 text-xs font-medium text-white">
+              <div key={item} className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-3.5 py-3 text-sm leading-[1.6] text-slate-600">
+                <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-950 text-xs font-medium text-white">
                   {index + 1}
                 </span>
                 {item}

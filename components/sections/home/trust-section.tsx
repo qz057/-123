@@ -13,12 +13,12 @@ const trustActions = [
 
 export function TrustSection() {
   return (
-    <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#eef6ff_100%)]">
-      <div className="absolute right-10 top-12 hidden h-40 w-40 rounded-full bg-sky-300/10 blur-3xl lg:block" />
+    <section className="relative overflow-hidden border-y border-slate-200 bg-[linear-gradient(180deg,#f5f7ff_0%,#ede9fe_100%)]">
+      <div className="absolute right-10 top-12 hidden h-40 w-40 rounded-full bg-violet-400/12 blur-3xl lg:block" />
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mb-8 grid gap-6 md:mb-10 md:grid-cols-[1fr_0.82fr] md:items-end">
           <div className="max-w-3xl space-y-4">
-            <Badge variant="outline" className="border-sky-200 bg-white/80 text-sky-700">
+            <Badge variant="outline" className="border-indigo-200 bg-white/80 text-indigo-700">
               Why FlowDock
             </Badge>
             <div className="space-y-3">
@@ -54,7 +54,7 @@ export function TrustSection() {
               key={item.title}
               className={
                 index === 1
-                  ? "rounded-[1.5rem] border border-slate-200 bg-slate-950 py-0 text-white shadow-[0_20px_60px_-34px_rgba(15,23,42,0.52)] sm:rounded-[1.75rem]"
+                  ? "rounded-[1.5rem] border border-slate-200 bg-indigo-950 py-0 text-white shadow-[0_20px_60px_-34px_rgba(15,23,42,0.52)] sm:rounded-[1.75rem]"
                   : index === 2
                     ? "hidden rounded-[1.75rem] border border-slate-200 bg-white py-0 shadow-sm sm:flex md:col-span-2 xl:col-span-1"
                     : "rounded-[1.5rem] border border-slate-200 bg-white py-0 shadow-sm sm:rounded-[1.75rem]"
@@ -69,7 +69,7 @@ export function TrustSection() {
                   className={
                     index === 1
                       ? "hidden rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs leading-5 text-slate-300 sm:block"
-                      : "hidden rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-xs leading-5 text-slate-500 sm:block"
+                      : "hidden rounded-2xl border border-slate-200 bg-indigo-50/70 px-4 py-3 text-xs leading-5 text-slate-500 sm:block"
                   }
                 >
                   目标不是“内容看上去很满”，而是让用户真正走到 Diagnose / Templates / Docs 的下一步。
@@ -96,10 +96,10 @@ export function TrustSection() {
                 href={item.href}
                 className={
                   index === 0
-                    ? "inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+                    ? "inline-flex items-center justify-center rounded-2xl bg-indigo-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-violet-900"
                     : index === 2
-                      ? "hidden items-center justify-center rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:inline-flex"
-                      : "inline-flex items-center gap-1 text-sm font-medium text-sky-700 transition hover:text-sky-800 sm:justify-center sm:rounded-2xl sm:border sm:border-slate-300 sm:bg-white sm:px-4 sm:py-3 sm:text-slate-700 sm:hover:bg-slate-50 sm:hover:text-slate-700"
+                      ? "hidden items-center justify-center rounded-2xl border border-indigo-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:inline-flex"
+                      : "inline-flex items-center gap-1 text-sm font-medium text-indigo-700 transition hover:text-violet-700 sm:justify-center sm:rounded-2xl sm:border sm:border-indigo-200 sm:bg-white sm:px-4 sm:py-3 sm:text-slate-700 sm:hover:bg-slate-50 sm:hover:text-slate-700"
                 }
               >
                 <span>{item.label}</span>
