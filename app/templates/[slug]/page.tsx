@@ -16,7 +16,7 @@ export function generateStaticParams() {
 }
 
 const primaryLink =
-  "rounded-full bg-slate-950 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-slate-800";
+  "rounded-full bg-indigo-950 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-violet-900";
 
 export default async function TemplateDetailPage({
   params,
@@ -32,15 +32,17 @@ export default async function TemplateDetailPage({
 
   const relatedTemplates = template.relatedTemplates
     .map((title) => getTemplateByTitle(title))
-    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .filter((item, index, array) => array.findIndex((entry) => entry.slug === item.slug) === index);
   const relatedDocs = template.relatedDocs
     .map((title) => getDocByTitle(title))
-    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .filter((item, index, array) => array.findIndex((entry) => entry.slug === item.slug) === index);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col gap-4">
-        <p className="text-sm font-medium text-sky-700">FlowDock / Templates / {template.category}</p>
+        <p className="text-sm font-medium text-indigo-700">FlowDock / Templates / {template.category}</p>
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <Badge variant="outline">{template.category}</Badge>
           <Badge variant="secondary">{template.difficulty}</Badge>
@@ -89,13 +91,13 @@ export default async function TemplateDetailPage({
           <Card className="rounded-3xl border border-slate-200 bg-white py-0 shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">推荐推进步骤</CardTitle>
-              <CardDescription className="text-sm leading-6 text-slate-600">首版先给你一条能照着走的路径，后续再继续细化正文与案例。</CardDescription>
+              <CardDescription className="text-sm leading-6 text-slate-600">按这条顺序先跑通主链路，再根据结果决定要不要扩步骤或切到相邻模板。</CardDescription>
             </CardHeader>
             <CardContent className="pb-6">
               <ol className="space-y-4">
                 {template.steps.map((item, index) => (
                   <li key={item} className="rounded-2xl border border-slate-200 p-4">
-                    <p className="text-xs font-medium text-sky-700">Step {index + 1}</p>
+                    <p className="text-xs font-medium text-indigo-700">Step {index + 1}</p>
                     <p className="mt-2 text-sm leading-6 text-slate-700">{item}</p>
                   </li>
                 ))}
@@ -168,7 +170,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+          <Card className="rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">执行后怎么收口，才不会只停在“跑过一次”</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">这层不是重复步骤，而是把“验收 / 沉淀 / 下一跳”补完整。</CardDescription>
@@ -200,7 +202,7 @@ export default async function TemplateDetailPage({
                   <p className="mt-2 text-sm leading-6 text-slate-700">{item}</p>
                 </div>
               ))}
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 md:col-span-2">
+              <div className="rounded-2xl border border-slate-200 bg-indigo-50/70 p-4 md:col-span-2">
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">继续判断</p>
                 <div className="mt-2 grid gap-3 md:grid-cols-3">
                   <p className="text-sm leading-6 text-slate-600">方向还是糊：先回 Diagnose，别继续横跳模板。</p>
@@ -246,7 +248,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">交付后复盘：怎么让下次不用再从零判断</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">把这次结果沉淀成下次更快的入口，而不是只留一句“之前试过”。</CardDescription>
@@ -282,7 +284,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:hidden">
+          <Card className="rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm sm:hidden">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">继续推进前，只看这 3 件事</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">把底部重复判断层收成一个更短的 mobile 收口卡，先保证下一跳清楚。</CardDescription>
@@ -350,7 +352,7 @@ export default async function TemplateDetailPage({
             </CardContent>
           </Card>
 
-          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">什么时候该升级处理，而不是继续在这份模板里硬推</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">模板页不只回答“怎么做”，也要回答“什么时候该切换处理层”。</CardDescription>
@@ -430,7 +432,7 @@ export default async function TemplateDetailPage({
                 />
               </div>
               <div className="grid gap-3 lg:grid-cols-2">
-                <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <div className="rounded-2xl border border-slate-200 bg-indigo-50/70 p-4">
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">交付前最后确认</p>
                   <div className="mt-2 grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
                     <p className="text-sm leading-6 text-slate-600">第一跳别人一看就知道从哪开。</p>
@@ -452,10 +454,10 @@ export default async function TemplateDetailPage({
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
-          <Card className="rounded-3xl border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
+          <Card className="rounded-3xl border border-slate-200 bg-indigo-950 py-0 text-white shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl text-white">推荐下一步</CardTitle>
-              <CardDescription className="text-sm leading-6 text-slate-300">如果你还不确定模板方向，先体检配置；如果方向明确，再继续看相关文档。</CardDescription>
+              <CardDescription className="text-sm leading-6 text-slate-200">如果你还不确定模板方向，先体检配置；如果方向明确，再继续看相关文档。</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-3 pb-6">
               <Link href="/diagnose" className={primaryLink}>
@@ -475,7 +477,8 @@ export default async function TemplateDetailPage({
               {relatedTemplates.length ? (
                 relatedTemplates.map((item) => (
                   <Link key={item.slug} href={`/templates/${item.slug}`} className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
-                    {item.title}
+                    <p className="text-sm font-medium text-slate-900">{item.title}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">{item.summary}</p>
                   </Link>
                 ))
               ) : (
@@ -492,7 +495,8 @@ export default async function TemplateDetailPage({
               {relatedDocs.length ? (
                 relatedDocs.map((item) => (
                   <Link key={item.slug} href={`/docs/${item.slug}`} className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
-                    {item.title}
+                    <p className="text-sm font-medium text-slate-900">{item.title}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">{item.description}</p>
                   </Link>
                 ))
               ) : (

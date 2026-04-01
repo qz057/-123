@@ -20,15 +20,17 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
 
   const relatedTemplates = useCase.relatedTemplates
     .map((title) => getTemplateByTitle(title))
-    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .filter((item, index, array) => array.findIndex((entry) => entry.slug === item.slug) === index);
   const relatedDocs = useCase.relatedDocs
     .map((title) => getDocByTitle(title))
-    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .filter((item, index, array) => array.findIndex((entry) => entry.slug === item.slug) === index);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col gap-4">
-        <p className="text-sm font-medium text-sky-700">FlowDock / Use Cases</p>
+        <p className="text-sm font-medium text-indigo-700">FlowDock / Use Cases</p>
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <Badge variant="outline">场景入口</Badge>
           <Badge variant="secondary">任务视角</Badge>
@@ -57,7 +59,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardHeader>
             <CardContent className="space-y-4 pb-6">
               <p className="text-sm leading-7 text-slate-600 sm:text-base">{useCase.diagnoseFocus}</p>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+              <div className="rounded-2xl border border-slate-200 bg-indigo-50/70 p-4">
                 <p className="text-sm font-medium text-slate-900">推荐推进模块</p>
                 <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
                   {useCase.blocks.map((item) => (
@@ -76,7 +78,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               <ol className="space-y-4">
                 {useCase.executionPath.map((item, index) => (
                   <li key={item} className="rounded-2xl border border-slate-200 p-4">
-                    <p className="text-xs font-medium text-sky-700">Step {index + 1}</p>
+                    <p className="text-xs font-medium text-indigo-700">Step {index + 1}</p>
                     <p className="mt-2 text-sm leading-6 text-slate-700">{item}</p>
                   </li>
                 ))}
@@ -111,7 +113,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm">
+          <Card className="rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">这个场景跑起来后，怎么把结果收住</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景页的价值不是告诉你“能做什么”，而是让这次结果能被下一次复用。</CardDescription>
@@ -216,7 +218,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">交付后复盘：什么时候该沿原场景继续，什么时候别再复用旧结论</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景页真正的价值，是让你下次更快决定入口，而不是重复看解释。</CardDescription>
@@ -250,7 +252,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:hidden">
+          <Card className="rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm sm:hidden">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">继续推进前，只看这 3 件事</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">把底部重复判断层收成一个更短的 mobile 收口卡，先保证第一跳和下一跳清楚。</CardDescription>
@@ -314,7 +316,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
             </CardContent>
           </Card>
 
-          <Card className="hidden rounded-3xl border border-slate-200 bg-slate-50/70 py-0 shadow-sm sm:block">
+          <Card className="hidden rounded-3xl border border-slate-200 bg-indigo-50/70 py-0 shadow-sm sm:block">
             <CardHeader>
               <CardTitle className="text-xl text-slate-950">什么时候该升级处理，而不是继续沿这个场景硬推</CardTitle>
               <CardDescription className="text-sm leading-6 text-slate-600">场景页不只给入口，也要告诉你什么时候该切换处理层。</CardDescription>
@@ -390,7 +392,7 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
                 />
               </div>
               <div className="grid gap-3 lg:grid-cols-2">
-                <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <div className="rounded-2xl border border-slate-200 bg-indigo-50/70 p-4">
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">交付前最后确认</p>
                   <div className="mt-2 grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
                     <p className="text-sm leading-6 text-slate-600">第一跳别人一看就知道从哪开。</p>
@@ -412,10 +414,10 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-24">
-          <Card className="rounded-3xl border border-slate-200 bg-slate-950 py-0 text-white shadow-sm">
+          <Card className="rounded-3xl border border-slate-200 bg-indigo-950 py-0 text-white shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl text-white">推荐下一步</CardTitle>
-              <CardDescription className="text-sm leading-6 text-slate-300">先跳到最合适的执行入口，不用在这个场景页停太久。</CardDescription>
+              <CardDescription className="text-sm leading-6 text-slate-200">先跳到最合适的执行入口，不用在这个场景页停太久。</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-3 pb-6">
               <Link href={useCase.primaryAction.href} className="rounded-full bg-white px-5 py-3 text-center text-sm font-medium text-slate-950 transition hover:bg-slate-100">
@@ -432,11 +434,16 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               <CardTitle className="text-lg text-slate-950">相关模板</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 pb-6 text-sm text-slate-600">
-              {relatedTemplates.map((item) => (
-                <Link key={item.slug} href={`/templates/${item.slug}`} className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
-                  {item.title}
-                </Link>
-              ))}
+              {relatedTemplates.length ? (
+                relatedTemplates.map((item) => (
+                  <Link key={item.slug} href={`/templates/${item.slug}`} className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
+                    <p className="text-sm font-medium text-slate-900">{item.title}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">{item.summary}</p>
+                  </Link>
+                ))
+              ) : (
+                <p>后续补充。</p>
+              )}
             </CardContent>
           </Card>
 
@@ -445,11 +452,16 @@ export default async function UseCaseDetailPage({ params }: { params: Promise<{ 
               <CardTitle className="text-lg text-slate-950">相关文档</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 pb-6 text-sm text-slate-600">
-              {relatedDocs.map((item) => (
-                <Link key={item.slug} href={`/docs/${item.slug}`} className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
-                  {item.title}
-                </Link>
-              ))}
+              {relatedDocs.length ? (
+                relatedDocs.map((item) => (
+                  <Link key={item.slug} href={`/docs/${item.slug}`} className="block rounded-2xl border border-slate-200 px-4 py-3 transition hover:bg-slate-50">
+                    <p className="text-sm font-medium text-slate-900">{item.title}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">{item.description}</p>
+                  </Link>
+                ))
+              ) : (
+                <p>后续补充。</p>
+              )}
             </CardContent>
           </Card>
 
