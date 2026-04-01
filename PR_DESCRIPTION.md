@@ -1,64 +1,59 @@
-# FlowDock: first usable product-style release
+# FlowDock: first beta-presentable product-style release
 
 ## Summary
 
-This PR turns FlowDock from a raw plan / scaffold into a first usable product-style website and tool surface.
+This branch closes the gap between “a promising content skeleton” and “a beta-presentable, practically usable product surface.”
 
 Core result:
-- Homepage is now structured like a real product landing page
-- Diagnose is now an interactive, explainable rule-based diagnostic tool
-- Templates / Docs / Use Cases / About are all landed as connected product surfaces
-- Repo docs and delivery notes are aligned to the real state of the project
+- homepage is now framework-first, shorter, and more action-oriented
+- Diagnose is live as an explainable diagnostic router
+- all template pages are now execution-oriented
+- all use-case pages are now scenario execution pages
+- docs now function as routing / decision / boundary docs instead of overview placeholders
+- product notes now clearly state maturity, usable range, and current limits
 
 ## What changed
 
-### 1) Added the first real tool: Diagnose
-- interactive `/diagnose` page
-- rule-based issue classification
-- explainable results
-- score breakdown
-- resource priority guidance
-- failure signal templates
-- related scenario references
+### 1) Tightened the product shell and homepage
+- simplified homepage hierarchy
+- added practical clickable entries instead of only abstract teaser cards
+- reduced homepage clutter while keeping real entry points visible
+- improved global shell, page framing, and product-surface consistency
 
-### 2) Built the content system around it
-- `/templates` + 8 template detail pages
-- `/docs` + 5 docs detail pages
-- `/use-cases` + 4 scenario detail pages
-- `/about`
-
-### 3) Upgraded templates into execution pages
-Template detail pages now include:
+### 2) Upgraded all template pages into usable execution pages
+All 8 templates now include real execution-oriented structure:
 - fit / not-fit judgement
 - prerequisites / inputs / outputs
-- steps
+- ordered steps
 - execution checks
 - failure signals
 - rollback strategy
 - case example
-- related templates / docs
+- related templates / docs with better sidebar guidance
 
-### 4) Upgraded use-cases into execution-oriented scenario pages
-Use case pages now include:
-- audience
-- goals
+### 3) Upgraded all use-case pages into usable scenario pages
+All 4 use-cases now include:
+- audience / goals
 - diagnose focus
 - execution path
-- common pitfalls
+- pitfalls
 - proof of done
-- related templates / docs
-- primary / secondary actions
+- next-step guidance
+- related templates / docs with summaries
 
-### 5) Polished homepage and product navigation
-- stronger Hero
-- explicit Product Journey section
-- improved section hierarchy across homepage
-- unified header / footer / metadata / brand copy
+### 4) Turned docs into decision-support pages
+Core docs now function as practical guidance, not just intros:
+- `getting-started`
+- `diagnose`
+- `templates`
+- `troubleshooting`
+- `product-notes`
+- `/docs` index now acts as a real reading / routing hub
 
-### 6) Closed operator/documentation drift
-- replaced default Next.js README with real project README
-- added `DELIVERY.md`
-- added `COMMIT-PLAN.md`
+### 5) Closed documentation and operator drift
+- updated delivery note to the real current repo / deploy state
+- updated next-iteration note to the new post-closeout phase
+- ignored local `.task-state/` proof artifacts so validation screenshots stay out of git noise
 
 ## Validation
 
@@ -70,24 +65,33 @@ npm run lint && npm run build
 
 Result: **passed**
 
-## Commit shape
+Production smoke verified `200` for:
+- `/`
+- `/docs`
+- `/docs/product-notes`
+- `/templates/config-not-applied`
+- `/templates/model-switch-session-mismatch`
+- `/templates/automation-health-check`
+- `/templates/desktop-tool-integration`
 
-This branch was intentionally split into logical commits:
-1. scaffold / runtime foundation
-2. diagnose engine + tool page
-3. templates / docs / use-cases / about content system
-4. homepage / branding / navigation polish
-5. operator / delivery docs
-6. delivery-note sync after push state
+Live production:
+- <https://flowdock-eta.vercel.app>
+
+## Latest commit shape
+
+This closeout was intentionally grouped into logical slices:
+1. `867a8c9` — shell + homepage framing
+2. `57614a3` — templates + use-cases execution content
+3. `200b39e` — docs decision / execution system
 
 ## Known limits
 
-- Diagnose is still rule-based V1, not a free-form diagnostic system
-- Homepage can still be polished further toward design-grade visuals
-- Deeper scenario content in Docs / About / Use Cases can still be expanded
+- mixed CN/EN naming is still not fully unified
+- some dense pages still need more concrete snippets / worked examples
+- Diagnose is still a rule-based system, not a full free-form diagnostic engine
+- this is beta-presentable and practically usable, not a final polish-complete release
 
 ## Suggested next steps
 
-1. Continue homepage visual polish
-2. Expand deeper scenario content
-3. Iterate Diagnose beyond rules-based V1 if needed
+1. run a consistency closeout pass (terminology / CTA / scanability)
+2. or switch to real beta / product QA and collect path-level friction
