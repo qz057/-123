@@ -57,12 +57,12 @@ const recommendedEntrances = [
   },
   {
     title: "目标已经明确",
-    detail: "直接进 Templates 或 Use Cases，用现成路径推进，不要从空白页重想一遍。",
+    detail: "直接进模板或使用场景，用现成路径推进，不要从空白页重想一遍。",
     action: { label: "直接看模板中心", href: "/templates" },
   },
   {
     title: "想先确认边界",
-    detail: "先读 Docs / Product Notes，避免把当前首版误当成已经覆盖所有场景的成熟产品。",
+    detail: "先读文档 / 产品说明，避免把当前首版误当成已经覆盖所有场景的成熟产品。",
     action: { label: "先看文档路径", href: "/docs" },
   },
 ] as const;
@@ -70,7 +70,7 @@ const recommendedEntrances = [
 const decisionPoints = [
   {
     title: "我现在更像在定位，还是在执行",
-    detail: "FlowDock 先帮你分辨该先 Diagnose，还是已经可以直接进 Templates / Use Cases。",
+    detail: "FlowDock 先帮你分辨该先 Diagnose，还是已经可以直接进模板 / 使用场景。",
   },
   {
     title: "它当前到底能承接到哪一步",
@@ -78,7 +78,7 @@ const decisionPoints = [
   },
   {
     title: "什么时候该继续做，什么时候先收口",
-    detail: "当路径明确就继续推进；当边界不清就先回 Docs / Product Notes 校正预期。",
+    detail: "当路径明确就继续推进；当边界不清就先回文档 / 产品说明校正预期。",
   },
 ] as const;
 
@@ -91,13 +91,13 @@ const taskFirstRoutes = [
   },
   {
     title: "我已经知道目标，要直接做",
-    detail: "直接去 Templates 或 Use Cases，把理解切成执行路径。",
+    detail: "直接去模板或使用场景，把理解切成执行路径。",
     href: "/templates",
     label: "先看模板中心",
   },
   {
     title: "我怕把产品阶段理解过满",
-    detail: "先回 Docs / Product Notes，把首版边界和预期校正清楚。",
+    detail: "先回文档 / 产品说明，把首版边界和预期校正清楚。",
     href: "/docs",
     label: "先看文档路径",
   },

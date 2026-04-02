@@ -3,10 +3,10 @@ import { DocShell } from "@/components/docs/doc-shell";
 export default function ProductNotesPage() {
   return (
     <DocShell
-      eyebrow="FlowDock / Docs / Product Notes"
-      title="Product Notes"
+      eyebrow="FlowDock / 文档 / 产品说明"
+      title="产品说明"
       intro="这页不负责教你怎么点、怎么配，而是负责把 FlowDock 当前到底成熟到哪一步、哪些地方已经值得拿去推进真实任务、哪些地方还不该被误判成终版说清楚。它的价值不是制造完成感，而是帮你建立正确预期。"
-      badges={["Docs", "Product Notes"]}
+      badges={["文档 / Docs", "产品说明"]}
       summary={[
         { label: "当前阶段", value: "首版主链路已跑通，正在从可用骨架继续往产品级收口" },
         { label: "今天可依赖", value: "首页入口关系、Diagnose、Templates、Use Cases、Docs 互链已经形成基本闭环" },
@@ -40,10 +40,10 @@ export default function ProductNotesPage() {
         },
       ]}
       workflow={{
-        eyebrow: "Product maturity flow",
+        eyebrow: "成熟度判断顺序",
         title: "更稳地理解当前版本：别先问像不像终版，先问值不值得拿来推进真实任务",
         description:
-          "Product Notes 的作用不是给你更多完成感，而是帮助你先判断当前版本适不适合你的任务、哪些地方已经能用、哪些地方还该保留演进预期。顺序一旦对，预期管理就不会变成返工源头。",
+          "产品说明这页的作用不是给你更多完成感，而是帮助你先判断当前版本适不适合你的任务、哪些地方已经能用、哪些地方还该保留演进预期。顺序一旦对，预期管理就不会变成返工源头。",
         steps: [
           {
             title: "先看现在已经能做什么",

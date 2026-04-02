@@ -10,12 +10,12 @@ export function UseCasesPreviewSection() {
         <div className="mb-8 grid gap-6 md:mb-10 md:grid-cols-[1fr_0.82fr] md:items-end">
           <div className="max-w-3xl space-y-4">
             <Badge variant="outline" className="border-indigo-200 bg-indigo-50 text-indigo-700">
-              Use Cases
+              使用场景 / Use Cases
             </Badge>
             <div className="space-y-3">
               <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">适合这些真实工作场景</h2>
               <p className="text-sm leading-6 text-slate-600 sm:text-base">
-                如果你更习惯按任务进入，而不是按功能进入，就从场景页开始。首页这里不再只告诉你“能做什么”，而是先帮你判断第一跳和 done signal 应该长什么样。
+                如果你更习惯按任务进入，而不是按功能进入，就从场景页开始。首页这里不再只告诉你“能做什么”，而是先帮你判断第一跳和完成信号应该长什么样。
               </p>
             </div>
           </div>
@@ -69,7 +69,7 @@ export function UseCasesPreviewSection() {
 
                   <div className={primary ? "rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3" : "rounded-2xl border border-amber-100 bg-amber-50/70 px-3.5 py-3"}>
                     <p className={primary ? "text-[11px] font-medium uppercase tracking-[0.16em] text-slate-300" : "text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500"}>
-                      Done signal
+                      完成信号
                     </p>
                     <p className={primary ? "mt-2 text-sm leading-[1.6] text-slate-200" : "mt-2 text-sm leading-[1.6] text-slate-700"}>{item.proofOfDone[0]}</p>
                   </div>

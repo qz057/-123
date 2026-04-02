@@ -140,12 +140,12 @@ export function CoreCapabilitiesSection() {
         </div>
 
         <div className="mt-5 hidden rounded-[28px] border border-white/85 bg-white/85 px-4 py-4 shadow-sm sm:mt-6 sm:block sm:px-5">
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Default loop</p>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">默认顺序</p>
           <div className="mt-3 grid gap-2.5 sm:grid-cols-3">
             {[
               "先用 Diagnose 压层，不先靠感觉并排怀疑多层问题。",
-              "再用 Templates / Use Cases 承接执行，不停在说明层。",
-              "最后回 Docs 做验证、边界确认和失败分支复核。",
+              "再用模板 / 使用场景承接执行，不停在说明层。",
+              "最后回文档做验证、边界确认和失败分支复核。",
             ].map((item, index) => (
               <div key={item} className="rounded-2xl border border-slate-200 bg-indigo-50/80 px-3.5 py-3 text-sm leading-[1.6] text-slate-600">
                 <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-950 text-xs font-medium text-white">

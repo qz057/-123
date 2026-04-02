@@ -3,10 +3,10 @@ import { DocShell } from "@/components/docs/doc-shell";
 export default function GettingStartedPage() {
   return (
     <DocShell
-      eyebrow="FlowDock / Docs / Getting Started"
-      title="Getting Started"
+      eyebrow="FlowDock / 文档 / 起步指南"
+      title="起步指南"
       intro="这份起步文档不想让你把整个站都看一遍，而是帮你在第一次进入 FlowDock 时快速完成三个判断：我现在更像在定位问题、在执行方案，还是在补规则与验证。只要这三件事判对，首版已经足够开始真正使用。"
-      badges={["Docs", "Getting Started"]}
+      badges={["文档 / Docs", "起步指南"]}
       summary={[
         { label: "第一次最该先开", value: "Diagnose：当你还分不清问题在第几层时" },
         { label: "方向明确后进入", value: "Templates / Use Cases：当你已经知道要做什么" },
@@ -39,7 +39,7 @@ export default function GettingStartedPage() {
         },
       ]}
       workflow={{
-        eyebrow: "Start flow",
+        eyebrow: "起步顺序",
         title: "第一次进入 FlowDock，最稳的使用闭环",
         description:
           "首版最怕的不是信息不够，而是入口顺序错。更稳的节奏永远是：先判断你现在最缺的是归类、执行还是验证，再决定页面顺序。只有先把入口选对，后面的内容才会开始节省时间。",
@@ -161,7 +161,7 @@ export default function GettingStartedPage() {
         },
         {
           title: "读完这页之后，下一步不该停在理解层",
-          body: "Getting Started 的意义，不是让你理解完整站点，而是让你现在就能更稳地决定第一跳。只要你已经知道现在该先 Diagnose、先 Templates 还是先 Use Cases，这页的任务就完成了。真正的价值在下一页，而不是这页本身。",
+          body: "起步指南的意义，不是让你理解完整站点，而是让你现在就能更稳地决定第一跳。只要你已经知道现在该先 Diagnose、先模板中心还是先使用场景，这页的任务就完成了。真正的价值在下一页，而不是这页本身。",
           highlights: [
             { label: "这页完成的标志", value: "你知道第一跳该去哪里", tone: "success" },
             { label: "不该发生的事", value: "你还准备继续多读两页再决定第一步", tone: "warning" },

@@ -119,7 +119,7 @@ export function DocShell({
             <Card key={block.title} className={block.mobileHidden ? "hidden rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm md:block" : "rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm"}>
               <CardHeader>
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">
-                  Checklist {String(index + 1).padStart(2, "0")}
+                  清单 {String(index + 1).padStart(2, "0")}
                 </p>
                 <CardTitle className="text-lg text-slate-950">{block.title}</CardTitle>
               </CardHeader>
@@ -141,7 +141,7 @@ export function DocShell({
         <section className="mt-8 rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] p-5 shadow-sm sm:p-6">
           <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">{workflow.eyebrow ?? "Workflow"}</p>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">{workflow.eyebrow ?? "执行顺序"}</p>
               <h2 className="mt-1 text-xl font-semibold text-slate-950 sm:text-2xl">{workflow.title}</h2>
               <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">{workflow.description}</p>
             </div>
@@ -175,7 +175,7 @@ export function DocShell({
               return (
                 <div key={`${step.title}-${index}`} className={step.mobileHidden ? `${cardClass} hidden md:block` : cardClass}>
                   <div className="flex items-center justify-between gap-3">
-                    <span className={cueClass}>{step.cue ?? `Step ${String(index + 1).padStart(2, "0")}`}</span>
+                    <span className={cueClass}>{step.cue ?? `步骤 ${String(index + 1).padStart(2, "0")}`}</span>
                     <span
                       className={
                         primary
@@ -224,7 +224,7 @@ export function DocShell({
             >
               <CardHeader className="gap-3">
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">
-                  Section {String(section.index + 1).padStart(2, "0")}
+                  章节 {String(section.index + 1).padStart(2, "0")}
                 </p>
                 <CardTitle className="text-xl text-slate-950">{section.title}</CardTitle>
               </CardHeader>
@@ -273,7 +273,7 @@ export function DocShell({
           {ctaLinks.length ? (
             <Card className="rounded-[28px] border border-slate-200 bg-indigo-950 py-0 text-white shadow-sm">
               <CardHeader>
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">Next Step</p>
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">下一步</p>
                 <CardTitle className="text-2xl text-white">读完这页，别停在理解层</CardTitle>
                 <CardDescription className="text-slate-200">
                   这页的目标不是让你多看一层，而是帮你更快切到下一步动作。

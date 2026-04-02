@@ -8,15 +8,16 @@ export type FlowDockDoc = {
 export const docsCatalog: readonly FlowDockDoc[] = [
   {
     slug: "getting-started",
-    title: "Getting Started",
-    description: "快速建立对 FlowDock 和首批功能的整体理解。",
-    aliases: ["本地接入起步指南", "工作流设计说明", "自动化工作流起步说明"],
+    title: "起步指南",
+    description: "快速建立对 FlowDock 与首批核心路径的整体理解。",
+    aliases: ["Getting Started", "本地接入起步指南", "工作流设计说明", "自动化工作流起步说明"],
   },
   {
     slug: "diagnose",
-    title: "Diagnose",
-    description: "了解配置诊断器的输入字段、输出结构和使用方式。",
+    title: "配置诊断器",
+    description: "了解 Diagnose 的输入字段、输出结构与使用方式。",
     aliases: [
+      "Diagnose",
       "Provider 配置说明",
       "Auth 使用说明",
       "Transport 说明",
@@ -30,19 +31,21 @@ export const docsCatalog: readonly FlowDockDoc[] = [
   },
   {
     slug: "templates",
-    title: "Templates",
-    description: "查看模板分类、模板详情字段和复用方法。",
+    title: "模板说明",
+    description: "查看模板分类、详情结构与复用方式。",
+    aliases: ["Templates"],
   },
   {
     slug: "troubleshooting",
-    title: "Troubleshooting",
-    description: "集中整理排障说明、优先级和常见问题。",
-    aliases: ["排障优先级说明"],
+    title: "排障指南",
+    description: "集中整理排障顺序、优先级与常见误区。",
+    aliases: ["Troubleshooting", "排障优先级说明"],
   },
   {
     slug: "product-notes",
-    title: "Product Notes",
-    description: "记录版本变化、功能边界和后续迭代方向。",
+    title: "产品说明",
+    description: "记录当前版本边界、成熟度与后续迭代方向。",
+    aliases: ["Product Notes"],
   },
 ] as const;
 

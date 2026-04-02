@@ -19,7 +19,7 @@ const quickEntries = [
     title: "按任务找入口",
     description: "不按功能页，按场景选第一步。",
     href: "/use-cases",
-    label: "查看 Use Cases",
+    label: "查看使用场景",
   },
 ] as const;
 
@@ -50,7 +50,7 @@ export function HeroSection() {
                 </span>
               </h1>
               <p className="max-w-2xl text-[15px] leading-7 text-slate-600 sm:text-[17px]">
-                先 Diagnose 判断问题层级；方向明确后进 Templates 或 Use Cases；最后回 Docs 做验证与收口。
+                先用 Diagnose 判断问题层级；方向明确后进模板或使用场景；最后回文档做验证与收口。
               </p>
             </div>
 

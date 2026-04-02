@@ -10,16 +10,16 @@ const frameworkSteps = [
     label: "先做 Diagnose",
   },
   {
-    title: "Templates / Use Cases",
+    title: "模板 / 使用场景",
     summary: "方向明确，直接执行。",
     href: "/templates",
     label: "进入执行页",
   },
   {
-    title: "Docs",
+    title: "文档",
     summary: "最后补验证与边界。",
     href: "/docs",
-    label: "回 Docs 收口",
+    label: "回文档收口",
   },
 ] as const;
 
@@ -29,7 +29,7 @@ export function ProductJourneySection() {
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         <div className="mb-6 max-w-3xl space-y-3">
           <Badge variant="outline" className="border-indigo-200 bg-indigo-50/80 text-indigo-700">
-            Main Framework
+            主路径
           </Badge>
           <div className="space-y-2">
             <h2 className="text-[1.8rem] font-semibold tracking-tight text-slate-950 sm:text-[2.1rem]">首页只负责这 3 步</h2>
@@ -50,7 +50,7 @@ export function ProductJourneySection() {
                 }
               >
                 <CardHeader className="pb-3">
-                  <p className={primary ? "text-xs font-medium uppercase tracking-[0.18em] text-violet-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-500"}>Step 0{index + 1}</p>
+                  <p className={primary ? "text-xs font-medium uppercase tracking-[0.18em] text-violet-200" : "text-xs font-medium uppercase tracking-[0.18em] text-slate-500"}>步骤 0{index + 1}</p>
                   <CardTitle className={primary ? "text-xl text-white" : "text-xl text-slate-950"}>{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3.5 pb-5">

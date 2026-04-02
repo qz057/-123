@@ -3,10 +3,10 @@ import { siteConfig } from "@/data/site/navigation";
 
 const footerLinks = [
   { label: "Diagnose", href: "/diagnose" },
-  { label: "Templates", href: "/templates" },
-  { label: "Use Cases", href: "/use-cases" },
-  { label: "Docs", href: "/docs" },
-  { label: "About", href: "/about" },
+  { label: "模板中心", href: "/templates" },
+  { label: "使用场景", href: "/use-cases" },
+  { label: "文档", href: "/docs" },
+  { label: "关于", href: "/about" },
 ] as const;
 
 export function SiteFooter() {
@@ -27,7 +27,7 @@ export function SiteFooter() {
               </Link>
             ))}
           </div>
-          <p className="text-xs text-slate-500">默认路径：先 Diagnose → 再 Templates → 最后 Docs 验证收口。</p>
+          <p className="text-xs text-slate-500">默认路径：先 Diagnose → 再模板 / 使用场景 → 最后文档验证收口。</p>
         </div>
       </div>
     </footer>

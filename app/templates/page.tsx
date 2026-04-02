@@ -12,10 +12,10 @@ export default function TemplatesPage() {
       <header className="mb-8">
         <div className="mb-2.5 flex flex-wrap items-center gap-2 text-xs">
           <Badge variant="outline">FlowDock</Badge>
-          <Badge variant="secondary">Templates</Badge>
+          <Badge variant="secondary">模板 / Templates</Badge>
           <Badge variant="outline">方向明确后直接来这里</Badge>
         </div>
-        <p className="text-sm font-medium text-indigo-700">FlowDock / Templates</p>
+        <p className="text-sm font-medium text-indigo-700">FlowDock / 模板中心</p>
         <h1 className="mt-2 text-[1.95rem] font-semibold tracking-tight text-slate-950 sm:text-[2.35rem]">工作流模板中心</h1>
         <p className="mt-3.5 max-w-3xl text-sm leading-[1.72] text-slate-600 sm:text-[15px]">
           如果你已经知道自己要解决什么，这页就该直接给你模板，而不是先让你读很多说明。方向还不清，就先回 Diagnose。
@@ -25,7 +25,7 @@ export default function TemplatesPage() {
             直接看模板列表
           </Link>
           <Link href="/diagnose" className="inline-flex items-center gap-1 text-sm font-medium text-indigo-700 transition hover:text-violet-700">
-            <span>方向不清？先 Diagnose</span>
+            <span>方向不清？先做 Diagnose</span>
             <span aria-hidden>→</span>
           </Link>
         </div>
@@ -34,11 +34,11 @@ export default function TemplatesPage() {
       <section id="template-grid">
         <div className="mb-4 flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">All templates</p>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">模板总览</p>
             <h2 className="mt-1 text-xl font-semibold text-slate-950">首批模板</h2>
           </div>
           <Link href="/docs/templates" className="hidden text-sm font-medium text-indigo-700 sm:inline-flex">
-            需要规则说明？看 Templates 文档
+            需要规则说明？看模板文档
           </Link>
         </div>
         <div className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-4 xl:gap-3">
@@ -46,7 +46,7 @@ export default function TemplatesPage() {
             <Card key={template.slug} className="rounded-[28px] border border-slate-200 bg-white py-0 shadow-sm fd-glass-card">
               <CardHeader className="pb-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">Template 0{index + 1}</p>
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">模板 0{index + 1}</p>
                   <Badge variant="outline">{template.category}</Badge>
                   <Badge variant="secondary">{template.difficulty}</Badge>
                 </div>

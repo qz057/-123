@@ -73,7 +73,7 @@ export default function DiagnoseDocsPage() {
           },
           {
             title: "最后才跳模板或文档",
-            detail: "当 Diagnose 已把方向压清，你再进入 Templates 或 Troubleshooting；不要反过来把建议当成直接结案。",
+            detail: "当 Diagnose 已把方向压清，你再进入模板或排障指南；不要反过来把建议当成直接结案。",
             cue: "下一跳",
             href: "/templates",
             actionLabel: "去模板中心",
@@ -170,7 +170,7 @@ export default function DiagnoseDocsPage() {
           highlights: [
             { label: "该怀疑归类的信号", value: "评分拆解、判断依据和你的真实现象明显对不上", tone: "warning" },
             { label: "先补什么", value: "补最小可复现现象、关键报错和期望结果，而不是继续写长描述", tone: "success" },
-            { label: "什么时候回 Troubleshooting", value: "当你已经能大致判层，但需要更稳的停手 / 回滚 / 单变量节奏" },
+            { label: "什么时候回排障指南", value: "当你已经能大致判层，但需要更稳的停手 / 回滚 / 单变量节奏" },
             { label: "什么时候回 Templates", value: "当方向已清楚，只是需要一个更稳的执行顺序", tone: "success" },
           ],
           bullets: [

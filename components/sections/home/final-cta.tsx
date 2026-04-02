@@ -11,7 +11,7 @@ const launchRoutes = [
   },
   {
     title: "我已经知道方向，要直接做",
-    detail: "先去 Templates 或 Use Cases，把方向切成可执行步骤。",
+    detail: "先去模板或使用场景，把方向切成可执行步骤。",
     href: "/templates",
     label: "进入执行页",
   },
@@ -19,7 +19,7 @@ const launchRoutes = [
     title: "我需要规则、边界和完成判断",
     detail: "最后回 Docs，把验证口径和产品边界收清。",
     href: "/docs",
-    label: "看 Docs",
+    label: "看文档",
   },
 ] as const;
 
@@ -33,7 +33,7 @@ export function FinalCtaSection() {
         <div className="relative grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
           <div>
             <Badge variant="outline" className="border-violet-300/20 bg-violet-400/10 text-violet-200">
-              Start Here
+              从这里开始
             </Badge>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
               首页看到这里就够了，
@@ -46,13 +46,13 @@ export function FinalCtaSection() {
 
           <Card className="hidden rounded-[28px] border border-white/10 bg-white/5 py-0 text-white lg:block">
             <CardHeader className="pb-3">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">Default loop</p>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">默认顺序</p>
               <CardTitle className="text-lg text-white">最稳的默认顺序</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2.5 pb-5 text-sm leading-[1.65] text-slate-200">
               <p className="rounded-2xl border border-white/10 bg-indigo-950/35 px-3.5 py-2.5">1. 先 Diagnose</p>
-              <p className="rounded-2xl border border-white/10 bg-indigo-950/35 px-3.5 py-2.5">2. 再 Templates / Use Cases</p>
-              <p className="rounded-2xl border border-white/10 bg-indigo-950/35 px-3.5 py-2.5">3. 最后 Docs 收口</p>
+              <p className="rounded-2xl border border-white/10 bg-indigo-950/35 px-3.5 py-2.5">2. 再模板 / 使用场景</p>
+              <p className="rounded-2xl border border-white/10 bg-indigo-950/35 px-3.5 py-2.5">3. 最后文档收口</p>
             </CardContent>
           </Card>
         </div>

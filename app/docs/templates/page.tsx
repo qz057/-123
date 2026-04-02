@@ -3,10 +3,10 @@ import { DocShell } from "@/components/docs/doc-shell";
 export default function TemplatesDocsPage() {
   return (
     <DocShell
-      eyebrow="FlowDock / Docs / Templates"
-      title="Templates 文档"
+      eyebrow="FlowDock / 文档 / 模板说明"
+      title="模板说明"
       intro="Templates 不是文章目录，也不是纯展示区。它是承接 Diagnose 结果和明确目标任务的执行层，重点是让你快速拿到一套可复用、可验证、可扩展的推进路径。它真正的价值，不是让你读懂模板，而是让你照着模板完成一轮真实推进。"
-      badges={["Docs", "Templates"]}
+      badges={["文档 / Docs", "模板说明"]}
       summary={[
         { label: "适合什么时候进", value: "方向已经比较明确，想直接开始做" },
         { label: "当前分类", value: "搭建类、排障类、自动化类、产品化类" },
@@ -39,7 +39,7 @@ export default function TemplatesDocsPage() {
         },
       ]}
       workflow={{
-        eyebrow: "Execution flow",
+        eyebrow: "执行顺序",
         title: "把模板用成执行路径，而不是阅读材料",
         description:
           "模板真正的价值不在于内容多，而在于它能把“我接下来先做什么”压成更稳的主链路。更稳的顺序是：先确认模板选对，再补输入，按单变量推进，最后把 done signal 与回滚口径收清。",
@@ -188,7 +188,7 @@ export default function TemplatesDocsPage() {
             "模板与场景页配合顺了，FlowDock 才更像工作台而不是资料站",
           ],
           links: [
-            { href: "/use-cases", label: "查看 Use Cases", tone: "primary" },
+            { href: "/use-cases", label: "查看使用场景", tone: "primary" },
             { href: "/docs/getting-started", label: "回到起步文档" },
           ],
         },

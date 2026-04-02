@@ -3,10 +3,10 @@ import { DocShell } from "@/components/docs/doc-shell";
 export default function TroubleshootingDocsPage() {
   return (
     <DocShell
-      eyebrow="FlowDock / Docs / Troubleshooting"
-      title="Troubleshooting 文档"
+      eyebrow="FlowDock / 文档 / 排障指南"
+      title="排障指南"
       intro="这页不想把你推进更复杂的排障，而是想帮你更快看见：当前卡点更像哪一层、最常见的误判是什么、下一步到底该收缩动作还是升级验证。相比“多试几次”，FlowDock 当前更强调真实现场里的判断顺序。"
-      badges={["Docs", "Troubleshooting"]}
+      badges={["文档 / Docs", "排障指南"]}
       summary={[
         { label: "排障起点", value: "先判层，再做单变量验证，不在噪音里猜" },
         { label: "高频现场", value: "切模型像是生效了、入口像是通了、文档像是都懂了，但真实链路仍没闭环" },
@@ -40,7 +40,7 @@ export default function TroubleshootingDocsPage() {
         },
       ]}
       workflow={{
-        eyebrow: "Troubleshooting flow",
+        eyebrow: "排障顺序",
         title: "把坏现场重新拉回可解释区间的顺序",
         description:
           "真正稳的排障不是动作更多，而是顺序更清楚：先判层，再做最小真测，再按结果选分支，最后把根因和回滚口径收干净。",
