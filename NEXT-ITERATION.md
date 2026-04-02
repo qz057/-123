@@ -7,6 +7,9 @@ FlowDock is no longer in the “raw scaffold” phase.
 Current real state:
 - homepage / about / docs / templates / use-cases are all landed
 - Diagnose is live as an explainable rule-based router
+- Diagnose keeps the server-page + server-action boundary from the previous refactor
+- Diagnose client shell is now split into focused modules instead of one giant client file
+- a dedicated `npm run smoke:diagnose` regression path now exists
 - all 8 template detail pages are execution-oriented
 - all 4 use-case detail pages are scenario-oriented execution pages
 - docs index + core docs + product notes are now practical routing / decision / boundary docs
@@ -57,16 +60,19 @@ Focus:
 - more scenario examples
 - stronger failure-signal patterns
 - tighter resource recommendation quality
+- only continue UI拆分 when it clearly improves maintainability or testability
 
 Primary targets:
 - `app/diagnose/page.tsx`
+- `app/diagnose/diagnose-client-page.tsx`
+- `app/diagnose/diagnose-result-panel.tsx`
 - `lib/diagnose/analyzer.ts`
 - `types/diagnose.ts`
 
 ## Current stable baseline
 
 ```bash
-npm run lint && npm run build
+npm run lint && npm run build && npm run smoke:diagnose
 ```
 
 Status: passed
@@ -75,10 +81,12 @@ Status: passed
 
 - repo path: `/home/qz057/.openclaw/workspace/flowdock`
 - branch: `master`
-- latest pushed content closeout includes:
-  - `867a8c9` — shell + homepage framing
-  - `57614a3` — templates + use-cases content deepening
-  - `200b39e` — docs system deepening
+- latest pushed Diagnose follow-up includes:
+  - `b3ef5b6` — split Diagnose page into server page, client shell, server action
+  - `d821974` — slim Noto Sans SC bundle and ignore local `.codex`
+  - `3bec232` — split Diagnose client shell into focused modules
+  - `4cbec9e` — add Diagnose smoke regression and docs guardrails
+- repo-local push hardening now prefers: `ssh://git@ssh.github.com:443/qz057/-123.git`
 - production deploy confirmed live after the current closeout
 
 ## Working rule for future work

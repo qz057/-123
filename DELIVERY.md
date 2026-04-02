@@ -4,17 +4,18 @@
 
 - Repo path: `/home/qz057/.openclaw/workspace/flowdock`
 - Branch: `master`
-- Remote: `origin = git@github.com:qz057/-123.git`
-- Push route used for reliability: `ssh://git@ssh.github.com:443/qz057/-123.git`
-- Tracking: `master -> origin/master`
-- Working tree: **clean**
+- Remote fetch URL: `git@github.com:qz057/-123.git`
+- Remote push URL: `ssh://git@ssh.github.com:443/qz057/-123.git`
+- Push route is now hardened via local repo config: `remote.origin.pushurl`
+- Tracking target: `master -> origin/master`
+- Working tree at closeout: **clean after commit**
 
 ## Current Verified Baseline
 
 Validation command:
 
 ```bash
-npm run lint && npm run build
+npm run lint && npm run build && npm run smoke:diagnose
 ```
 
 Latest result: **passed**
@@ -44,7 +45,15 @@ Production smoke (verified 200):
 
 ### Diagnose
 - `/diagnose` is live as an explainable, rule-based diagnostic router
-- Diagnose docs now explain when to use it, how to read it, and what it does **not** claim to solve
+- server page + server action boundary is preserved
+- Diagnose client shell is now further split into focused modules:
+  - `diagnose-header.tsx`
+  - `diagnose-form-panels.tsx`
+  - `diagnose-result-panel.tsx`
+  - `diagnose-example-cases.tsx`
+  - `use-diagnose-flow.ts`
+- Diagnose docs now explain when to use it, how to read it, what it does **not** claim to solve, and how to run the minimum safe regression path after edits
+- a dedicated regression command now exists: `npm run smoke:diagnose`
 
 ### Templates
 - `/templates` center is live
@@ -76,15 +85,24 @@ Production smoke (verified 200):
 
 Most recent pushed commits:
 
-1. `867a8c9` — `feat: tighten FlowDock shell and homepage product framing`
-2. `57614a3` — `feat: deepen FlowDock template and use-case execution content`
-3. `200b39e` — `docs: turn FlowDock docs into decision and execution guides`
+1. `4cbec9e` — `test(diagnose): add smoke regression and docs guardrails`
+2. `3bec232` — `refactor(diagnose): split client shell into focused modules`
+3. `d821974` — `perf(fonts): slim Noto Sans SC bundle and ignore local .codex marker`
+4. `b3ef5b6` — `refactor(diagnose): split page into server page, client shell and server action`
 
-Prior state already on branch includes the earlier landing / diagnose / content-system groundwork.
+Earlier commits on the same branch already contain the homepage / templates / use-cases / docs baseline.
 
 ## Push Status
 
-Latest push succeeded with:
+Latest push succeeded with GitHub SSH over 443.
+
+Repo-local hardening now set:
+
+```bash
+git config remote.origin.pushurl ssh://git@ssh.github.com:443/qz057/-123.git
+```
+
+One-shot fallback command if needed:
 
 ```bash
 GIT_SSH_COMMAND='ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new -p 443' \
@@ -120,3 +138,7 @@ Pick one of these, not both at once:
    - walk real user paths end to end
    - collect confusion points / hesitation points / dead-end links
    - promote repeated findings into the docs / templates / diagnose logic
+
+3. **Diagnose UI further split only if needed**
+   - current split is already workable and regression-guarded
+   - continue拆分时，优先拆 presentational sections，不要破坏 server/client 边界与 smoke 路径
