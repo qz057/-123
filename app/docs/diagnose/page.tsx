@@ -11,6 +11,7 @@ export default function DiagnoseDocsPage() {
         { label: "当前定位", value: "先把问题归对层，再把你送去更合适的模板和文档入口" },
         { label: "最适合的现场", value: "知道有问题，但还判断不出是连接、配置、Session 还是工具接入层" },
         { label: "最该避免的误判", value: "把 Diagnose 当成最终答案，而不是下一步执行顺序的生成器" },
+        { label: "改页时最小回归", value: "先跑 npm run smoke:diagnose，再跑 lint / build，确认结构边界和关键入口都没回退" },
       ]}
       checklist={[
         {
@@ -35,6 +36,14 @@ export default function DiagnoseDocsPage() {
             "先看 summary 和 risk level，判断现在该继续试还是先停手收缩变量",
             "再看判断依据、缺失输入和评分拆解，确认 Diagnose 有没有抓住你的真实问题",
             "最后按修复步骤和资源优先级推进，不把 Diagnose 结果当成最终结案",
+          ],
+        },
+        {
+          title: "如果你正在迭代 Diagnose 本页本身",
+          items: [
+            "先确认 server page 仍只在服务端预计算，client shell 不要重新直连 analyzer",
+            "先跑 npm run smoke:diagnose，快速检查结构拆分、关键文案、资源入口和主路由是否还在",
+            "最后再跑 npm run lint && npm run build，避免结构看起来对了但真实交付链路断掉",
           ],
         },
       ]}
