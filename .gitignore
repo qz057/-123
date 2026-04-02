@@ -38,6 +38,7 @@ yarn-error.log*
 
 # local verification artifacts
 .task-state/
+.codex
 
 # typescript
 *.tsbuildinfo
