@@ -88,6 +88,8 @@ Status: passed
   - `4cbec9e` — add Diagnose smoke regression and docs guardrails
 - repo-local push hardening now prefers: `ssh://git@ssh.github.com:443/qz057/-123.git`
 - production deploy confirmed live after the current closeout
+- current production deployment: `dpl_2iEvt91khNjj8A9wPwFWZb5vu6na` (`flowdock-3b0nef6ls-qz67651024-9181s-projects.vercel.app`)
+- 2026-04-02 deployment drift was fixed by checking Vercel alias state, then running a fresh `npx vercel --prod --yes` from current HEAD
 
 ## Working rule for future work
 

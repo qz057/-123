@@ -18,23 +18,47 @@ Validation command:
 npm run lint && npm run build && npm run smoke:diagnose
 ```
 
-Latest result: **passed**
+Latest local result: **passed**
 
-Production smoke (verified 200):
+Production smoke (verified live):
 
-- `https://flowdock-eta.vercel.app/`
-- `https://flowdock-eta.vercel.app/docs`
-- `https://flowdock-eta.vercel.app/docs/product-notes`
-- `https://flowdock-eta.vercel.app/templates/config-not-applied`
-- `https://flowdock-eta.vercel.app/templates/model-switch-session-mismatch`
-- `https://flowdock-eta.vercel.app/templates/automation-health-check`
-- `https://flowdock-eta.vercel.app/templates/desktop-tool-integration`
+- `https://flowdock-eta.vercel.app/` → `200`, contains `FlowDock`
+- `https://flowdock-eta.vercel.app/diagnose` → `200`, contains `配置诊断器`
+- `https://flowdock-eta.vercel.app/docs/diagnose` → `200`, contains `smoke:diagnose`
+- `https://flowdock-eta.vercel.app/docs` → `200`
+- `https://flowdock-eta.vercel.app/docs/product-notes` → `200`
+- `https://flowdock-eta.vercel.app/templates/config-not-applied` → `200`
+- `https://flowdock-eta.vercel.app/templates/model-switch-session-mismatch` → `200`
+- `https://flowdock-eta.vercel.app/templates/automation-health-check` → `200`
+- `https://flowdock-eta.vercel.app/templates/desktop-tool-integration` → `200`
 
 ## Current Live Deployment
 
 - Production URL: <https://flowdock-eta.vercel.app>
-- Deployment ID: `dpl_57tTz7SB8DhAwuGqHhZE4e5EJtqR`
-- Inspect URL: <https://vercel.com/qz67651024-9181s-projects/flowdock/57tTz7SB8DhAwuGqHhZE4e5EJtqR>
+- Current production deployment URL: <https://flowdock-3b0nef6ls-qz67651024-9181s-projects.vercel.app>
+- Deployment ID: `dpl_2iEvt91khNjj8A9wPwFWZb5vu6na`
+- Inspect URL: <https://vercel.com/qz67651024-9181s-projects/flowdock/2iEvt91khNjj8A9wPwFWZb5vu6na>
+
+## Deployment Recovery Note
+
+On 2026-04-02, production drift was investigated and fixed.
+
+What happened:
+- GitHub `master` already had the latest commits
+- Vercel had created a newer deployment, but it was only a `preview` deployment
+- `flowdock-eta.vercel.app` was still aliased to an older production deployment, so `/docs/diagnose` served stale content
+
+What was done:
+- promoted `flowdock-pzm5dtgqd-qz67651024-9181s-projects.vercel.app`
+- confirmed that promoted deployment still did not contain the latest docs copy
+- ran a fresh production deploy from current local HEAD with `npx vercel --prod --yes`
+- Vercel aliased `flowdock-eta.vercel.app` to the new production deployment `flowdock-3b0nef6ls-qz67651024-9181s-projects.vercel.app`
+
+Final proof:
+- production `/docs/diagnose` now contains:
+  - `smoke:diagnose`
+  - `改页时最小回归`
+  - `如果你正在迭代 Diagnose 本页本身`
 
 ## What Is Now Landed
 
